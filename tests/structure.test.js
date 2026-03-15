@@ -60,6 +60,10 @@ describe('index.html', () => {
     assert.ok(html.includes('id="status-overlay"'));
     assert.ok(html.includes('id="status-message"'));
   });
+
+  it('includes MediaPipe Face Mesh CDN script', () => {
+    assert.ok(html.includes('@mediapipe/face_mesh'));
+  });
 });
 
 describe('style.css', () => {
@@ -108,6 +112,12 @@ describe('JS modules export correctly', () => {
     assert.ok(typeof mod.computeHR === 'function');
     assert.ok(typeof mod.computeHRV === 'function');
     assert.ok(typeof mod.signalQuality === 'function');
+    assert.ok(typeof mod.extractROIBox === 'function');
+    assert.ok(typeof mod.meanRGBFromROI === 'function');
+    assert.ok(typeof mod.extractFaceROI === 'function');
+    assert.ok(typeof mod.computeCoherence === 'function');
+    assert.ok(typeof mod.drawSparkline === 'function');
+    assert.ok(typeof mod.FaceDetector === 'function');
   });
 
   it('scene.js exports SceneManager', async () => {
