@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Pulse Cathedral — BioViz</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -49,7 +49,11 @@
     <span id="breathing-timer">4</span>
   </div>
 
-  <div id="status-overlay">
+  <div id="tap-overlay">
+    <p id="tap-message">Tap to Begin</p>
+  </div>
+
+  <div id="status-overlay" class="hidden">
     <p id="status-message">Initializing camera…</p>
   </div>
 

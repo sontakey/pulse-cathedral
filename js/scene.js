@@ -13,6 +13,7 @@ import {
   createWaveformMaterial,
   createGridMaterial,
 } from './shaders.js';
+import { detectMobile, getPixelRatio, getParticleCount } from './mobile.js';
 
 // --- Color constants matching the CSS palette ---
 const NEON_TEAL = 0x00f5d4;
@@ -21,7 +22,8 @@ const SOFT_MAGENTA = 0xc77dff;
 const ELECTRIC_BLUE = 0x4361ee;
 const BG_DEEP = 0x0a0a0f;
 
-const PARTICLE_COUNT = 2000;
+const isMobile = detectMobile();
+const PARTICLE_COUNT = getParticleCount(isMobile);
 const COLUMN_COUNT = 16;
 const WAVEFORM_POINTS = 128;
 
@@ -75,7 +77,7 @@ export class SceneManager {
       alpha: false,
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(getPixelRatio(isMobile));
     this.renderer.setClearColor(BG_DEEP, 1);
 
     // Scene

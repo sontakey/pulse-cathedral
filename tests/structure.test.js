@@ -17,6 +17,7 @@ describe('Project structure', () => {
     'js/audio.js',
     'js/hud.js',
     'js/breathing.js',
+    'js/mobile.js',
   ];
 
   for (const file of expectedFiles) {
@@ -153,6 +154,13 @@ describe('JS modules export correctly', () => {
   it('audio.js exports AudioManager', async () => {
     const mod = await import('../js/audio.js');
     assert.ok(typeof mod.AudioManager === 'function');
+  });
+
+  it('mobile.js exports detection utilities', async () => {
+    const mod = await import('../js/mobile.js');
+    assert.ok(typeof mod.detectMobile === 'function');
+    assert.ok(typeof mod.getPixelRatio === 'function');
+    assert.ok(typeof mod.getParticleCount === 'function');
   });
 });
 

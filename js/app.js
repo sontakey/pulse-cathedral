@@ -1,6 +1,7 @@
 /**
  * Main application loop.
  * Connects rPPG processing to the Three.js scene and audio.
+ * Gates camera and audio behind a user tap (required on mobile).
  */
 
 import {
@@ -13,7 +14,9 @@ import { SceneManager } from './scene.js';
 import { AudioManager } from './audio.js';
 import { createHUD } from './hud.js';
 import { createBreathingGuide } from './breathing.js';
+import { detectMobile } from './mobile.js';
 
+const tapOverlay = document.getElementById('tap-overlay');
 const statusOverlay = document.getElementById('status-overlay');
 const statusMessage = document.getElementById('status-message');
 
@@ -23,6 +26,8 @@ const scene = new SceneManager(document.getElementById('scene'));
 const audio = new AudioManager();
 const hud = createHUD();
 const breathing = createBreathingGuide();
+
+const isMobile = detectMobile();
 
 /** Track previous peak count for beat detection. */
 let lastPeakCount = 0;
@@ -94,14 +99,20 @@ function processFrame(video, faceCanvas) {
 }
 
 /** Request webcam access and start the processing loop. */
-async function start() {
-  scene.init();
-  scene.start();
+async function startCamera() {
+  showStatus('Initializing camera\u2026');
+
+  // Use front camera on mobile, prefer user-facing on all devices
+  const videoConstraints = {
+    facingMode: 'user',
+    width: isMobile ? { ideal: 480 } : { ideal: 640 },
+    height: isMobile ? { ideal: 360 } : { ideal: 480 },
+  };
 
   let stream;
   try {
     stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: 'user', width: 640, height: 480 },
+      video: videoConstraints,
       audio: false,
     });
   } catch (err) {
@@ -140,11 +151,27 @@ async function start() {
   requestAnimationFrame(loop);
 }
 
-// Initialize on user interaction (needed for audio context)
-document.addEventListener('click', () => {
+/**
+ * Initialize on user tap.
+ * Mobile browsers require a user gesture to start AudioContext and camera.
+ * The tap overlay gates both audio init and camera access.
+ */
+function onTapToBegin() {
+  // Initialize audio context (requires user gesture on mobile)
   audio.init();
-}, { once: true });
 
-start();
+  // Hide tap overlay
+  if (tapOverlay) tapOverlay.classList.add('hidden');
 
-export { rppg, face, scene, audio, hud, breathing, hideStatus, showStatus, processFrame };
+  // Initialize scene and start camera
+  scene.init();
+  scene.start();
+  startCamera();
+}
+
+// Bind tap-to-begin on both click and touchend for reliable mobile handling
+if (tapOverlay) {
+  tapOverlay.addEventListener('click', onTapToBegin, { once: true });
+}
+
+export { rppg, face, scene, audio, hud, breathing, hideStatus, showStatus, processFrame, isMobile, onTapToBegin };
