@@ -61,9 +61,12 @@ function processFrame(video, faceCanvas) {
     if (hud) hud.triggerBeat();
     lastPeakCount = peaks.length;
 
-    // Start ambient drone on first detected heartbeat
+    // Start ambient drone and awakening animation on first detected heartbeat
     if (!droneStarted) {
       audio.startDrone();
+      scene.triggerAwakening();
+      const hudEl = document.getElementById('hud');
+      if (hudEl) hudEl.classList.add('awake');
       droneStarted = true;
     }
   }

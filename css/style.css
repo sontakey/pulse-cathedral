@@ -63,6 +63,12 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   padding: 2rem;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+#hud.awake {
+  opacity: 1;
 }
 
 #hud-top {

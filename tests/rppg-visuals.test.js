@@ -25,8 +25,8 @@ function extractMethod(src, methodName) {
   if (startIdx === -1) return '';
   // Find the next method definition or end of class
   const rest = src.substring(startIdx);
-  // Look for the next "  _animate" or "  /** " method definition after at least 10 chars
-  const nextMethod = rest.substring(10).search(/\n  (?:\/\*\*|_animate|_build|dispose|stop|start|update|triggerBeat)/);
+  // Look for the next method definition after at least 10 chars
+  const nextMethod = rest.substring(10).search(/\n  (?:\/\*\*|_animate|_build|_update|_stagger|dispose|stop|start|update|triggerBeat|triggerAwakening|get awake)/);
   if (nextMethod === -1) return rest;
   return rest.substring(0, nextMethod + 10);
 }
@@ -155,10 +155,10 @@ describe('Column coherence-driven brightness', () => {
       'Should add coherenceGlow contribution to opacity');
   });
 
-  it('_animateColumns receives data parameter', () => {
+  it('_animateColumns receives data and awakening parameters', () => {
     assert.ok(
-      sceneSrc.includes('_animateColumns(elapsed, beat, data)'),
-      'Should pass data to _animateColumns'
+      sceneSrc.includes('_animateColumns(elapsed, beat, data, aw)'),
+      'Should pass data and awakening to _animateColumns'
     );
   });
 });
@@ -176,10 +176,10 @@ describe('Grid HR-driven ripple intensity', () => {
       'Should multiply beat by ripple boost');
   });
 
-  it('_animateGrid receives data parameter', () => {
+  it('_animateGrid receives data and awakening parameters', () => {
     assert.ok(
-      sceneSrc.includes('_animateGrid(elapsed, beat, data)'),
-      'Should pass data to _animateGrid'
+      sceneSrc.includes('_animateGrid(elapsed, beat, data, aw)'),
+      'Should pass data and awakening to _animateGrid'
     );
   });
 });
@@ -288,10 +288,10 @@ describe('All biometric parameters connected', () => {
     assert.ok(waveformBody.includes('_pulseHistory'), 'Pulse stored in history buffer');
   });
 
-  it('beat triggers drive all five visual elements', () => {
-    assert.ok(sceneSrc.includes('_animatePulseRing(elapsed, beat, data)'), 'Beat to pulse ring');
-    assert.ok(sceneSrc.includes('_animateParticles(delta, beat, data)'), 'Beat to particles');
-    assert.ok(sceneSrc.includes('_animateColumns(elapsed, beat, data)'), 'Beat to columns');
-    assert.ok(sceneSrc.includes('_animateGrid(elapsed, beat, data)'), 'Beat to grid');
+  it('beat triggers drive all five visual elements with awakening', () => {
+    assert.ok(sceneSrc.includes('_animatePulseRing(elapsed, beat, data, aw)'), 'Beat to pulse ring');
+    assert.ok(sceneSrc.includes('_animateParticles(delta, beat, data, aw)'), 'Beat to particles');
+    assert.ok(sceneSrc.includes('_animateColumns(elapsed, beat, data, aw)'), 'Beat to columns');
+    assert.ok(sceneSrc.includes('_animateGrid(elapsed, beat, data, aw)'), 'Beat to grid');
   });
 });

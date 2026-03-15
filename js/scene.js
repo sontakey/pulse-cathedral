@@ -52,6 +52,11 @@ export class SceneManager {
     this.beatIntensity = 0;
     this.currentData = { hr: null, hrv: null, quality: 0, pulse: 0, coherence: 0 };
     this._initialized = false;
+
+    // Awakening state: dormant until first heartbeat
+    this._awake = false;
+    this._awakeningProgress = 0; // 0 = dormant, 1 = fully awake
+    this._awakeningStartTime = null;
   }
 
   /** Initialize Three.js renderer, scene, and camera. */
@@ -280,6 +285,26 @@ export class SceneManager {
     if (this.onBeat) this.onBeat();
   }
 
+  /**
+   * Trigger the dramatic awakening animation.
+   * Cathedral lights up from center outward over ~2 seconds.
+   */
+  triggerAwakening() {
+    if (this._awake) return;
+    this._awake = true;
+    this._awakeningStartTime = this.clock ? this.clock.getElapsedTime() : 0;
+  }
+
+  /** @returns {boolean} Whether the awakening has been triggered. */
+  get awake() {
+    return this._awake;
+  }
+
+  /** @returns {number} Current awakening progress (0–1). */
+  get awakeningProgress() {
+    return this._awakeningProgress;
+  }
+
   /** Internal render pass. */
   _render() {
     if (!this.renderer) return;
@@ -289,11 +314,15 @@ export class SceneManager {
     const data = this.currentData;
     const beat = this.beatIntensity;
 
-    this._animatePulseRing(elapsed, beat, data);
-    this._animateParticles(delta, beat, data);
-    this._animateWaveform(elapsed, data);
-    this._animateColumns(elapsed, beat, data);
-    this._animateGrid(elapsed, beat, data);
+    // Update awakening progress (2-second ease-out curve)
+    this._updateAwakening(elapsed);
+    const aw = this._awakeningProgress;
+
+    this._animatePulseRing(elapsed, beat, data, aw);
+    this._animateParticles(delta, beat, data, aw);
+    this._animateWaveform(elapsed, data, aw);
+    this._animateColumns(elapsed, beat, data, aw);
+    this._animateGrid(elapsed, beat, data, aw);
 
     // Decay beat intensity
     this.beatIntensity = Math.max(0, this.beatIntensity - delta * 3);
@@ -306,9 +335,42 @@ export class SceneManager {
     this.renderer.render(this.scene, this.camera);
   }
 
+  /**
+   * Update the awakening progress.
+   * Uses a 2-second ease-out-cubic curve for a dramatic reveal.
+   */
+  _updateAwakening(elapsed) {
+    if (!this._awake || this._awakeningProgress >= 1) return;
+    const AWAKENING_DURATION = 2.0; // seconds
+    const t = Math.min(1, (elapsed - this._awakeningStartTime) / AWAKENING_DURATION);
+    // Ease-out cubic: decelerating curve for dramatic initial burst
+    this._awakeningProgress = 1 - (1 - t) * (1 - t) * (1 - t);
+  }
+
+  /**
+   * Compute a staggered awakening factor for an element.
+   * Elements closer to center (lower delay) light up first.
+   *
+   * @param {number} aw — global awakening progress (0–1)
+   * @param {number} delay — stagger delay (0 = first, 1 = last)
+   * @returns {number} local awakening factor (0–1)
+   */
+  _staggeredAwake(aw, delay) {
+    if (aw >= 1) return 1;
+    if (aw <= 0) return 0;
+    // Map global progress to local: subtract delay, stretch to fill remaining window
+    const local = Math.max(0, (aw - delay * 0.4) / (1 - delay * 0.4));
+    return Math.min(1, local);
+  }
+
   /** Animate the pulse ring via shader uniforms. */
-  _animatePulseRing(elapsed, beat, data) {
+  _animatePulseRing(elapsed, beat, data, aw) {
     if (!this.pulseRing) return;
+
+    // Pulse ring awakens first (center, delay=0)
+    const localAw = this._staggeredAwake(aw, 0);
+    // Dormant scale: starts small, expands to normal during awakening
+    const awScale = 0.3 + localAw * 0.7;
 
     // HR-driven radius: faster HR = tighter (smaller) ring, baseline 72 BPM
     const hrScale = data.hr !== null ? Math.max(0.7, Math.min(1.3, 72 / data.hr)) : 1.0;
@@ -316,7 +378,7 @@ export class SceneManager {
     // Base scale with beat expansion
     const baseScale = hrScale + beat * 0.4;
     const breathe = 1.0 + Math.sin(elapsed * 0.5) * 0.03;
-    const scale = baseScale * breathe;
+    const scale = baseScale * breathe * awScale;
     this.pulseRing.scale.set(scale, scale, scale);
     this.pulseRingGlow.scale.set(scale * 1.05, scale * 1.05, scale * 1.05);
 
@@ -326,18 +388,18 @@ export class SceneManager {
       hrvBlend = Math.max(0, Math.min(1, 1 - data.hrv / 80));
     }
 
-    // Drive shader uniforms
+    // Drive shader uniforms — opacity modulated by awakening
     const ringU = this.pulseRing.material.uniforms;
     ringU.uBlend.value = hrvBlend;
     ringU.uBeatIntensity.value = beat;
     ringU.uTime.value = elapsed;
-    ringU.uOpacity.value = 0.6 + beat * 0.4;
+    ringU.uOpacity.value = (0.6 + beat * 0.4) * localAw;
 
     const glowU = this.pulseRingGlow.material.uniforms;
     glowU.uBlend.value = hrvBlend;
     glowU.uBeatIntensity.value = beat;
     glowU.uTime.value = elapsed;
-    glowU.uOpacity.value = 0.08 + beat * 0.2;
+    glowU.uOpacity.value = (0.08 + beat * 0.2) * localAw;
 
     // Slow rotation
     this.pulseRing.rotation.z = elapsed * 0.1;
@@ -345,8 +407,11 @@ export class SceneManager {
   }
 
   /** Animate particles: shockwave on beat, speed from HR. */
-  _animateParticles(delta, beat, data) {
+  _animateParticles(delta, beat, data, aw) {
     if (!this.particles) return;
+
+    // Particles awaken shortly after pulse ring (delay=0.2)
+    const localAw = this._staggeredAwake(aw, 0.2);
 
     const positions = this.particles.geometry.attributes.position.array;
     const colors = this.particles.geometry.attributes.color.array;
@@ -410,16 +475,19 @@ export class SceneManager {
     this.particles.geometry.attributes.position.needsUpdate = true;
     this.particles.geometry.attributes.color.needsUpdate = true;
 
-    // Drive particle shader uniforms
+    // Drive particle shader uniforms — opacity modulated by awakening
     const pU = this.particles.material.uniforms;
     pU.uBeatIntensity.value = beat;
     pU.uTime.value = this.clock.getElapsedTime();
-    pU.uOpacity.value = 0.5 + beat * 0.3;
+    pU.uOpacity.value = (0.5 + beat * 0.3) * localAw;
   }
 
   /** Animate the waveform ribbon with pulse data and shader uniforms. */
-  _animateWaveform(elapsed, data) {
+  _animateWaveform(elapsed, data, aw) {
     if (!this.waveformRibbon) return;
+
+    // Waveform awakens after particles (delay=0.3)
+    const localAw = this._staggeredAwake(aw, 0.3);
 
     // Shift pulse history left, add new sample
     this._pulseHistory.copyWithin(0, 1);
@@ -449,19 +517,24 @@ export class SceneManager {
     this.waveformRibbon.geometry.attributes.position.needsUpdate = true;
     this.waveformGlow.geometry.attributes.position.needsUpdate = true;
 
-    // Drive waveform shader uniforms
+    // Drive waveform shader uniforms — opacity modulated by awakening
     const beat = this.beatIntensity;
     const wU = this.waveformRibbon.material.uniforms;
     wU.uBeatIntensity.value = beat;
     wU.uTime.value = elapsed;
+    wU.uOpacity.value = 0.9 * localAw;
 
     const wgU = this.waveformGlow.material.uniforms;
     wgU.uBeatIntensity.value = beat;
     wgU.uTime.value = elapsed;
+    wgU.uOpacity.value = 0.2 * localAw;
   }
 
   /** Animate cathedral columns via shader uniforms. */
-  _animateColumns(elapsed, beat, data) {
+  _animateColumns(elapsed, beat, data, aw) {
+    // Columns awaken from center outward (delay=0.5 base, each column staggers further)
+    const baseAw = this._staggeredAwake(aw, 0.5);
+
     // Coherence drives column ambient brightness (high coherence = brighter columns)
     const coherenceGlow = (data.coherence || 0) / 100;
 
@@ -470,11 +543,14 @@ export class SceneManager {
       const stagger = i / COLUMN_COUNT;
       const flash = Math.max(0, beat - stagger * 0.3);
 
-      // Drive shader uniforms
+      // Per-column awakening stagger: columns light up sequentially during awakening
+      const columnAw = Math.min(1, Math.max(0, baseAw * COLUMN_COUNT - i) );
+
+      // Drive shader uniforms — opacity modulated by awakening
       const cU = column.material.uniforms;
       const breathe = 0.15 + Math.sin(elapsed * 0.3 + i * 0.5) * 0.05;
       cU.uFlashIntensity.value = flash;
-      cU.uOpacity.value = breathe + flash * 0.6 + coherenceGlow * 0.1;
+      cU.uOpacity.value = (breathe + flash * 0.6 + coherenceGlow * 0.1) * columnAw;
       cU.uTime.value = elapsed;
 
       // Subtle vertical scale pulse
@@ -484,8 +560,11 @@ export class SceneManager {
   }
 
   /** Animate grid via shader uniforms. */
-  _animateGrid(elapsed, beat, data) {
+  _animateGrid(elapsed, beat, data, aw) {
     if (!this.grid) return;
+
+    // Grid awakens last (delay=0.6)
+    const localAw = this._staggeredAwake(aw, 0.6);
 
     // HR-driven ripple intensity: higher HR = stronger ripples
     const hrFactor = data.hr !== null ? data.hr / 72 : 1;
@@ -494,7 +573,7 @@ export class SceneManager {
     const gU = this.grid.material.uniforms;
     gU.uBeatIntensity.value = beat * rippleBoost;
     gU.uTime.value = elapsed;
-    gU.uOpacity.value = 0.08 + beat * 0.12;
+    gU.uOpacity.value = (0.08 + beat * 0.12) * localAw;
     // Subtle vertical shift on beat
     this.grid.position.y = -4 + beat * 0.1;
   }
