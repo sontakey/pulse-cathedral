@@ -1,0 +1,170 @@
+/* Pulse Cathedral — Dark theme + HUD styling */
+
+:root {
+  --bg-deep: #0a0a0f;
+  --bg-dark: #0d1117;
+  --neon-teal: #00f5d4;
+  --magenta: #ff006e;
+  --soft-magenta: #c77dff;
+  --electric-blue: #4361ee;
+  --amber: #ffb703;
+  --text-primary: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.5);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Three.js canvas — fills viewport */
+#scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Hidden webcam + face-detection canvas */
+#webcam,
+#face-canvas {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* HUD overlay */
+#hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+#hud-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Signal quality bar */
+#signal-quality {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#signal-bar {
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+#signal-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--neon-teal);
+  border-radius: 2px;
+  transition: width 0.3s ease, background-color 0.5s ease;
+}
+
+/* Bottom HUD — heart rate + stats */
+#hud-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#hr-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+#hr-value {
+  font-size: 4rem;
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+#hud-stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.hud-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+}
+
+.hud-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.hud-unit {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+#sparkline {
+  opacity: 0.6;
+}
+
+/* Status overlay (shown during init / signal loss) */
+#status-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 15, 0.85);
+  transition: opacity 0.6s ease;
+}
+
+#status-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#status-message {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
