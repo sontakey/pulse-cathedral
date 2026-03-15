@@ -31,7 +31,7 @@ describe('SceneManager construction', () => {
     const { SceneManager } = await import('../js/scene.js');
     const mgr = new SceneManager({});
     assert.strictEqual(mgr.beatIntensity, 0);
-    assert.deepStrictEqual(mgr.currentData, { hr: null, hrv: null, quality: 0, pulse: 0 });
+    assert.deepStrictEqual(mgr.currentData, { hr: null, hrv: null, quality: 0, pulse: 0, coherence: 0 });
     assert.strictEqual(mgr._initialized, false);
     assert.strictEqual(mgr.pulseRing, null);
     assert.strictEqual(mgr.particles, null);
@@ -246,6 +246,31 @@ describe('scene.js source code validation', () => {
   it('handles HRV-based color transitions', () => {
     assert.ok(src.includes('hrvBlend'), 'Should compute HRV blend');
     assert.ok(src.includes('lerp'), 'Should lerp between colors');
+  });
+
+  it('has HR-driven pulse ring radius scaling', () => {
+    assert.ok(src.includes('hrScale'), 'Should compute HR-driven scale');
+    assert.ok(src.includes('72 / data.hr'), 'Should use 72 BPM baseline for ring size');
+  });
+
+  it('uses coherence for column brightness', () => {
+    assert.ok(src.includes('coherenceGlow'), 'Should compute coherence glow');
+    assert.ok(src.includes('data.coherence'), 'Should read coherence from data');
+  });
+
+  it('uses HR for grid ripple intensity', () => {
+    assert.ok(src.includes('rippleBoost'), 'Should compute ripple boost from HR');
+  });
+
+  it('uses HRV for waveform breathing amplitude', () => {
+    assert.ok(src.includes('hrvAmp'), 'Should compute HRV-driven Z-axis amplitude');
+  });
+
+  it('applies HRV color blend to particles', () => {
+    // Particles should blend teal→magenta based on HRV
+    const particleSection = src.substring(src.indexOf('_animateParticles'));
+    assert.ok(particleSection.includes('hrvBlend'), 'Particles should use HRV blend');
+    assert.ok(particleSection.includes('MAGENTA'), 'Particles should blend toward magenta');
   });
 
   it('handles beat intensity decay', () => {

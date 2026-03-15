@@ -50,7 +50,7 @@ export class SceneManager {
     // Animation state
     this.clock = null;
     this.beatIntensity = 0;
-    this.currentData = { hr: null, hrv: null, quality: 0, pulse: 0 };
+    this.currentData = { hr: null, hrv: null, quality: 0, pulse: 0, coherence: 0 };
     this._initialized = false;
   }
 
@@ -292,8 +292,8 @@ export class SceneManager {
     this._animatePulseRing(elapsed, beat, data);
     this._animateParticles(delta, beat, data);
     this._animateWaveform(elapsed, data);
-    this._animateColumns(elapsed, beat);
-    this._animateGrid(beat);
+    this._animateColumns(elapsed, beat, data);
+    this._animateGrid(elapsed, beat, data);
 
     // Decay beat intensity
     this.beatIntensity = Math.max(0, this.beatIntensity - delta * 3);
@@ -310,8 +310,11 @@ export class SceneManager {
   _animatePulseRing(elapsed, beat, data) {
     if (!this.pulseRing) return;
 
+    // HR-driven radius: faster HR = tighter (smaller) ring, baseline 72 BPM
+    const hrScale = data.hr !== null ? Math.max(0.7, Math.min(1.3, 72 / data.hr)) : 1.0;
+
     // Base scale with beat expansion
-    const baseScale = 1.0 + beat * 0.4;
+    const baseScale = hrScale + beat * 0.4;
     const breathe = 1.0 + Math.sin(elapsed * 0.5) * 0.03;
     const scale = baseScale * breathe;
     this.pulseRing.scale.set(scale, scale, scale);
@@ -353,10 +356,15 @@ export class SceneManager {
     const hrFactor = data.hr !== null ? data.hr / 72 : 1;
     const speed = 0.5 + hrFactor * 0.5;
 
-    // Quality-based color: low quality = amber tint, high = teal
-    const goodColor = new THREE.Color(NEON_TEAL);
+    // Base color: HRV-driven teal→magenta blend (low HRV = stressed = warmer)
+    const hrvBlend = data.hrv !== null ? Math.max(0, Math.min(1, 1 - data.hrv / 80)) : 0;
+    const tealColor = new THREE.Color(NEON_TEAL);
+    const warmColor = new THREE.Color(MAGENTA);
+    const baseColor = tealColor.clone().lerp(warmColor, hrvBlend * 0.4);
+
+    // Quality overlay: poor quality shifts toward amber
     const poorColor = new THREE.Color(0xffb703);
-    const particleColor = goodColor.clone().lerp(poorColor, 1 - data.quality);
+    const particleColor = baseColor.clone().lerp(poorColor, Math.max(0, 0.6 - data.quality));
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const i3 = i * 3;
@@ -417,6 +425,9 @@ export class SceneManager {
     this._pulseHistory.copyWithin(0, 1);
     this._pulseHistory[WAVEFORM_POINTS - 1] = data.pulse || 0;
 
+    // HRV-driven Z-axis breathing amplitude: high HRV (relaxed) = deeper breathing motion
+    const hrvAmp = data.hrv !== null ? Math.min(0.3, data.hrv / 200) : 0.1;
+
     const positions = this.waveformRibbon.geometry.attributes.position.array;
     const glowPositions = this.waveformGlow.geometry.attributes.position.array;
 
@@ -424,7 +435,7 @@ export class SceneManager {
       const i3 = i * 3;
       const x = (i / WAVEFORM_POINTS) * 10 - 5;
       const y = this._pulseHistory[i] * 2;
-      const z = Math.sin(elapsed * 0.3 + i * 0.05) * 0.1;
+      const z = Math.sin(elapsed * 0.3 + i * 0.05) * hrvAmp;
 
       positions[i3] = x;
       positions[i3 + 1] = y;
@@ -450,7 +461,10 @@ export class SceneManager {
   }
 
   /** Animate cathedral columns via shader uniforms. */
-  _animateColumns(elapsed, beat) {
+  _animateColumns(elapsed, beat, data) {
+    // Coherence drives column ambient brightness (high coherence = brighter columns)
+    const coherenceGlow = (data.coherence || 0) / 100;
+
     for (let i = 0; i < this.columns.length; i++) {
       const column = this.columns[i];
       const stagger = i / COLUMN_COUNT;
@@ -460,7 +474,7 @@ export class SceneManager {
       const cU = column.material.uniforms;
       const breathe = 0.15 + Math.sin(elapsed * 0.3 + i * 0.5) * 0.05;
       cU.uFlashIntensity.value = flash;
-      cU.uOpacity.value = breathe + flash * 0.6;
+      cU.uOpacity.value = breathe + flash * 0.6 + coherenceGlow * 0.1;
       cU.uTime.value = elapsed;
 
       // Subtle vertical scale pulse
@@ -470,11 +484,16 @@ export class SceneManager {
   }
 
   /** Animate grid via shader uniforms. */
-  _animateGrid(beat) {
+  _animateGrid(elapsed, beat, data) {
     if (!this.grid) return;
+
+    // HR-driven ripple intensity: higher HR = stronger ripples
+    const hrFactor = data.hr !== null ? data.hr / 72 : 1;
+    const rippleBoost = 0.5 + hrFactor * 0.5;
+
     const gU = this.grid.material.uniforms;
-    gU.uBeatIntensity.value = beat;
-    gU.uTime.value = this.clock.getElapsedTime();
+    gU.uBeatIntensity.value = beat * rippleBoost;
+    gU.uTime.value = elapsed;
     gU.uOpacity.value = 0.08 + beat * 0.12;
     // Subtle vertical shift on beat
     this.grid.position.y = -4 + beat * 0.1;
