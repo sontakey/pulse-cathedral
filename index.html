@@ -17,11 +17,13 @@
       <div id="signal-quality">
         <span class="hud-label">Signal</span>
         <div id="signal-bar"><div id="signal-fill"></div></div>
+        <span id="quality-text" class="hud-value-sm">0%</span>
       </div>
     </div>
 
     <div id="hud-bottom">
       <div id="hr-display">
+        <span id="pulse-dot"></span>
         <span id="hr-value">--</span>
         <span class="hud-unit">BPM</span>
       </div>
@@ -34,6 +36,7 @@
         <div class="hud-stat">
           <span class="hud-label">Coherence</span>
           <span id="coherence-value">--</span>
+          <div id="coherence-bar"><div id="coherence-fill"></div></div>
         </div>
       </div>
       <canvas id="sparkline" width="200" height="40"></canvas>

@@ -15,6 +15,7 @@ describe('Project structure', () => {
     'js/rppg.js',
     'js/scene.js',
     'js/audio.js',
+    'js/hud.js',
   ];
 
   for (const file of expectedFiles) {
@@ -54,6 +55,10 @@ describe('index.html', () => {
     assert.ok(html.includes('id="signal-fill"'));
     assert.ok(html.includes('id="coherence-value"'));
     assert.ok(html.includes('id="sparkline"'));
+    assert.ok(html.includes('id="pulse-dot"'));
+    assert.ok(html.includes('id="quality-text"'));
+    assert.ok(html.includes('id="coherence-fill"'));
+    assert.ok(html.includes('id="coherence-bar"'));
   });
 
   it('has status overlay', () => {
@@ -118,6 +123,12 @@ describe('JS modules export correctly', () => {
     assert.ok(typeof mod.computeCoherence === 'function');
     assert.ok(typeof mod.drawSparkline === 'function');
     assert.ok(typeof mod.FaceDetector === 'function');
+  });
+
+  it('hud.js exports HUD and createHUD', async () => {
+    const mod = await import('../js/hud.js');
+    assert.ok(typeof mod.HUD === 'function');
+    assert.ok(typeof mod.createHUD === 'function');
   });
 
   it('scene.js exports SceneManager', async () => {

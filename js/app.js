@@ -8,51 +8,22 @@ import {
   FaceDetector,
   computeCoherence,
   detectPeaks,
-  drawSparkline,
 } from './rppg.js';
 import { SceneManager } from './scene.js';
 import { AudioManager } from './audio.js';
+import { createHUD } from './hud.js';
 
 const statusOverlay = document.getElementById('status-overlay');
 const statusMessage = document.getElementById('status-message');
-const hrValue = document.getElementById('hr-value');
-const hrvValue = document.getElementById('hrv-value');
-const coherenceValue = document.getElementById('coherence-value');
-const signalFill = document.getElementById('signal-fill');
-const sparklineCanvas = document.getElementById('sparkline');
 
 const rppg = new RPPGProcessor();
 const face = new FaceDetector();
 const scene = new SceneManager(document.getElementById('scene'));
 const audio = new AudioManager();
+const hud = createHUD();
 
-/** Recent BPM readings for the sparkline (last 30 seconds at ~1 Hz). */
-const bpmHistory = [];
-const BPM_HISTORY_MAX = 30;
-
-/** Track previous HR for beat detection. */
+/** Track previous peak count for beat detection. */
 let lastPeakCount = 0;
-
-/** Update the HUD elements with current biometric data. */
-function updateHUD(data) {
-  if (data.hr !== null) {
-    hrValue.textContent = Math.round(data.hr);
-  }
-  if (data.hrv !== null) {
-    hrvValue.textContent = Math.round(data.hrv);
-  }
-  if (data.coherence !== undefined) {
-    coherenceValue.textContent = data.coherence;
-  }
-  signalFill.style.width = `${Math.round(data.quality * 100)}%`;
-
-  // Color the signal bar: amber when poor, teal when strong
-  if (data.quality < 0.4) {
-    signalFill.style.backgroundColor = '#ffb703';
-  } else {
-    signalFill.style.backgroundColor = '#00f5d4';
-  }
-}
 
 /** Hide the status overlay with a fade. */
 function hideStatus() {
@@ -85,18 +56,17 @@ function processFrame(video, faceCanvas) {
   if (peaks.length > lastPeakCount && data.quality > 0.3) {
     scene.triggerBeat();
     audio.playBeat(Math.min(1, data.quality));
+    if (hud) hud.triggerBeat();
     lastPeakCount = peaks.length;
   }
 
-  // Update scene with biometric data
+  // Update scene and HUD with biometric data
   scene.update(data);
-  updateHUD(data);
+  if (hud) hud.update(data);
 
   // Record BPM for sparkline (~1 sample/second)
   if (data.hr !== null && rppg.pulseSignal.length % rppg.sampleRate === 0) {
-    bpmHistory.push(Math.round(data.hr));
-    if (bpmHistory.length > BPM_HISTORY_MAX) bpmHistory.shift();
-    drawSparkline(sparklineCanvas, bpmHistory);
+    if (hud) hud.recordBPM(data.hr);
   }
 }
 
@@ -154,4 +124,4 @@ document.addEventListener('click', () => {
 
 start();
 
-export { rppg, face, scene, audio, updateHUD, hideStatus, showStatus, processFrame, bpmHistory };
+export { rppg, face, scene, audio, hud, hideStatus, showStatus, processFrame };
