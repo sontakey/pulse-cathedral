@@ -24,6 +24,8 @@ const hud = createHUD();
 
 /** Track previous peak count for beat detection. */
 let lastPeakCount = 0;
+/** Whether the ambient drone has been started. */
+let droneStarted = false;
 
 /** Hide the status overlay with a fade. */
 function hideStatus() {
@@ -58,7 +60,17 @@ function processFrame(video, faceCanvas) {
     audio.playBeat(Math.min(1, data.quality));
     if (hud) hud.triggerBeat();
     lastPeakCount = peaks.length;
+
+    // Start ambient drone on first detected heartbeat
+    if (!droneStarted) {
+      audio.startDrone();
+      droneStarted = true;
+    }
   }
+
+  // Update ambient drone pitch and intensity with biometric data
+  if (data.hr !== null) audio.updateDrone(data.hr);
+  audio.updateDroneIntensity(data.quality);
 
   // Update scene and HUD with biometric data
   scene.update(data);
