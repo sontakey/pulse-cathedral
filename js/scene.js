@@ -1,9 +1,18 @@
 /**
  * Three.js scene setup and visual elements.
  * Pulse ring, particle field, waveform ribbon, cathedral columns, background grid.
+ * Uses custom WebGL shaders for glow, pulse animations, and color transitions.
  */
 
 /* global THREE */
+
+import {
+  createGlowRingMaterial,
+  createParticleMaterial,
+  createColumnMaterial,
+  createWaveformMaterial,
+  createGridMaterial,
+} from './shaders.js';
 
 // --- Color constants matching the CSS palette ---
 const NEON_TEAL = 0x00f5d4;
@@ -105,25 +114,24 @@ export class SceneManager {
     this._initialized = true;
   }
 
-  /** Build the central pulse ring (torus). */
+  /** Build the central pulse ring (torus) with glow shader. */
   _buildPulseRing() {
     const geometry = new THREE.TorusGeometry(2, 0.06, 16, 100);
-    const material = new THREE.MeshBasicMaterial({
-      color: NEON_TEAL,
-      transparent: true,
-      opacity: 0.8,
+    const material = createGlowRingMaterial({
+      colorA: NEON_TEAL,
+      colorB: SOFT_MAGENTA,
     });
     this.pulseRing = new THREE.Mesh(geometry, material);
     this.pulseRing.rotation.x = Math.PI / 2;
     this.scene.add(this.pulseRing);
 
-    // Inner glow ring
+    // Outer glow halo — wider tube, softer opacity
     const glowGeo = new THREE.TorusGeometry(2, 0.2, 16, 100);
-    const glowMat = new THREE.MeshBasicMaterial({
-      color: NEON_TEAL,
-      transparent: true,
-      opacity: 0.15,
+    const glowMat = createGlowRingMaterial({
+      colorA: NEON_TEAL,
+      colorB: SOFT_MAGENTA,
     });
+    glowMat.uniforms.uOpacity.value = 0.15;
     this.pulseRingGlow = new THREE.Mesh(glowGeo, glowMat);
     this.pulseRingGlow.rotation.x = Math.PI / 2;
     this.scene.add(this.pulseRingGlow);
@@ -159,48 +167,45 @@ export class SceneManager {
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-    const material = new THREE.PointsMaterial({
-      size: 0.08,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.7,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-    });
+    const material = createParticleMaterial({ size: 4.0 });
 
     this.particles = new THREE.Points(geometry, material);
     this.particles._velocities = velocities;
     this.scene.add(this.particles);
   }
 
-  /** Build the waveform ribbon (3D BVP trace). */
+  /** Build the waveform ribbon (3D BVP trace) with shader glow. */
   _buildWaveformRibbon() {
-    const points = [];
+    const positions = new Float32Array(WAVEFORM_POINTS * 3);
+    const progress = new Float32Array(WAVEFORM_POINTS);
+
     for (let i = 0; i < WAVEFORM_POINTS; i++) {
-      const x = (i / WAVEFORM_POINTS) * 10 - 5;
-      points.push(new THREE.Vector3(x, 0, 0));
+      const i3 = i * 3;
+      positions[i3] = (i / WAVEFORM_POINTS) * 10 - 5;
+      positions[i3 + 1] = 0;
+      positions[i3 + 2] = 0;
+      progress[i] = i / (WAVEFORM_POINTS - 1);
     }
 
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const material = new THREE.LineBasicMaterial({
-      color: NEON_TEAL,
-      transparent: true,
-      opacity: 0.9,
-      linewidth: 1,
-    });
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('aProgress', new THREE.BufferAttribute(progress, 1));
+
+    const material = createWaveformMaterial({ color: NEON_TEAL, opacity: 0.9 });
 
     this.waveformRibbon = new THREE.Line(geometry, material);
     this.waveformRibbon.position.set(0, 0, 3);
     this.scene.add(this.waveformRibbon);
 
-    // Glow trail (wider, fainter)
-    const glowMat = new THREE.LineBasicMaterial({
-      color: NEON_TEAL,
-      transparent: true,
-      opacity: 0.2,
-      linewidth: 1,
-    });
-    this.waveformGlow = new THREE.Line(geometry.clone(), glowMat);
+    // Glow trail — same geometry, fainter
+    const glowGeo = new THREE.BufferGeometry();
+    const glowPositions = new Float32Array(positions);
+    const glowProgress = new Float32Array(progress);
+    glowGeo.setAttribute('position', new THREE.BufferAttribute(glowPositions, 3));
+    glowGeo.setAttribute('aProgress', new THREE.BufferAttribute(glowProgress, 1));
+
+    const glowMat = createWaveformMaterial({ color: NEON_TEAL, opacity: 0.2 });
+    this.waveformGlow = new THREE.Line(glowGeo, glowMat);
     this.waveformGlow.position.set(0, 0, 3);
     this.scene.add(this.waveformGlow);
 
@@ -208,7 +213,7 @@ export class SceneManager {
     this._pulseHistory = new Float32Array(WAVEFORM_POINTS);
   }
 
-  /** Build the cathedral columns around the periphery. */
+  /** Build the cathedral columns with shader glow. */
   _buildColumns() {
     const columnGeo = new THREE.BoxGeometry(0.15, 12, 0.15);
 
@@ -218,10 +223,9 @@ export class SceneManager {
       const x = Math.cos(angle) * radius;
       const z = Math.sin(angle) * radius;
 
-      const mat = new THREE.MeshBasicMaterial({
-        color: ELECTRIC_BLUE,
-        transparent: true,
-        opacity: 0.3,
+      const mat = createColumnMaterial({
+        baseColor: ELECTRIC_BLUE,
+        flashColor: NEON_TEAL,
       });
 
       const column = new THREE.Mesh(columnGeo, mat);
@@ -234,14 +238,12 @@ export class SceneManager {
     }
   }
 
-  /** Build the perspective grid floor. */
+  /** Build the perspective grid floor with shader ripple. */
   _buildGrid() {
     const gridSize = 40;
     const gridDivisions = 40;
     this.grid = new THREE.GridHelper(gridSize, gridDivisions, ELECTRIC_BLUE, ELECTRIC_BLUE);
-    this.grid.material.transparent = true;
-    this.grid.material.opacity = 0.1;
-    this.grid.material.depthWrite = false;
+    this.grid.material = createGridMaterial({ color: ELECTRIC_BLUE });
     this.grid.position.y = -4;
     this.scene.add(this.grid);
   }
@@ -304,7 +306,7 @@ export class SceneManager {
     this.renderer.render(this.scene, this.camera);
   }
 
-  /** Animate the pulse ring based on beat and HR. */
+  /** Animate the pulse ring via shader uniforms. */
   _animatePulseRing(elapsed, beat, data) {
     if (!this.pulseRing) return;
 
@@ -315,21 +317,24 @@ export class SceneManager {
     this.pulseRing.scale.set(scale, scale, scale);
     this.pulseRingGlow.scale.set(scale * 1.05, scale * 1.05, scale * 1.05);
 
-    // Opacity pulses with beat
-    this.pulseRing.material.opacity = 0.6 + beat * 0.4;
-    this.pulseRingGlow.material.opacity = 0.08 + beat * 0.2;
-
-    // Color: teal → magenta based on HRV (low HRV = stressed = magenta)
-    const teal = new THREE.Color(NEON_TEAL);
-    const magenta = new THREE.Color(SOFT_MAGENTA);
+    // HRV-driven color blend: teal (relaxed) → magenta (stressed)
     let hrvBlend = 0;
     if (data.hrv !== null) {
-      // HRV of ~80ms+ is relaxed (teal), <20ms is stressed (magenta)
       hrvBlend = Math.max(0, Math.min(1, 1 - data.hrv / 80));
     }
-    const ringColor = teal.clone().lerp(magenta, hrvBlend);
-    this.pulseRing.material.color.copy(ringColor);
-    this.pulseRingGlow.material.color.copy(ringColor);
+
+    // Drive shader uniforms
+    const ringU = this.pulseRing.material.uniforms;
+    ringU.uBlend.value = hrvBlend;
+    ringU.uBeatIntensity.value = beat;
+    ringU.uTime.value = elapsed;
+    ringU.uOpacity.value = 0.6 + beat * 0.4;
+
+    const glowU = this.pulseRingGlow.material.uniforms;
+    glowU.uBlend.value = hrvBlend;
+    glowU.uBeatIntensity.value = beat;
+    glowU.uTime.value = elapsed;
+    glowU.uOpacity.value = 0.08 + beat * 0.2;
 
     // Slow rotation
     this.pulseRing.rotation.z = elapsed * 0.1;
@@ -397,11 +402,14 @@ export class SceneManager {
     this.particles.geometry.attributes.position.needsUpdate = true;
     this.particles.geometry.attributes.color.needsUpdate = true;
 
-    // Particle opacity pulses with beat
-    this.particles.material.opacity = 0.5 + beat * 0.3;
+    // Drive particle shader uniforms
+    const pU = this.particles.material.uniforms;
+    pU.uBeatIntensity.value = beat;
+    pU.uTime.value = this.clock.getElapsedTime();
+    pU.uOpacity.value = 0.5 + beat * 0.3;
   }
 
-  /** Animate the waveform ribbon with pulse data. */
+  /** Animate the waveform ribbon with pulse data and shader uniforms. */
   _animateWaveform(elapsed, data) {
     if (!this.waveformRibbon) return;
 
@@ -416,14 +424,12 @@ export class SceneManager {
       const i3 = i * 3;
       const x = (i / WAVEFORM_POINTS) * 10 - 5;
       const y = this._pulseHistory[i] * 2;
-      // Slight z-wave for depth
       const z = Math.sin(elapsed * 0.3 + i * 0.05) * 0.1;
 
       positions[i3] = x;
       positions[i3 + 1] = y;
       positions[i3 + 2] = z;
 
-      // Glow follows with slight offset
       glowPositions[i3] = x;
       glowPositions[i3 + 1] = y * 1.1;
       glowPositions[i3 + 2] = z;
@@ -431,24 +437,31 @@ export class SceneManager {
 
     this.waveformRibbon.geometry.attributes.position.needsUpdate = true;
     this.waveformGlow.geometry.attributes.position.needsUpdate = true;
+
+    // Drive waveform shader uniforms
+    const beat = this.beatIntensity;
+    const wU = this.waveformRibbon.material.uniforms;
+    wU.uBeatIntensity.value = beat;
+    wU.uTime.value = elapsed;
+
+    const wgU = this.waveformGlow.material.uniforms;
+    wgU.uBeatIntensity.value = beat;
+    wgU.uTime.value = elapsed;
   }
 
-  /** Animate cathedral columns on beat. */
+  /** Animate cathedral columns via shader uniforms. */
   _animateColumns(elapsed, beat) {
     for (let i = 0; i < this.columns.length; i++) {
       const column = this.columns[i];
-      // Stagger the flash per column
       const stagger = i / COLUMN_COUNT;
       const flash = Math.max(0, beat - stagger * 0.3);
 
-      // Base opacity with gentle breathing
+      // Drive shader uniforms
+      const cU = column.material.uniforms;
       const breathe = 0.15 + Math.sin(elapsed * 0.3 + i * 0.5) * 0.05;
-      column.material.opacity = breathe + flash * 0.6;
-
-      // Flash color shifts toward teal on beat
-      const base = new THREE.Color(ELECTRIC_BLUE);
-      const bright = new THREE.Color(NEON_TEAL);
-      column.material.color.copy(base.lerp(bright, flash));
+      cU.uFlashIntensity.value = flash;
+      cU.uOpacity.value = breathe + flash * 0.6;
+      cU.uTime.value = elapsed;
 
       // Subtle vertical scale pulse
       const yScale = 1 + flash * 0.1;
@@ -456,10 +469,13 @@ export class SceneManager {
     }
   }
 
-  /** Animate grid with beat ripple. */
+  /** Animate grid via shader uniforms. */
   _animateGrid(beat) {
     if (!this.grid) return;
-    this.grid.material.opacity = 0.08 + beat * 0.12;
+    const gU = this.grid.material.uniforms;
+    gU.uBeatIntensity.value = beat;
+    gU.uTime.value = this.clock.getElapsedTime();
+    gU.uOpacity.value = 0.08 + beat * 0.12;
     // Subtle vertical shift on beat
     this.grid.position.y = -4 + beat * 0.1;
   }

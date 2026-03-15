@@ -235,8 +235,8 @@ describe('scene.js source code validation', () => {
     assert.ok(src.includes('2000'), 'Should use 2000 particles');
   });
 
-  it('uses additive blending for particles', () => {
-    assert.ok(src.includes('AdditiveBlending'), 'Should use additive blending');
+  it('uses custom shader materials for particles', () => {
+    assert.ok(src.includes('createParticleMaterial'), 'Should use shader particle material');
   });
 
   it('uses TorusGeometry for pulse ring', () => {
