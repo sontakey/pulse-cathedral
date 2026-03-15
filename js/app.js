@@ -33,6 +33,12 @@ const isMobile = detectMobile();
 let lastPeakCount = 0;
 /** Whether the ambient drone has been started. */
 let droneStarted = false;
+/** Consecutive frames without a detected face. */
+let faceLostFrames = 0;
+/** Frames before showing "looking for face" status. */
+const FACE_LOST_GRACE = 15; // ~0.5s at 30fps
+/** Whether camera stream is active. */
+let cameraActive = false;
 
 /** Hide the status overlay with a fade. */
 function hideStatus() {
@@ -50,10 +56,29 @@ function processFrame(video, faceCanvas) {
   // Sample RGB from face ROI
   const rgb = face.sampleRGB(faceCanvas, video);
   if (!rgb) {
-    showStatus('Looking for face\u2026');
+    faceLostFrames++;
+    // Grace period: don't flash status for momentary face loss
+    if (faceLostFrames >= FACE_LOST_GRACE) {
+      showStatus('Looking for face\u2026');
+    }
+    // Gradually reduce signal quality visuals during face loss
+    if (droneStarted) {
+      const fadeFactor = Math.max(0, 1 - faceLostFrames / (FACE_LOST_GRACE * 2));
+      audio.updateDroneIntensity(fadeFactor * 0.3);
+      scene.update({ hr: null, hrv: null, quality: fadeFactor * 0.2, pulse: 0, coherence: 0, breathing: null });
+    }
+    // Dim HUD after grace period
+    if (faceLostFrames >= FACE_LOST_GRACE) {
+      const hudEl = document.getElementById('hud');
+      if (hudEl) hudEl.classList.add('dimmed');
+    }
     return;
   }
+  faceLostFrames = 0;
   hideStatus();
+  // Restore HUD brightness on face recovery
+  const hudEl = document.getElementById('hud');
+  if (hudEl) hudEl.classList.remove('dimmed');
 
   const data = rppg.addSample(rgb);
 
@@ -102,6 +127,12 @@ function processFrame(video, faceCanvas) {
 async function startCamera() {
   showStatus('Initializing camera\u2026');
 
+  // Check if camera API is available (requires HTTPS or localhost)
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    showStatus('Camera not available. Please use HTTPS or a supported browser.');
+    return;
+  }
+
   // Use front camera on mobile, prefer user-facing on all devices
   const videoConstraints = {
     facingMode: 'user',
@@ -116,12 +147,31 @@ async function startCamera() {
       audio: false,
     });
   } catch (err) {
-    showStatus('Camera access denied. Please allow camera access and reload.');
+    const msg = err.name === 'NotAllowedError'
+      ? 'Camera access denied. Please allow camera access and reload.'
+      : err.name === 'NotFoundError'
+        ? 'No camera found. Please connect a camera and reload.'
+        : 'Camera error: ' + (err.message || 'Unknown error.');
+    showStatus(msg);
     return;
   }
 
   const video = document.getElementById('webcam');
   video.srcObject = stream;
+  cameraActive = true;
+
+  // Monitor for camera disconnection (track ended)
+  const videoTrack = stream.getVideoTracks()[0];
+  if (videoTrack) {
+    videoTrack.addEventListener('ended', () => {
+      cameraActive = false;
+      showStatus('Camera disconnected. Please reconnect and reload.');
+      if (droneStarted) {
+        audio.updateDroneIntensity(0);
+      }
+    });
+  }
+
   await video.play();
 
   showStatus('Loading face detection\u2026');
@@ -140,6 +190,7 @@ async function startCamera() {
   // Process frames at ~30 fps
   let frameCount = 0;
   const loop = () => {
+    if (!cameraActive) return;
     frameCount++;
     // Run face detection every other frame (15 fps detection, 30 fps render)
     if (frameCount % 2 === 0) {
@@ -174,4 +225,4 @@ if (tapOverlay) {
   tapOverlay.addEventListener('click', onTapToBegin, { once: true });
 }
 
-export { rppg, face, scene, audio, hud, breathing, hideStatus, showStatus, processFrame, isMobile, onTapToBegin };
+export { rppg, face, scene, audio, hud, breathing, hideStatus, showStatus, processFrame, isMobile, onTapToBegin, FACE_LOST_GRACE };

@@ -73,6 +73,10 @@ html, body {
   opacity: 1;
 }
 
+#hud.dimmed {
+  opacity: 0.3;
+}
+
 #hud-top {
   display: flex;
   justify-content: flex-end;

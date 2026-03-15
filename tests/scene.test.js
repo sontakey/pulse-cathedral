@@ -267,10 +267,11 @@ describe('scene.js source code validation', () => {
   });
 
   it('applies HRV color blend to particles', () => {
-    // Particles should blend teal→magenta based on HRV
+    // Particles should blend teal→magenta based on HRV (inline or pre-allocated)
     const particleSection = src.substring(src.indexOf('_animateParticles'));
     assert.ok(particleSection.includes('hrvBlend'), 'Particles should use HRV blend');
-    assert.ok(particleSection.includes('MAGENTA'), 'Particles should blend toward magenta');
+    const usesWarm = particleSection.includes('MAGENTA') || particleSection.includes('_warmColor');
+    assert.ok(usesWarm, 'Particles should blend toward magenta (inline or pre-allocated)');
   });
 
   it('handles beat intensity decay', () => {

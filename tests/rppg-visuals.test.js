@@ -96,13 +96,18 @@ describe('Particle HRV color mapping', () => {
   });
 
   it('lerps between teal and magenta for HRV', () => {
-    assert.ok(particlesBody.includes('MAGENTA'), 'Should use MAGENTA for warm/stressed color');
-    assert.ok(particlesBody.includes('NEON_TEAL'), 'Should use NEON_TEAL for cool/relaxed color');
+    // Colors may be inline or pre-allocated (e.g. _warmColor initialized from MAGENTA)
+    const usesInlineOrPrealloc = particlesBody.includes('MAGENTA') || particlesBody.includes('_warmColor');
+    assert.ok(usesInlineOrPrealloc, 'Should use MAGENTA (inline or pre-allocated) for warm/stressed color');
+    const usesTeal = particlesBody.includes('NEON_TEAL') || particlesBody.includes('_tealColor');
+    assert.ok(usesTeal, 'Should use NEON_TEAL (inline or pre-allocated) for cool/relaxed color');
     assert.ok(particlesBody.includes('.lerp('), 'Should lerp between colors');
   });
 
   it('overlays quality-driven amber for poor signal', () => {
-    assert.ok(particlesBody.includes('0xffb703'), 'Should use amber for poor quality');
+    // Amber may be inline or pre-allocated (e.g. _poorColor)
+    const usesAmber = particlesBody.includes('0xffb703') || particlesBody.includes('_poorColor');
+    assert.ok(usesAmber, 'Should use amber for poor quality');
     assert.ok(particlesBody.includes('data.quality'), 'Should use quality for amber blend');
   });
 });

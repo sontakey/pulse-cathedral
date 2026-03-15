@@ -59,6 +59,12 @@ export class SceneManager {
     this._awake = false;
     this._awakeningProgress = 0; // 0 = dormant, 1 = fully awake
     this._awakeningStartTime = null;
+
+    // Pre-allocated Color objects for particle animation (avoids per-frame GC)
+    this._tealColor = null;
+    this._warmColor = null;
+    this._poorColor = null;
+    this._tmpColor = null;
   }
 
   /** Initialize Three.js renderer, scene, and camera. */
@@ -93,6 +99,12 @@ export class SceneManager {
     );
     this.camera.position.set(0, 3, 12);
     this.camera.lookAt(0, 0, 0);
+
+    // Pre-allocate reusable Color objects for particle animation
+    this._tealColor = new THREE.Color(NEON_TEAL);
+    this._warmColor = new THREE.Color(MAGENTA);
+    this._poorColor = new THREE.Color(0xffb703);
+    this._tmpColor = new THREE.Color();
 
     // Build visual elements
     this._buildPulseRing();
@@ -432,13 +444,11 @@ export class SceneManager {
 
     // Base color: HRV-driven teal→magenta blend (low HRV = stressed = warmer)
     const hrvBlend = data.hrv !== null ? Math.max(0, Math.min(1, 1 - data.hrv / 80)) : 0;
-    const tealColor = new THREE.Color(NEON_TEAL);
-    const warmColor = new THREE.Color(MAGENTA);
-    const baseColor = tealColor.clone().lerp(warmColor, hrvBlend * 0.4);
+    // Reuse pre-allocated color objects to avoid GC pressure
+    const particleColor = this._tmpColor.copy(this._tealColor).lerp(this._warmColor, hrvBlend * 0.4);
 
     // Quality overlay: poor quality shifts toward amber
-    const poorColor = new THREE.Color(0xffb703);
-    const particleColor = baseColor.clone().lerp(poorColor, Math.max(0, 0.6 - data.quality));
+    particleColor.lerp(this._poorColor, Math.max(0, 0.6 - data.quality));
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const i3 = i * 3;
