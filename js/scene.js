@@ -50,7 +50,7 @@ export class SceneManager {
     // Animation state
     this.clock = null;
     this.beatIntensity = 0;
-    this.currentData = { hr: null, hrv: null, quality: 0, pulse: 0, coherence: 0 };
+    this.currentData = { hr: null, hrv: null, quality: 0, pulse: 0, coherence: 0, breathing: null };
     this._initialized = false;
 
     // Awakening state: dormant until first heartbeat
@@ -375,10 +375,15 @@ export class SceneManager {
     // HR-driven radius: faster HR = tighter (smaller) ring, baseline 72 BPM
     const hrScale = data.hr !== null ? Math.max(0.7, Math.min(1.3, 72 / data.hr)) : 1.0;
 
+    // Breathing guide modulates the ring scale when active
+    const breathingData = data.breathing;
+    const breatheGuide = breathingData
+      ? 0.85 + breathingData.scale * 0.25
+      : 1.0 + Math.sin(elapsed * 0.5) * 0.03;
+
     // Base scale with beat expansion
     const baseScale = hrScale + beat * 0.4;
-    const breathe = 1.0 + Math.sin(elapsed * 0.5) * 0.03;
-    const scale = baseScale * breathe * awScale;
+    const scale = baseScale * breatheGuide * awScale;
     this.pulseRing.scale.set(scale, scale, scale);
     this.pulseRingGlow.scale.set(scale * 1.05, scale * 1.05, scale * 1.05);
 
@@ -419,7 +424,9 @@ export class SceneManager {
 
     // Speed factor based on HR (72 BPM is baseline)
     const hrFactor = data.hr !== null ? data.hr / 72 : 1;
-    const speed = 0.5 + hrFactor * 0.5;
+    // Slow particles during breathing guide (calmer environment)
+    const breathingDampen = data.breathing ? 0.5 : 1.0;
+    const speed = (0.5 + hrFactor * 0.5) * breathingDampen;
 
     // Base color: HRV-driven teal→magenta blend (low HRV = stressed = warmer)
     const hrvBlend = data.hrv !== null ? Math.max(0, Math.min(1, 1 - data.hrv / 80)) : 0;
@@ -548,7 +555,11 @@ export class SceneManager {
 
       // Drive shader uniforms — opacity modulated by awakening
       const cU = column.material.uniforms;
-      const breathe = 0.15 + Math.sin(elapsed * 0.3 + i * 0.5) * 0.05;
+      // During breathing, columns glow in sync with breath cycle
+      const breathingData = data.breathing;
+      const breathe = breathingData
+        ? 0.12 + breathingData.scale * 0.12
+        : 0.15 + Math.sin(elapsed * 0.3 + i * 0.5) * 0.05;
       cU.uFlashIntensity.value = flash;
       cU.uOpacity.value = (breathe + flash * 0.6 + coherenceGlow * 0.1) * columnAw;
       cU.uTime.value = elapsed;

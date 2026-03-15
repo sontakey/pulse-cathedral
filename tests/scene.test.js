@@ -31,7 +31,7 @@ describe('SceneManager construction', () => {
     const { SceneManager } = await import('../js/scene.js');
     const mgr = new SceneManager({});
     assert.strictEqual(mgr.beatIntensity, 0);
-    assert.deepStrictEqual(mgr.currentData, { hr: null, hrv: null, quality: 0, pulse: 0, coherence: 0 });
+    assert.deepStrictEqual(mgr.currentData, { hr: null, hrv: null, quality: 0, pulse: 0, coherence: 0, breathing: null });
     assert.strictEqual(mgr._initialized, false);
     assert.strictEqual(mgr.pulseRing, null);
     assert.strictEqual(mgr.particles, null);

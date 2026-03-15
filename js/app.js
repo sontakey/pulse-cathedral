@@ -12,6 +12,7 @@ import {
 import { SceneManager } from './scene.js';
 import { AudioManager } from './audio.js';
 import { createHUD } from './hud.js';
+import { createBreathingGuide } from './breathing.js';
 
 const statusOverlay = document.getElementById('status-overlay');
 const statusMessage = document.getElementById('status-message');
@@ -21,6 +22,7 @@ const face = new FaceDetector();
 const scene = new SceneManager(document.getElementById('scene'));
 const audio = new AudioManager();
 const hud = createHUD();
+const breathing = createBreathingGuide();
 
 /** Track previous peak count for beat detection. */
 let lastPeakCount = 0;
@@ -74,6 +76,12 @@ function processFrame(video, faceCanvas) {
   // Update ambient drone pitch and intensity with biometric data
   if (data.hr !== null) audio.updateDrone(data.hr);
   audio.updateDroneIntensity(data.quality);
+
+  // Update breathing guide with HR stability
+  breathing.updateFromData(data);
+
+  // Pass breathing data to scene for visual response
+  data.breathing = breathing.getBreathingData();
 
   // Update scene and HUD with biometric data
   scene.update(data);
@@ -139,4 +147,4 @@ document.addEventListener('click', () => {
 
 start();
 
-export { rppg, face, scene, audio, hud, hideStatus, showStatus, processFrame };
+export { rppg, face, scene, audio, hud, breathing, hideStatus, showStatus, processFrame };

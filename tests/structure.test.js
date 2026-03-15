@@ -16,6 +16,7 @@ describe('Project structure', () => {
     'js/scene.js',
     'js/audio.js',
     'js/hud.js',
+    'js/breathing.js',
   ];
 
   for (const file of expectedFiles) {
@@ -59,6 +60,13 @@ describe('index.html', () => {
     assert.ok(html.includes('id="quality-text"'));
     assert.ok(html.includes('id="coherence-fill"'));
     assert.ok(html.includes('id="coherence-bar"'));
+  });
+
+  it('has breathing guide elements', () => {
+    assert.ok(html.includes('id="breathing-guide"'));
+    assert.ok(html.includes('id="breathing-circle"'));
+    assert.ok(html.includes('id="breathing-label"'));
+    assert.ok(html.includes('id="breathing-timer"'));
   });
 
   it('has status overlay', () => {
@@ -129,6 +137,12 @@ describe('JS modules export correctly', () => {
     const mod = await import('../js/hud.js');
     assert.ok(typeof mod.HUD === 'function');
     assert.ok(typeof mod.createHUD === 'function');
+  });
+
+  it('breathing.js exports BreathingGuide and createBreathingGuide', async () => {
+    const mod = await import('../js/breathing.js');
+    assert.ok(typeof mod.BreathingGuide === 'function');
+    assert.ok(typeof mod.createBreathingGuide === 'function');
   });
 
   it('scene.js exports SceneManager', async () => {
