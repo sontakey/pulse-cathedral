@@ -19,3 +19,7 @@ Known limitations: frame-resolution peak timing, simple peak/outlier heuristics,
 ## Default release decision
 
 The custom metrics extension is OFF by default; enable only with `?experimentalMetrics=1`. The user preferred FacePhys's released measurement experience. Do not describe the custom IBI/HRV extension as working or validated.
+
+## Default metrics restored by user request
+
+IBI and all HRV fields are enabled in the default FacePhys UI again. Earlier opt-in-only notes are superseded. Quality gates remain unchanged; this restores visibility, not proven accuracy or guaranteed availability. SAVE ZIP includes metrics.json and beat-intervals.json with provisional and strict accepted interval sequences, in addition to the existing waveform exports. Intervals are the current retained continuous segments, not a full session archive.

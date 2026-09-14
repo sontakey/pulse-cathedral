@@ -1,5 +1,5 @@
 import {BeatMetrics} from './metrics.js';
-const experimentalMetrics = new URLSearchParams(location.search).get('experimentalMetrics') === '1';
+const experimentalMetrics = true; // Requested default readouts; quality gates remain active.
 const beatMetrics = new BeatMetrics();
 const previewBeats = new BeatMetrics();
 let lastMetricArrival = 0;
@@ -577,6 +577,7 @@ async function handleSaveData() {
     });
     zip.file("bvp.csv", bvpCsv);
 
+    zip.file("beat-intervals.json", JSON.stringify({schema:"facephys/intervals/1",experimental:true,timeUnit:"video seconds",intervalUnit:"milliseconds",provisionalIntervals:previewBeats.rr,hrvAcceptedIntervals:beatMetrics.rr},null,2));
     zip.file("metrics.json", JSON.stringify({schema:"facephys/metrics/1",experimental:true,pnn50Unit:"percent",ibiUnit:"ms",...window.facephysMetrics},null,2));
     let hrCsv = "timestamp,hr,sqi\n";
     hrLog.forEach(row => {

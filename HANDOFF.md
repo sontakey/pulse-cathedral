@@ -39,3 +39,7 @@ Local build now defaults to the pinned official FacePhys demo at /facephys/. Leg
 ## Main adoption
 
 FacePhys is now the default build experience. The unvalidated custom beat/HRV panel is disabled by default because live sessions repeatedly failed its gates. It remains explicitly opt-in at `/facephys/?experimentalMetrics=1` for development only. Default readouts are the released FacePhys waveform, FFT HR, SQI and latency. No claim of successful IBI/HRV validation. Benchmark reports remain saved under benchmarks/reports/.
+
+## Default metrics restored by user request
+
+IBI and all HRV fields are enabled in the default FacePhys UI again. Earlier opt-in-only notes are superseded. Quality gates remain unchanged; this restores visibility, not proven accuracy or guaranteed availability. SAVE ZIP includes metrics.json and beat-intervals.json with provisional and strict accepted interval sequences, in addition to the existing waveform exports. Intervals are the current retained continuous segments, not a full session archive.
