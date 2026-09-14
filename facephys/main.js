@@ -1,3 +1,5 @@
+import {DiagnosticLog} from './diagnostics.js';
+const diagnosticLog = new DiagnosticLog();
 import {BeatMetrics} from './metrics.js';
 const experimentalMetrics = true; // Requested default readouts; quality gates remain active.
 const beatMetrics = new BeatMetrics();
@@ -497,6 +499,7 @@ function handleInferenceResult(payload) {
     else if(!(currentSqi>.5))beatMetrics.reason='Beat-quality threshold not met — try steady front lighting and hold still';
     renderBeatMetrics();
     window.facephysMetrics.latency=time;
+    diagnosticLog.add({t:captureTimestamp,value,sqi:currentSqi,latencyMs:time,arrivalMs:performance.now(),faceAgeMs:performance.now()-lastFaceDetectTime,bufferSamples:bufferFull?INPUT_BUFFER_SIZE:bufferPtr,running:isRunning,faceFresh,bufferFull,previewGood:currentSqi>SQI_THRESHOLD&&faceFresh&&isRunning&&bufferFull,strictGood:currentSqi>.5&&faceFresh&&isRunning&&bufferFull,previewIntervals:previewBeats.rr.length,strictIntervals:beatMetrics.rr.length,previewLastBeat:previewBeats.lastBeat,strictLastBeat:beatMetrics.lastBeat,ibi:previewBeats.result.ibi,rmssd:beatMetrics.result.rmssd,previewReason:previewBeats.reason,strictReason:beatMetrics.reason});
     } 
     const now = performance.now();
 
@@ -856,3 +859,10 @@ document.addEventListener("visibilitychange", () => {
     }
 });
 if(experimentalMetrics)document.getElementById('experimental-metrics').hidden=false;
+
+document.getElementById('download-diagnostics').addEventListener('click',()=>{
+ const report=diagnosticLog.snapshot();
+ const url=URL.createObjectURL(new Blob([JSON.stringify(report)],{type:'application/json'}));
+ const a=document.createElement('a');a.href=url;a.download=`pulse-facephys-diagnostics-${new Date().toISOString().replaceAll(':','-')}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ document.getElementById('diagnostic-status').textContent=`Downloaded ${report.retainedSamples} samples. Share this file manually for analysis.`;
+});
