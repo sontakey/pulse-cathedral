@@ -1,0 +1,1379 @@
+{
+  "dataset": "Kaggle subject 1 / complete Toolbox path",
+  "upstreamCommit": "b7500b848f84ad7f86e277b4612563b69f4f88f9",
+  "config": {
+    "BASE": [
+      ""
+    ],
+    "TOOLBOX_MODE": "only_test",
+    "TEST": {
+      "METRICS": [
+        "MAE",
+        "RMSE",
+        "MAPE",
+        "Pearson",
+        "SNR",
+        "BA"
+      ],
+      "USE_LAST_EPOCH": true,
+      "DATA": {
+        "FS": 30,
+        "DATASET": "UBFC-rPPG",
+        "DO_PREPROCESS": false,
+        "DATA_FORMAT": "NDCHW",
+        "DATA_PATH": "/gscratch/ubicomp/xliu0/data3/mnt/Datasets/UBFC-rPPG/RawData",
+        "CACHED_PATH": "/gscratch/ubicomp/xliu0/data3/mnt/Datasets/rppg_toolbox/PreprocessedData",
+        "EXP_DATA_NAME": "",
+        "BEGIN": 0.0,
+        "END": 1.0,
+        "PREPROCESS": {
+          "DATA_TYPE": [
+            "DiffNormalized",
+            "Standardized"
+          ],
+          "LABEL_TYPE": "DiffNormalized",
+          "DO_CHUNK": true,
+          "CHUNK_LENGTH": 180,
+          "CROP_FACE": {
+            "DO_CROP_FACE": true,
+            "BACKEND": "HC",
+            "USE_LARGE_FACE_BOX": true,
+            "LARGE_BOX_COEF": 1.5,
+            "DETECTION": {
+              "DO_DYNAMIC_DETECTION": false,
+              "DYNAMIC_DETECTION_FREQUENCY": 30,
+              "USE_MEDIAN_FACE_BOX": false
+            }
+          },
+          "RESIZE": {
+            "H": 72,
+            "W": 72
+          }
+        }
+      }
+    },
+    "DEVICE": "cuda:0",
+    "NUM_OF_GPU_TRAIN": 1,
+    "LOG": {
+      "PATH": "runs/exp"
+    },
+    "MODEL": {
+      "DROP_RATE": 0.2,
+      "NAME": "Tscan",
+      "TSCAN": {
+        "FRAME_DEPTH": 10
+      }
+    },
+    "INFERENCE": {
+      "BATCH_SIZE": 4,
+      "EVALUATION_METHOD": "FFT",
+      "EVALUATION_WINDOW": {
+        "USE_SMALLER_WINDOW": false,
+        "WINDOW_SIZE": 10
+      },
+      "MODEL_PATH": "./final_model_release/PURE_TSCAN.pth"
+    }
+  },
+  "checkpoint": "final_model_release/PURE_TSCAN.pth",
+  "checkpointSHA256": "ba02d9c5866779d57923bfe0d6bf0b1652b4de5443193185ac0b74a492a1ae87",
+  "faceBoxes": [
+    [
+      861,
+      128,
+      739,
+      739
+    ]
+  ],
+  "device": "mps",
+  "elapsedSeconds": 29.59415602684021,
+  "decodedFrames": 3597,
+  "retainedNeuralFrames": 3420,
+  "commonWindowEnd": 134.067267,
+  "results": {
+    "Our regions + Toolbox POS": {
+      "windows": 25,
+      "maeBpm": 24.349657645479514,
+      "biasBpm": 20.433380803571414,
+      "gating": "none; all planned common windows"
+    },
+    "Our regions + Toolbox CHROM": {
+      "windows": 25,
+      "maeBpm": 15.541015512612386,
+      "biasBpm": 9.43607732579919,
+      "gating": "none; all planned common windows"
+    },
+    "Our regions + Green + bandpass": {
+      "windows": 25,
+      "maeBpm": 12.638770463911092,
+      "biasBpm": -0.2617443837412696,
+      "gating": "none; all planned common windows"
+    },
+    "Toolbox full crop POS": {
+      "windows": 25,
+      "maeBpm": 31.822491767607385,
+      "biasBpm": 25.54789519542956,
+      "gating": "none; all planned common windows"
+    },
+    "Toolbox full crop CHROM": {
+      "windows": 25,
+      "maeBpm": 32.033817747877116,
+      "biasBpm": 26.1186135395854,
+      "gating": "none; all planned common windows"
+    },
+    "Toolbox full crop GREEN": {
+      "windows": 25,
+      "maeBpm": 13.293175177947058,
+      "biasBpm": -6.012829236388622,
+      "gating": "none; all planned common windows"
+    },
+    "Toolbox pretrained TS-CAN": {
+      "windows": 25,
+      "maeBpm": 6.323432495629375,
+      "biasBpm": -2.412913527097913,
+      "gating": "none; all planned common windows"
+    }
+  },
+  "windows": [
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 74.19338474025973,
+      "deviceHR": 76.265078125
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 69.47398304820179,
+      "deviceHR": 75.979453125
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 69.58373657592406,
+      "deviceHR": 75.61179687500001
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 68.81546188186812,
+      "deviceHR": 75.173984375
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 65.19359546703296,
+      "deviceHR": 74.866171875
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 72.32757476898101,
+      "deviceHR": 74.76109375
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 71.44954654720279,
+      "deviceHR": 74.85546875
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 119.0825775786713,
+      "deviceHR": 74.965
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 121.49715518856142,
+      "deviceHR": 74.610703125
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 117.98504230144853,
+      "deviceHR": 73.996171875
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 118.75331699550448,
+      "deviceHR": 73.76890624999999
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 122.26542988261737,
+      "deviceHR": 73.67671875
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 65.41310252247752,
+      "deviceHR": 73.12015625
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 67.49841954920079,
+      "deviceHR": 72.26906249999999
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 121.38740166083915,
+      "deviceHR": 71.52015625
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 118.53380994005992,
+      "deviceHR": 70.68796875000001
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 119.30208463411587,
+      "deviceHR": 69.83359375
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 121.1678946053946,
+      "deviceHR": 69.17835937500001
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 72.98609593531468,
+      "deviceHR": 69.08
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 119.30208463411587,
+      "deviceHR": 69.13273437499998
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 118.75331699550448,
+      "deviceHR": 69.42328125
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 76.05919471153845,
+      "deviceHR": 69.620546875
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 75.94944118381616,
+      "deviceHR": 69.732734375
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 74.08363121253745,
+      "deviceHR": 69.83
+    },
+    {
+      "method": "Our regions + Toolbox POS",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 81.7663781530969,
+      "deviceHR": 70.03
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 71.23003949175822,
+      "deviceHR": 76.265078125
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 72.10806771353646,
+      "deviceHR": 75.979453125
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 68.48620129870129,
+      "deviceHR": 75.61179687500001
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 67.60817307692307,
+      "deviceHR": 75.173984375
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 66.94965191058941,
+      "deviceHR": 74.866171875
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 121.82641577172825,
+      "deviceHR": 74.76109375
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 54.21824269480519,
+      "deviceHR": 74.85546875
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 81.10785698676322,
+      "deviceHR": 74.965
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 121.38740166083915,
+      "deviceHR": 74.610703125
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 72.21782124125873,
+      "deviceHR": 73.996171875
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 73.75437062937063,
+      "deviceHR": 73.76890624999999
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 70.79102538086912,
+      "deviceHR": 73.67671875
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 64.20581371753246,
+      "deviceHR": 73.12015625
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 62.23025021853146,
+      "deviceHR": 72.26906249999999
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 71.66905360264735,
+      "deviceHR": 71.52015625
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 118.0947958291708,
+      "deviceHR": 70.68796875000001
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 69.58373657592406,
+      "deviceHR": 69.83359375
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 120.50937343906094,
+      "deviceHR": 69.17835937500001
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 73.31535651848151,
+      "deviceHR": 69.08
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 119.6313452172827,
+      "deviceHR": 69.13273437499998
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 69.14472246503495,
+      "deviceHR": 69.42328125
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 77.04697646103895,
+      "deviceHR": 69.620546875
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 75.72993412837162,
+      "deviceHR": 69.732734375
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 73.64461710164835,
+      "deviceHR": 69.83
+    },
+    {
+      "method": "Our regions + Toolbox CHROM",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 111.39983063811188,
+      "deviceHR": 70.03
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 68.04718718781218,
+      "deviceHR": 76.265078125
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 71.01053243631368,
+      "deviceHR": 75.979453125
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 71.33979301948051,
+      "deviceHR": 75.61179687500001
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 65.19359546703296,
+      "deviceHR": 75.173984375
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 69.9129971590909,
+      "deviceHR": 74.866171875
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 42.03560111763237,
+      "deviceHR": 74.76109375
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 58.16936969280718,
+      "deviceHR": 74.85546875
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 83.41268106893106,
+      "deviceHR": 74.965
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 67.60817307692307,
+      "deviceHR": 74.610703125
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 136.8626490696803,
+      "deviceHR": 73.996171875
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 73.09584946303696,
+      "deviceHR": 73.76890624999999
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 73.31535651848151,
+      "deviceHR": 73.67671875
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 59.486412025474515,
+      "deviceHR": 73.12015625
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 52.023172140359634,
+      "deviceHR": 72.26906249999999
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 98.4489143668831,
+      "deviceHR": 71.52015625
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 49.389087475024965,
+      "deviceHR": 70.68796875000001
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 69.47398304820179,
+      "deviceHR": 69.83359375
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 66.40088427197801,
+      "deviceHR": 69.17835937500001
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 80.229828764985,
+      "deviceHR": 69.08
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 94.60754089660338,
+      "deviceHR": 69.13273437499998
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 71.77880713036961,
+      "deviceHR": 69.42328125
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 72.21782124125873,
+      "deviceHR": 69.620546875
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 56.632820304695294,
+      "deviceHR": 69.732734375
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 79.35180054320679,
+      "deviceHR": 69.83
+    },
+    {
+      "method": "Our regions + Green + bandpass",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 75.40067354520478,
+      "deviceHR": 70.03
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 59.486412025474515,
+      "deviceHR": 76.265078125
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 72.98609593531468,
+      "deviceHR": 75.979453125
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 118.0947958291708,
+      "deviceHR": 75.61179687500001
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 68.26669424325674,
+      "deviceHR": 75.173984375
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 64.31556724525474,
+      "deviceHR": 74.866171875
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 118.42405641233765,
+      "deviceHR": 74.76109375
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 69.47398304820179,
+      "deviceHR": 74.85546875
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 119.1923311063936,
+      "deviceHR": 74.965
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 118.6435634677822,
+      "deviceHR": 74.610703125
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 115.13145058066932,
+      "deviceHR": 73.996171875
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 119.30208463411587,
+      "deviceHR": 73.76890624999999
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 53.12070741758241,
+      "deviceHR": 73.67671875
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 67.27891249375624,
+      "deviceHR": 73.12015625
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 69.9129971590909,
+      "deviceHR": 72.26906249999999
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 124.35074690934063,
+      "deviceHR": 71.52015625
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 64.42532077297702,
+      "deviceHR": 70.68796875000001
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 120.94838754995003,
+      "deviceHR": 69.83359375
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 119.1923311063936,
+      "deviceHR": 69.17835937500001
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 120.72888049450546,
+      "deviceHR": 69.08
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 119.85085227272727,
+      "deviceHR": 69.13273437499998
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 119.74109874500498,
+      "deviceHR": 69.42328125
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 68.81546188186812,
+      "deviceHR": 69.620546875
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 120.6191269667832,
+      "deviceHR": 69.732734375
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 119.74109874500498,
+      "deviceHR": 69.83
+    },
+    {
+      "method": "Toolbox full crop POS",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 118.6435634677822,
+      "deviceHR": 70.03
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 122.70444399350649,
+      "deviceHR": 76.265078125
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 71.23003949175822,
+      "deviceHR": 75.979453125
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 67.71792660464534,
+      "deviceHR": 75.61179687500001
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 68.26669424325674,
+      "deviceHR": 75.173984375
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 64.75458135614385,
+      "deviceHR": 74.866171875
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 118.97282405094903,
+      "deviceHR": 74.76109375
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 53.55972152847152,
+      "deviceHR": 74.85546875
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 118.53380994005992,
+      "deviceHR": 74.965
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 119.74109874500498,
+      "deviceHR": 74.610703125
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 118.75331699550448,
+      "deviceHR": 73.996171875
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 119.1923311063936,
+      "deviceHR": 73.76890624999999
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 121.82641577172825,
+      "deviceHR": 73.67671875
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 65.52285605019978,
+      "deviceHR": 73.12015625
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 69.25447599275724,
+      "deviceHR": 72.26906249999999
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 70.46176479770229,
+      "deviceHR": 71.52015625
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 118.86307052322675,
+      "deviceHR": 70.68796875000001
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 119.30208463411587,
+      "deviceHR": 69.83359375
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 123.36296515984014,
+      "deviceHR": 69.17835937500001
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 74.19338474025973,
+      "deviceHR": 69.08
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 119.6313452172827,
+      "deviceHR": 69.13273437499998
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 117.87528877372625,
+      "deviceHR": 69.42328125
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 121.93616929945054,
+      "deviceHR": 69.620546875
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 120.39961991133863,
+      "deviceHR": 69.732734375
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 120.18011285589408,
+      "deviceHR": 69.83
+    },
+    {
+      "method": "Toolbox full crop CHROM",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 58.718137331418575,
+      "deviceHR": 70.03
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 67.71792660464534,
+      "deviceHR": 76.265078125
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 42.584368756243755,
+      "deviceHR": 75.979453125
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 72.76658887987013,
+      "deviceHR": 75.61179687500001
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 66.73014485514484,
+      "deviceHR": 75.173984375
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 66.29113074425574,
+      "deviceHR": 74.866171875
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 45.98672811563436,
+      "deviceHR": 74.76109375
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 50.047608641358636,
+      "deviceHR": 74.85546875
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 93.5100056193806,
+      "deviceHR": 74.965
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 89.01011098276722,
+      "deviceHR": 74.610703125
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 55.97429913836163,
+      "deviceHR": 73.996171875
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 66.62039132742257,
+      "deviceHR": 73.76890624999999
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 47.08426339285714,
+      "deviceHR": 73.67671875
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 78.8030329045954,
+      "deviceHR": 73.12015625
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 68.70570835414584,
+      "deviceHR": 72.26906249999999
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 46.535495754245744,
+      "deviceHR": 71.52015625
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 50.376869224525464,
+      "deviceHR": 70.68796875000001
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 69.69349010364634,
+      "deviceHR": 69.83359375
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 51.58415802947052,
+      "deviceHR": 69.17835937500001
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 79.46155407092907,
+      "deviceHR": 69.08
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 90.98567448176821,
+      "deviceHR": 69.13273437499998
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 75.51042707292706,
+      "deviceHR": 69.42328125
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 69.80324363136862,
+      "deviceHR": 69.620546875
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 76.60796235014983,
+      "deviceHR": 69.732734375
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 76.8274694055944,
+      "deviceHR": 69.83
+    },
+    {
+      "method": "Toolbox full crop GREEN",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 62.44975727397601,
+      "deviceHR": 70.03
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 73.31535651848151,
+      "deviceHR": 76.265078125
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 51.80366508491508,
+      "deviceHR": 75.979453125
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 69.9129971590909,
+      "deviceHR": 75.61179687500001
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 67.27891249375624,
+      "deviceHR": 75.173984375
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 66.83989838286712,
+      "deviceHR": 74.866171875
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 73.42511004620378,
+      "deviceHR": 74.76109375
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 68.26669424325674,
+      "deviceHR": 74.85546875
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 86.48577984515484,
+      "deviceHR": 74.965
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 55.645038555194795,
+      "deviceHR": 74.610703125
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 73.09584946303696,
+      "deviceHR": 73.996171875
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 72.32757476898101,
+      "deviceHR": 73.76890624999999
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 66.73014485514484,
+      "deviceHR": 73.67671875
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 64.31556724525474,
+      "deviceHR": 73.12015625
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 66.18137721653345,
+      "deviceHR": 72.26906249999999
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 72.65683535214785,
+      "deviceHR": 71.52015625
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 65.52285605019978,
+      "deviceHR": 70.68796875000001
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 68.26669424325674,
+      "deviceHR": 69.83359375
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 67.93743366008991,
+      "deviceHR": 69.17835937500001
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 77.15672998876123,
+      "deviceHR": 69.08
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 67.71792660464534,
+      "deviceHR": 69.13273437499998
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 71.88856065809189,
+      "deviceHR": 69.42328125
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 74.52264532342656,
+      "deviceHR": 69.620546875
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 77.15672998876123,
+      "deviceHR": 69.732734375
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 76.8274694055944,
+      "deviceHR": 69.83
+    },
+    {
+      "method": "Toolbox pretrained TS-CAN",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 76.3884552947053,
+      "deviceHR": 70.03
+    }
+  ],
+  "upstreamFullClipMetric": {
+    "referencePPGHR": 69.80324363136862,
+    "predictedHR": 67.16915896603395,
+    "snrDb": -0.550176503236656,
+    "macc": 0.4033168517451925,
+    "note": "Upstream MACC searches all circular lags; it is not beat alignment or IBI validation."
+  },
+  "limitations": [
+    "One development clip; not held-out subject accuracy.",
+    "Unmodified upstream preprocessing/method/model functions with a lazy custom dataset adapter; CUDA DataParallel wrapper omitted on Mac.",
+    "Uses published static HC crop, 1.5 expansion, 72x72, difference+appearance normalization, 180-frame chunks, PURE_TSCAN checkpoint.",
+    "Whole-clip normalization/filtering is offline; browser streaming parity not established.",
+    "HR reference is device-smoothed wrist PPG HR; clock discrepancy and IBI reference gaps remain.",
+    "Frame rate metadata override is actual 29.97003 rather than nominal config 30.",
+    "No training, no production deployment."
+  ]
+}

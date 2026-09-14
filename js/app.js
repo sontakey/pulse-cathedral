@@ -1,228 +1,186 @@
-/**
- * Main application loop.
- * Connects rPPG processing to the Three.js scene and audio.
- * Gates camera and audio behind a user tap (required on mobile).
- */
+import { RPPGProcessor, CONFIG } from './measurement.js';
+import { FaceDetector } from './rppg.js';
+import { sampleFacePixels } from './capture-sample.js';
+import { drawTrace } from './trace.js';
+import { makeSynthetic } from './synthetic.js';
+import { SessionRecorder } from './recording.js';
+import { Diagnostics } from './diagnostics.js';
+import { CaptureFeedback } from './capture-feedback.js';
 
-import {
-  RPPGProcessor,
-  FaceDetector,
-  computeCoherence,
-  detectPeaks,
-} from './rppg.js';
-import { SceneManager } from './scene.js';
-import { AudioManager } from './audio.js';
-import { createHUD } from './hud.js';
-import { createBreathingGuide } from './breathing.js';
-import { detectMobile } from './mobile.js';
+const $=id=>document.getElementById(id);
+const processor=new RPPGProcessor(),recorder=new SessionRecorder(),face=new FaceDetector();
+const diagnostics=new Diagnostics(),captureFeedback=new CaptureFeedback();
+let lastFeedbackAt=-Infinity;
+const browserInfo={browser:navigator.userAgent,platform:navigator.platform,secureContext:isSecureContext,videoFrameCallback:'requestVideoFrameCallback' in HTMLVideoElement.prototype,appVersion:'signal-lab-capture-feedback-v2'};
+diagnostics.start('none',browserInfo,CONFIG);
+let pendingDiagnosticReset=false;
+const video=$('webcam'),canvas=$('face-canvas'),context=canvas.getContext('2d',{willReadFrequently:true});
+const detectorCanvas=document.createElement('canvas');
+let source=null,stream=null,callback=null,timer=null,generation=0,busy=false,lastMedia=-1,lastTime=0,lastDetect=-Infinity,detectedAt=-Infinity;
+let previousLandmarks=null,motion=0,previousBrightness=null,settings={},scene=null,sceneLoading=false,frozen=null,synthetic=null;
 
-const tapOverlay = document.getElementById('tap-overlay');
-const statusOverlay = document.getElementById('status-overlay');
-const statusMessage = document.getElementById('status-message');
-
-const rppg = new RPPGProcessor();
-const face = new FaceDetector();
-const scene = new SceneManager(document.getElementById('scene'));
-const audio = new AudioManager();
-const hud = createHUD();
-const breathing = createBreathingGuide();
-
-const isMobile = detectMobile();
-
-/** Track previous peak count for beat detection. */
-let lastPeakCount = 0;
-/** Whether the ambient drone has been started. */
-let droneStarted = false;
-/** Consecutive frames without a detected face. */
-let faceLostFrames = 0;
-/** Frames before showing "looking for face" status. */
-const FACE_LOST_GRACE = 15; // ~0.5s at 30fps
-/** Whether camera stream is active. */
-let cameraActive = false;
-
-/** Hide the status overlay with a fade. */
-function hideStatus() {
-  statusOverlay.classList.add('hidden');
+function display(data=processor.result){
+  for(const [id,value,digits] of [['hr',data.hr,1],['ibi',data.ibi,1],['rmssd',data.hrv,1],['sdnn',data.sdnn,1],['quality',data.quality*100,0],['coverage',data.coverage*100,0]]){
+    $(id+'-value').textContent=Number.isFinite(value)?value.toFixed(digits):'—';
+  }
+  $('status-message').textContent=data.reason;
+  $('status-dot').classList.toggle('good',data.hr!==null);
+  $('fps-label').textContent=data.fps?data.fps.toFixed(1)+' fps':'— fps';
+  $('agreement-label').textContent=`Region agreement: ${data.agreement===null?'—':Math.round(data.agreement*100)+'%'} · frame timing: ${settings.timing||'—'}`;
+  $('trace-delay').textContent=data.latency?`${(data.latency/1000).toFixed(2)} s last beat confirmation`:'~2 s confirmation delay';
+  $('trace-empty').style.display=processor.waveform.length?'none':'flex';
+  $('trace-signal-label').textContent=data.hr===null?'Unverified signal · may contain artifacts':'Extracted pulse';
+  if(!processor.waveform.length)$('trace-empty').innerHTML=source?'Collecting the pulse waveform.<small>Keep still in steady light for 8 seconds.</small>':'Start the camera or try a synthetic signal.<small>No measurement is running.</small>';
+  if(!$('freeze').checked)frozen=null;
+  else if(!frozen)frozen={wave:processor.waveform.map(p=>({...p})),beats:processor.beats.map(b=>({...b})),accepted:data.hr!==null};
+  drawTrace($('ppg-trace'),frozen?.wave||processor.waveform,frozen?.beats||processor.beats,{scale:$('trace-scale').value,accepted:frozen?frozen.accepted:data.hr!==null});
+  const frames=recorder.data?.frames||[];
+  $('record-state').textContent=recorder.active?`Recording · ${(frames.at(-1)?.t||0).toFixed(0)} s`:frames.length?`Saved in memory · ${frames.length} frames`:'Not recording';
+  $('record-button').textContent=recorder.active?'Stop recording':'Record session';
+  $('export-button').disabled=!frames.length;
+  $('mark-button').disabled=!recorder.active;
 }
-
-/** Show the status overlay with a message. */
-function showStatus(msg) {
-  statusMessage.textContent = msg;
-  statusOverlay.classList.remove('hidden');
+function feed(rgb,t,meta={}){
+  lastTime=t;
+  if(pendingDiagnosticReset){meta.resetProcessor=true;pendingDiagnosticReset=false;}
+  const processingStart=performance.now();
+  const data=rgb?processor.addSample(rgb,t,meta):processor.gap(meta.invalidReason||'No face detected',t);
+  meta.processingMs=performance.now()-processingStart;
+  if(source==='camera'){
+    const feedback=captureFeedback.update(t,meta,data);meta.captureFeedback=feedback.metrics;
+    if(t-lastFeedbackAt>=.25){
+      lastFeedbackAt=t;$('capture-advice').textContent=feedback.priority;
+      const nodes=feedback.rows.map(row=>{const el=document.createElement('div');el.className='capture-check';el.dataset.state=row.state;el.title=row.advice;const title=document.createElement('strong');title.textContent=row.name;const value=document.createElement('small');value.textContent=row.value;el.append(title,value);if(row.state==='warn'||row.state==='bad'){const advice=document.createElement('small');advice.textContent=row.advice;advice.className='check-advice';el.append(advice);}return el;});
+      $('capture-checks').replaceChildren(...nodes);
+    }
+  }
+  diagnostics.add(t,rgb,meta,data,processor.waveform);
+  recorder.add(t,rgb,meta,data,processor.waveform);display(data);
+  if(scene && $('scene-toggle').checked){scene.update({...data,coherence:0,breathing:null});for(const b of data.newBeats)if(b.valid)scene.triggerBeat();}
 }
-
-/** Process one frame: detect face, sample RGB, run rPPG pipeline. */
-function processFrame(video, faceCanvas) {
-  // Sample RGB from face ROI
-  const rgb = face.sampleRGB(faceCanvas, video);
-  if (!rgb) {
-    faceLostFrames++;
-    // Grace period: don't flash status for momentary face loss
-    if (faceLostFrames >= FACE_LOST_GRACE) {
-      showStatus('Looking for face\u2026');
-    }
-    // Gradually reduce signal quality visuals during face loss
-    if (droneStarted) {
-      const fadeFactor = Math.max(0, 1 - faceLostFrames / (FACE_LOST_GRACE * 2));
-      audio.updateDroneIntensity(fadeFactor * 0.3);
-      scene.update({ hr: null, hrv: null, quality: fadeFactor * 0.2, pulse: 0, coherence: 0, breathing: null });
-    }
-    // Dim HUD after grace period
-    if (faceLostFrames >= FACE_LOST_GRACE) {
-      const hudEl = document.getElementById('hud');
-      if (hudEl) hudEl.classList.add('dimmed');
-    }
-    return;
-  }
-  faceLostFrames = 0;
-  hideStatus();
-  // Restore HUD brightness on face recovery
-  const hudEl = document.getElementById('hud');
-  if (hudEl) hudEl.classList.remove('dimmed');
-
-  const data = rppg.addSample(rgb);
-
-  // Compute coherence from peaks
-  const peaks = detectPeaks(rppg.pulseSignal);
-  data.coherence = computeCoherence(peaks, rppg.sampleRate);
-
-  // Detect new heartbeats by comparing peak count
-  if (peaks.length > lastPeakCount && data.quality > 0.3) {
-    scene.triggerBeat();
-    audio.playBeat(Math.min(1, data.quality));
-    if (hud) hud.triggerBeat();
-    lastPeakCount = peaks.length;
-
-    // Start ambient drone and awakening animation on first detected heartbeat
-    if (!droneStarted) {
-      audio.startDrone();
-      scene.triggerAwakening();
-      const hudEl = document.getElementById('hud');
-      if (hudEl) hudEl.classList.add('awake');
-      droneStarted = true;
-    }
-  }
-
-  // Update ambient drone pitch and intensity with biometric data
-  if (data.hr !== null) audio.updateDrone(data.hr);
-  audio.updateDroneIntensity(data.quality);
-
-  // Update breathing guide with HR stability
-  breathing.updateFromData(data);
-
-  // Pass breathing data to scene for visual response
-  data.breathing = breathing.getBreathingData();
-
-  // Update scene and HUD with biometric data
-  scene.update(data);
-  if (hud) hud.update(data);
-
-  // Record BPM for sparkline (~1 sample/second)
-  if (data.hr !== null && rppg.pulseSignal.length % rppg.sampleRate === 0) {
-    if (hud) hud.recordBPM(data.hr);
-  }
+function stop(reason='Stopped — camera released'){
+  diagnostics.event('stop',reason);diagnostics.stop();
+  if(synthetic && recorder.data?.source==='synthetic' && recorder.origin!==null)recorder.data.reference={kind:'synthetic pulse peaks',beats:synthetic.beats.filter(t=>t>=recorder.origin&&t<=lastTime).map(t=>t-recorder.origin)};
+  generation++;source=null;busy=false;captureFeedback.reset();lastFeedbackAt=-Infinity;
+  $('capture-advice').textContent='Camera stopped. Start again to refresh capture checks.';$('capture-checks').replaceChildren();
+  if(callback!==null && video.cancelVideoFrameCallback)video.cancelVideoFrameCallback(callback);callback=null;
+  clearInterval(timer);timer=null;
+  if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;video.srcObject=null;
+  recorder.stop();processor.gap(reason);face.lastLandmarks=null;previousLandmarks=null;previousBrightness=null;
+  detectedAt=-Infinity;lastDetect=-Infinity;lastMedia=-1;frozen=null;synthetic=null;
+  $('source-badge').textContent='CAMERA OFF';$('source-badge').classList.remove('demo');
+  $('camera-button').disabled=false;$('demo-button').disabled=false;$('stop-button').disabled=true;$('record-button').disabled=true;
+  $('camera-placeholder').style.display='flex';$('roi-preview').getContext('2d').clearRect(0,0,$('roi-preview').width,$('roi-preview').height);
+  display();
 }
-
-/** Request webcam access and start the processing loop. */
-async function startCamera() {
-  showStatus('Initializing camera\u2026');
-
-  // Check if camera API is available (requires HTTPS or localhost)
-  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-    showStatus('Camera not available. Please use HTTPS or a supported browser.');
-    return;
-  }
-
-  // Use front camera on mobile, prefer user-facing on all devices
-  const videoConstraints = {
-    facingMode: 'user',
-    width: isMobile ? { ideal: 480 } : { ideal: 640 },
-    height: isMobile ? { ideal: 360 } : { ideal: 480 },
-  };
-
-  let stream;
-  try {
-    stream = await navigator.mediaDevices.getUserMedia({
-      video: videoConstraints,
-      audio: false,
-    });
-  } catch (err) {
-    const msg = err.name === 'NotAllowedError'
-      ? 'Camera access denied. Please allow camera access and reload.'
-      : err.name === 'NotFoundError'
-        ? 'No camera found. Please connect a camera and reload.'
-        : 'Camera error: ' + (err.message || 'Unknown error.');
-    showStatus(msg);
-    return;
-  }
-
-  const video = document.getElementById('webcam');
-  video.srcObject = stream;
-  cameraActive = true;
-
-  // Monitor for camera disconnection (track ended)
-  const videoTrack = stream.getVideoTracks()[0];
-  if (videoTrack) {
-    videoTrack.addEventListener('ended', () => {
-      cameraActive = false;
-      showStatus('Camera disconnected. Please reconnect and reload.');
-      if (droneStarted) {
-        audio.updateDroneIntensity(0);
+function activate(kind){
+  source=kind;processor.reset();captureFeedback.reset();lastFeedbackAt=-Infinity;
+  $('capture-advice').textContent=kind==='synthetic'?'Synthetic demo — lighting and movement checks need a real camera.':'Checking your capture conditions…';$('capture-checks').replaceChildren();
+  if(kind==='synthetic')diagnostics.start(kind,{...browserInfo,...settings},CONFIG);
+  diagnostics.data.source=kind;diagnostics.setSettings(settings);diagnostics.event('capture','started');lastTime=0;frozen=null;$('freeze').checked=false;
+  $('camera-button').disabled=true;$('demo-button').disabled=true;$('stop-button').disabled=false;$('record-button').disabled=false;
+  $('source-badge').textContent=kind==='synthetic'?'SYNTHETIC · NOT A MEASUREMENT':'LIVE CAMERA';$('source-badge').classList.toggle('demo',kind==='synthetic');
+}
+function sampleFace(t){
+  const landmarks=face.lastLandmarks;
+  if(!landmarks || t-detectedAt>0.45){const overlay=$('roi-preview');overlay.getContext('2d').clearRect(0,0,overlay.width,overlay.height);return {rgb:null,meta:{invalidReason:'Face missing or tracking stale'}};}
+  const w=canvas.width,h=canvas.height,pixels=context.getImageData(0,0,w,h).data;
+  const sample=sampleFacePixels(landmarks,pixels,w,h,{motion,previousBrightness});
+  const {boxes,meta:{invalidReason,brightness}}=sample;
+  previousBrightness=brightness;
+  const preview=$('roi-preview');if(preview.width!==w||preview.height!==h){preview.width=w;preview.height=h;}
+  const ctx=preview.getContext('2d');ctx.clearRect(0,0,w,h);ctx.strokeStyle=invalidReason?'#dfb979':'#b4e6bc';ctx.lineWidth=2;for(const [i,b] of boxes.entries()){ctx.strokeRect(b.x,b.y,b.w,b.h);ctx.save();ctx.translate(b.x+b.w/2,b.y-5);ctx.scale(-1,1);ctx.fillStyle='#ffffff';ctx.font='bold 13px sans-serif';ctx.textAlign='center';ctx.fillText(['F','A','B'][i],0,0);ctx.restore();}
+  return sample;
+}
+async function startCamera(){
+  if(busy||source)return;busy=true;const token=++generation;
+  diagnostics.start('camera',browserInfo,CONFIG);diagnostics.event('camera','permission requested');
+  $('camera-button').disabled=true;$('demo-button').disabled=true;$('stop-button').disabled=false;$('status-message').textContent='Opening camera…';
+  try{
+    if(!navigator.mediaDevices?.getUserMedia)throw new Error('Camera requires HTTPS or localhost.');
+    if(!video.requestVideoFrameCallback)throw new Error('This browser lacks video-frame callbacks. Use a current Chrome, Edge, Firefox or Safari.');
+    const acquired=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:640},height:{ideal:480},frameRate:{ideal:60}},audio:false});
+    if(token!==generation){acquired.getTracks().forEach(t=>t.stop());return;}
+    stream=acquired;video.srcObject=stream;await video.play();
+    $('status-message').textContent='Loading face detection…';
+    if(!face._ready)await face.init();
+    if(token!==generation)return;
+    const track=stream.getVideoTracks()[0];settings={...track.getSettings(),timing:'video mediaTime',requestedFps:60};
+    track.addEventListener('ended',()=>{if(token===generation)stop('Camera disconnected');});
+    $('camera-settings').textContent=`${settings.width} × ${settings.height} · requested 60 fps · actual ${settings.frameRate||'?'} fps`;
+    canvas.width=video.videoWidth;canvas.height=video.videoHeight;
+    detectorCanvas.width=canvas.width;detectorCanvas.height=canvas.height;
+    activate('camera');busy=false;$('camera-placeholder').style.display='none';
+    let previousPresented=null;
+    const frame=(now,meta)=>{
+      if(token!==generation||source!=='camera')return;
+      callback=video.requestVideoFrameCallback(frame);
+      const t=meta.mediaTime;if(t<=lastMedia)return;lastMedia=t;
+      const missedFrames=previousPresented===null?0:Math.max(0,meta.presentedFrames-previousPresented-1);previousPresented=meta.presentedFrames;
+      context.drawImage(video,0,0,canvas.width,canvas.height);
+      if(!face._processing && t-lastDetect>=.1){
+        lastDetect=t;detectorCanvas.getContext('2d').drawImage(canvas,0,0);
+        face.detect(detectorCanvas).then(()=>{
+          if(token!==generation)return;detectedAt=t;
+          const current=face.lastLandmarks;
+          if(current && previousLandmarks){const width=Math.abs(current[234].x-current[454].x)||.1;motion=Math.hypot(current[1].x-previousLandmarks[1].x,current[1].y-previousLandmarks[1].y)/width;}else motion=0;
+          previousLandmarks=current;
+        }).catch(()=>{if(token===generation)stop('Face detection unavailable. Reload to retry.');});
       }
-    });
-  }
-
-  await video.play();
-
-  showStatus('Loading face detection\u2026');
-
-  const faceCanvas = document.getElementById('face-canvas');
-
-  try {
-    await face.init();
-  } catch (err) {
-    showStatus('Face detection unavailable. Check browser support.');
-    return;
-  }
-
-  showStatus('Looking for face\u2026');
-
-  // Process frames at ~30 fps
-  let frameCount = 0;
-  const loop = () => {
-    if (!cameraActive) return;
-    frameCount++;
-    // Run face detection every other frame (15 fps detection, 30 fps render)
-    if (frameCount % 2 === 0) {
-      face.detect(video);
-    }
-    processFrame(video, faceCanvas);
-    requestAnimationFrame(loop);
-  };
-  requestAnimationFrame(loop);
+      const {rgb,meta:quality}=sampleFace(t);
+      feed(rgb,t,{...quality,missedFrames,presentedFrames:meta.presentedFrames,callbackNow:now/1000});
+    };
+    callback=video.requestVideoFrameCallback(frame);
+  }catch(error){if(token===generation)stop(error.name==='NotAllowedError'?'Camera permission denied. Allow access, then retry.':error.name==='NotFoundError'?'No camera found. Connect one and retry.':error.message);}
 }
-
-/**
- * Initialize on user tap.
- * Mobile browsers require a user gesture to start AudioContext and camera.
- * The tap overlay gates both audio init and camera access.
- */
-function onTapToBegin() {
-  // Initialize audio context (requires user gesture on mobile)
-  audio.init();
-
-  // Hide tap overlay
-  if (tapOverlay) tapOverlay.classList.add('hidden');
-
-  // Initialize scene and start camera
-  scene.init();
-  scene.start();
-  startCamera();
+function startDemo(){
+  if(busy||source)return;generation++;settings={timing:'synthetic timestamps',fps:30,bpm:72};
+  synthetic=makeSynthetic({bpm:72,variability:.025,duration:7200});activate('synthetic');
+  $('camera-settings').textContent='Generated 72 bpm pulse · no camera access';
+  let frame=0;
+  // Start with 12 seconds of explicitly synthetic history for immediate inspection.
+  for(;frame<360;frame++){const t=frame/30,rgb=synthetic.sample(t),data=processor.addSample(rgb,t);diagnostics.add(t,rgb,{},data,processor.waveform);}
+  lastTime=(frame-1)/30;display();
+  timer=setInterval(()=>{const t=frame++/30;feed(synthetic.sample(t),t,{synthetic:true});},1000/30);
 }
-
-// Bind tap-to-begin on both click and touchend for reliable mobile handling
-if (tapOverlay) {
-  tapOverlay.addEventListener('click', onTapToBegin, { once: true });
-}
-
-export { rppg, face, scene, audio, hud, breathing, hideStatus, showStatus, processFrame, isMobile, onTapToBegin, FACE_LOST_GRACE };
+$('camera-button').addEventListener('click',startCamera);
+$('demo-button').addEventListener('click',startDemo);
+$('stop-button').addEventListener('click',()=>stop());
+$('record-button').addEventListener('click',()=>{
+  if(recorder.active)recorder.stop();else{
+    recorder.start(source,{...settings,scene:$('scene-toggle').checked},CONFIG);
+    // Every recording starts a new analysis chain; no pre-recording beats enter the export.
+    processor.reset();pendingDiagnosticReset=true;diagnostics.event('processor','reset for recording');
+    if(source==='synthetic')$('record-note').textContent='Synthetic recording — useful for software checks, not human accuracy.';
+  }display();
+});
+$('mark-button').addEventListener('click',()=>{recorder.mark(lastTime,'manual sync marker');$('record-note').textContent=`Marker ${recorder.data.markers.length} added. Align with an independently recorded reference event.`;});
+$('export-button').addEventListener('click',()=>{
+  if(!recorder.data)return;
+  if(source==='synthetic' && synthetic && recorder.origin!==null)recorder.data.reference={kind:'synthetic pulse peaks',beats:synthetic.beats.filter(t=>t>=recorder.origin&&t<=lastTime).map(t=>t-recorder.origin)};
+  const blob=new Blob([JSON.stringify(recorder.data)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=`pulse-${recorder.data.source}-${recorder.data.createdAt.replaceAll(':','-')}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+$('diagnostics-button').addEventListener('click',()=>{
+  diagnostics.event('export','Diagnostic file downloaded locally');
+  const blob=new Blob([JSON.stringify(diagnostics.data)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=`pulse-diagnostics-${new Date().toISOString().replaceAll(':','-')}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  $('record-note').textContent='Attach the downloaded JSON in this chat. It contains numeric signal data and errors, not video.';
+});
+window.addEventListener('error',e=>diagnostics.event('error',e.message));
+window.addEventListener('unhandledrejection',e=>diagnostics.event('promise rejection',e.reason?.message||e.reason));
+$('freeze').addEventListener('change',()=>display());$('trace-scale').addEventListener('change',()=>display());window.addEventListener('resize',()=>display());
+$('scene-toggle').addEventListener('change',async()=>{
+  const enabled=$('scene-toggle').checked;
+  recorder.mark(lastTime,enabled?'scene on':'scene off');
+  document.body.classList.toggle('scene-on',enabled);
+  if(!enabled){scene?.stop();return;}
+  if(!scene && !sceneLoading){sceneLoading=true;try{
+    if(!globalThis.THREE)await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';s.onload=resolve;s.onerror=()=>reject(new Error('Scene failed to load'));document.head.append(s);});
+    const {SceneManager}=await import('./scene.js');scene=new SceneManager($('scene'));scene.init();
+  }catch(error){$('status-message').textContent=error.message;$('scene-toggle').checked=false;document.body.classList.remove('scene-on');}finally{sceneLoading=false;}}
+  if(scene && $('scene-toggle').checked)scene.start();
+});
+document.addEventListener('visibilitychange',()=>{if(document.hidden && (source||busy))stop('Paused while tab was hidden — start again to resume');});
+window.addEventListener('pagehide',()=>stop());
+display();

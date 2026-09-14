@@ -1,0 +1,959 @@
+{
+  "dataset": "Kaggle rPPG / subject 1",
+  "durationSeconds": 119.98653399999999,
+  "extractionFps": 29.96973057212362,
+  "results": {
+    "Toolbox POS": {
+      "windows": 26,
+      "maeBpm": 25.33945334095,
+      "biasBpm": 21.573323055077136
+    },
+    "Toolbox CHROM": {
+      "windows": 26,
+      "maeBpm": 16.84036074784495,
+      "biasBpm": 10.9695496930953
+    },
+    "Green + bandpass": {
+      "windows": 26,
+      "maeBpm": 12.796754389484379,
+      "biasBpm": -0.8963766287721223
+    },
+    "Wide mask Toolbox POS": {
+      "windows": 26,
+      "maeBpm": 17.9988660721907,
+      "biasBpm": 13.447421891934207
+    },
+    "production": {
+      "windows": 0,
+      "maeBpm": null,
+      "biasBpm": null,
+      "eligibleReadouts": 433,
+      "acceptedReadoutFraction": 0.0,
+      "validBeats": 0
+    },
+    "without-region-agreement": {
+      "windows": 21,
+      "maeBpm": 10.466216517857132,
+      "biasBpm": -10.466216517857132,
+      "eligibleReadouts": 433,
+      "acceptedReadoutFraction": 0.04849884526558892,
+      "validBeats": 10
+    },
+    "wide-mask": {
+      "windows": 52,
+      "maeBpm": 6.052785456730765,
+      "biasBpm": -4.176655649038469,
+      "eligibleReadouts": 433,
+      "acceptedReadoutFraction": 0.12009237875288684,
+      "validBeats": 23
+    },
+    "forehead-only": {
+      "windows": 29,
+      "maeBpm": 10.07247306034481,
+      "biasBpm": -4.71757004310346,
+      "eligibleReadouts": 433,
+      "acceptedReadoutFraction": 0.06697459584295612,
+      "validBeats": 12
+    }
+  },
+  "windows": [
+    {
+      "method": "Toolbox POS",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 74.19264355501306,
+      "deviceHR": 76.265078125,
+      "referencePPGHR": 72.65625
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 69.47328900935395,
+      "deviceHR": 75.979453125,
+      "referencePPGHR": 73.125
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 69.58304144064834,
+      "deviceHR": 75.61179687500001,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 68.81477442158757,
+      "deviceHR": 75.173984375,
+      "referencePPGHR": 67.5
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 65.19294418887242,
+      "deviceHR": 74.866171875,
+      "referencePPGHR": 67.5
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 72.3268522230083,
+      "deviceHR": 74.76109375,
+      "referencePPGHR": 70.078125
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 71.4488327726531,
+      "deviceHR": 74.85546875,
+      "referencePPGHR": 69.140625
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 119.08138795442186,
+      "deviceHR": 74.965,
+      "referencePPGHR": 78.28125
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 121.49594144289861,
+      "deviceHR": 74.610703125,
+      "referencePPGHR": 73.125
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 117.98386364147787,
+      "deviceHR": 73.996171875,
+      "referencePPGHR": 74.296875
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 118.75213066053865,
+      "deviceHR": 73.76890624999999,
+      "referencePPGHR": 70.546875
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 122.26420846195938,
+      "deviceHR": 73.67671875,
+      "referencePPGHR": 63.28125
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 65.41244905146122,
+      "deviceHR": 73.12015625,
+      "referencePPGHR": 65.625
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 67.49774524605478,
+      "deviceHR": 72.26906249999999,
+      "referencePPGHR": 67.96875
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 121.3861890116042,
+      "deviceHR": 71.52015625,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 118.53262579794986,
+      "deviceHR": 70.68796875000001,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 119.30089281701065,
+      "deviceHR": 69.83359375,
+      "referencePPGHR": 66.09375
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 121.16668414901541,
+      "deviceHR": 69.17835937500001,
+      "referencePPGHR": 68.671875
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 72.98536681077469,
+      "deviceHR": 69.08,
+      "referencePPGHR": 72.1875
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 119.30089281701065,
+      "deviceHR": 69.13273437499998,
+      "referencePPGHR": 72.421875
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 118.75213066053865,
+      "deviceHR": 69.42328125,
+      "referencePPGHR": 71.015625
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 76.05843488701782,
+      "deviceHR": 69.620546875,
+      "referencePPGHR": 71.71875
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 75.94868245572343,
+      "deviceHR": 69.732734375,
+      "referencePPGHR": 77.578125
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 74.08289112371867,
+      "deviceHR": 69.83,
+      "referencePPGHR": 75.46875
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 81.76556131432652,
+      "deviceHR": 70.03,
+      "referencePPGHR": 76.40625
+    },
+    {
+      "method": "Toolbox POS",
+      "start": 127.986633,
+      "end": 135.98663299999998,
+      "hr": 120.17891226736583,
+      "deviceHR": 70.083828125,
+      "referencePPGHR": 79.21875
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 71.22932791006431,
+      "deviceHR": 76.265078125,
+      "referencePPGHR": 72.65625
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 72.1073473604195,
+      "deviceHR": 75.979453125,
+      "referencePPGHR": 73.125
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 68.48551712770437,
+      "deviceHR": 75.61179687500001,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 67.60749767734919,
+      "deviceHR": 75.173984375,
+      "referencePPGHR": 67.5
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 66.94898308958278,
+      "deviceHR": 74.866171875,
+      "referencePPGHR": 67.5
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 121.8251987367818,
+      "deviceHR": 74.76109375,
+      "referencePPGHR": 70.078125
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 54.21770105943262,
+      "deviceHR": 74.85546875,
+      "referencePPGHR": 69.140625
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 81.10704672656014,
+      "deviceHR": 74.965,
+      "referencePPGHR": 78.28125
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 121.3861890116042,
+      "deviceHR": 74.610703125,
+      "referencePPGHR": 73.125
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 72.2170997917139,
+      "deviceHR": 73.996171875,
+      "referencePPGHR": 74.296875
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 73.75363382983547,
+      "deviceHR": 73.76890624999999,
+      "referencePPGHR": 70.546875
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 70.79031818488673,
+      "deviceHR": 73.67671875,
+      "referencePPGHR": 63.28125
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 64.20517230722285,
+      "deviceHR": 73.12015625,
+      "referencePPGHR": 65.625
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 62.22962854392368,
+      "deviceHR": 72.26906249999999,
+      "referencePPGHR": 67.96875
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 71.66833763524191,
+      "deviceHR": 71.52015625,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 118.09361607277226,
+      "deviceHR": 70.68796875000001,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 69.58304144064834,
+      "deviceHR": 69.83359375,
+      "referencePPGHR": 66.09375
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 120.50816956124903,
+      "deviceHR": 69.17835937500001,
+      "referencePPGHR": 68.671875
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 73.31462410465787,
+      "deviceHR": 69.08,
+      "referencePPGHR": 72.1875
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 119.63015011089385,
+      "deviceHR": 69.13273437499998,
+      "referencePPGHR": 72.421875
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 69.14403171547075,
+      "deviceHR": 69.42328125,
+      "referencePPGHR": 71.015625
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 77.04620676866742,
+      "deviceHR": 69.620546875,
+      "referencePPGHR": 71.71875
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 75.72917759313464,
+      "deviceHR": 69.732734375,
+      "referencePPGHR": 77.578125
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 73.64388139854107,
+      "deviceHR": 69.83,
+      "referencePPGHR": 75.46875
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 111.39871776381399,
+      "deviceHR": 70.03,
+      "referencePPGHR": 76.40625
+    },
+    {
+      "method": "Toolbox CHROM",
+      "start": 127.986633,
+      "end": 135.98663299999998,
+      "hr": 119.41064524830506,
+      "deviceHR": 70.083828125,
+      "referencePPGHR": 79.21875
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 68.04650740252677,
+      "deviceHR": 76.265078125,
+      "referencePPGHR": 72.65625
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 71.00982304747552,
+      "deviceHR": 75.979453125,
+      "referencePPGHR": 73.125
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 71.33908034135871,
+      "deviceHR": 75.61179687500001,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 65.19294418887242,
+      "deviceHR": 75.173984375,
+      "referencePPGHR": 67.5
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 69.91229873453153,
+      "deviceHR": 74.866171875,
+      "referencePPGHR": 67.5
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 42.03518118575444,
+      "deviceHR": 74.76109375,
+      "referencePPGHR": 70.078125
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 58.16878858603095,
+      "deviceHR": 74.85546875,
+      "referencePPGHR": 69.140625
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 83.4118477837425,
+      "deviceHR": 74.965,
+      "referencePPGHR": 78.28125
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 67.60749767734919,
+      "deviceHR": 74.610703125,
+      "referencePPGHR": 73.125
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 136.86128182411431,
+      "deviceHR": 73.996171875,
+      "referencePPGHR": 74.296875
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 73.09511924206909,
+      "deviceHR": 73.76890624999999,
+      "referencePPGHR": 70.546875
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 73.31462410465787,
+      "deviceHR": 73.67671875,
+      "referencePPGHR": 63.28125
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 59.48581776156373,
+      "deviceHR": 73.12015625,
+      "referencePPGHR": 65.625
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 52.022652433544664,
+      "deviceHR": 72.26906249999999,
+      "referencePPGHR": 67.96875
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 98.44793087107503,
+      "deviceHR": 71.52015625,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 49.38859408247911,
+      "deviceHR": 70.68796875000001,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 69.47328900935395,
+      "deviceHR": 69.83359375,
+      "referencePPGHR": 66.09375
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 66.4002209331108,
+      "deviceHR": 69.17835937500001,
+      "referencePPGHR": 68.671875
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 80.22902727620495,
+      "deviceHR": 69.08,
+      "referencePPGHR": 72.1875
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 94.60659577577108,
+      "deviceHR": 69.13273437499998,
+      "referencePPGHR": 72.421875
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 71.77809006653631,
+      "deviceHR": 69.42328125,
+      "referencePPGHR": 71.015625
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 72.2170997917139,
+      "deviceHR": 69.620546875,
+      "referencePPGHR": 71.71875
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 56.63225454790938,
+      "deviceHR": 69.732734375,
+      "referencePPGHR": 77.578125
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 79.35100782584978,
+      "deviceHR": 69.83,
+      "referencePPGHR": 75.46875
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 75.39992029925143,
+      "deviceHR": 70.03,
+      "referencePPGHR": 76.40625
+    },
+    {
+      "method": "Green + bandpass",
+      "start": 127.986633,
+      "end": 135.98663299999998,
+      "hr": 53.33968160907744,
+      "deviceHR": 70.083828125,
+      "referencePPGHR": 79.21875
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 27.986633,
+      "end": 35.986633,
+      "hr": 73.53412896724667,
+      "deviceHR": 76.265078125,
+      "referencePPGHR": 72.65625
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 31.986633,
+      "end": 39.986633,
+      "hr": 71.11957547876992,
+      "deviceHR": 75.979453125,
+      "referencePPGHR": 73.125
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 35.986633,
+      "end": 43.986633,
+      "hr": 68.59526955899877,
+      "deviceHR": 75.61179687500001,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 39.986633,
+      "end": 47.986633,
+      "hr": 68.26601226511558,
+      "deviceHR": 75.173984375,
+      "referencePPGHR": 67.5
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 43.986633,
+      "end": 51.986633,
+      "hr": 66.83923065828839,
+      "deviceHR": 74.866171875,
+      "referencePPGHR": 67.5
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 47.986633,
+      "end": 55.986633,
+      "hr": 72.1073473604195,
+      "deviceHR": 74.76109375,
+      "referencePPGHR": 70.078125
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 51.986633,
+      "end": 59.986633,
+      "hr": 71.8878424978307,
+      "deviceHR": 74.85546875,
+      "referencePPGHR": 69.140625
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 55.986633,
+      "end": 63.986633,
+      "hr": 117.98386364147787,
+      "deviceHR": 74.965,
+      "referencePPGHR": 78.28125
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 59.986633,
+      "end": 67.986633,
+      "hr": 74.52190084889625,
+      "deviceHR": 74.610703125,
+      "referencePPGHR": 73.125
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 63.986633,
+      "end": 71.986633,
+      "hr": 71.9975949291251,
+      "deviceHR": 73.996171875,
+      "referencePPGHR": 74.296875
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 67.986633,
+      "end": 75.986633,
+      "hr": 118.64237822924426,
+      "deviceHR": 73.76890624999999,
+      "referencePPGHR": 70.546875
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 71.986633,
+      "end": 79.986633,
+      "hr": 124.02024736266978,
+      "deviceHR": 73.67671875,
+      "referencePPGHR": 63.28125
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 75.986633,
+      "end": 83.986633,
+      "hr": 65.30269662016681,
+      "deviceHR": 73.12015625,
+      "referencePPGHR": 65.625
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 79.986633,
+      "end": 87.986633,
+      "hr": 67.93675497123238,
+      "deviceHR": 72.26906249999999,
+      "referencePPGHR": 67.96875
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 83.986633,
+      "end": 91.986633,
+      "hr": 68.70502199029316,
+      "deviceHR": 71.52015625,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 87.986633,
+      "end": 95.986633,
+      "hr": 66.18071607052201,
+      "deviceHR": 70.68796875000001,
+      "referencePPGHR": 68.203125
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 91.986633,
+      "end": 99.986633,
+      "hr": 67.38799281476038,
+      "deviceHR": 69.83359375,
+      "referencePPGHR": 66.09375
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 95.986633,
+      "end": 103.986633,
+      "hr": 120.28866469866024,
+      "deviceHR": 69.17835937500001,
+      "referencePPGHR": 68.671875
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 99.986633,
+      "end": 107.986633,
+      "hr": 74.96091057407385,
+      "deviceHR": 69.08,
+      "referencePPGHR": 72.1875
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 103.986633,
+      "end": 111.986633,
+      "hr": 119.08138795442186,
+      "deviceHR": 69.13273437499998,
+      "referencePPGHR": 72.421875
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 107.986633,
+      "end": 115.986633,
+      "hr": 118.75213066053865,
+      "deviceHR": 69.42328125,
+      "referencePPGHR": 71.015625
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 111.986633,
+      "end": 119.986633,
+      "hr": 72.3268522230083,
+      "deviceHR": 69.620546875,
+      "referencePPGHR": 71.71875
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 115.986633,
+      "end": 123.986633,
+      "hr": 76.82670190607863,
+      "deviceHR": 69.732734375,
+      "referencePPGHR": 77.578125
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 119.986633,
+      "end": 127.986633,
+      "hr": 76.71694947478422,
+      "deviceHR": 69.83,
+      "referencePPGHR": 75.46875
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 123.986633,
+      "end": 131.98663299999998,
+      "hr": 117.98386364147787,
+      "deviceHR": 70.03,
+      "referencePPGHR": 76.40625
+    },
+    {
+      "method": "Wide mask Toolbox POS",
+      "start": 127.986633,
+      "end": 135.98663299999998,
+      "hr": 119.73990254218825,
+      "deviceHR": 70.083828125,
+      "referencePPGHR": 79.21875
+    }
+  ],
+  "referenceAudit": {
+    "rows": 108999,
+    "videoFrames": 12867,
+    "countContinuous": true,
+    "initialPPG": [
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0,
+      -0.0
+    ],
+    "referenceIntervalP5P50P95Ms": [
+      643.75,
+      843.75,
+      953.125
+    ]
+  },
+  "limitations": [
+    "One development recording; not held-out or multi-subject accuracy.",
+    "Reference is Empatica wrist PPG and device-derived IBI, not ECG.",
+    "Second-to-third tag mapping follows prose and recording duration; example code in track.txt conflicts.",
+    "Marker frame indexing and start/end light timing limit absolute beat alignment precision.",
+    "Sparse reference IBIs retain gaps; no interval concatenation or imputation.",
+    "HR comparison uses device-smoothed HR; baselines offline, production streaming.",
+    "Video downscaled to 640x360 for browser extraction; synchronous 10 Hz landmarks do not reproduce live scheduling.",
+    "Kaggle lists an unknown license; training/redistribution permissions are unverified."
+  ],
+  "toolbox": {
+    "repository": "https://github.com/ubicomplab/rPPG-Toolbox",
+    "commit": "b7500b848f84ad7f86e277b4612563b69f4f88f9"
+  },
+  "source": "https://www.kaggle.com/datasets/ashfakyeafi/rppg-dataset/data",
+  "alignment": {
+    "tagIndexZeroBased": 1,
+    "videoFrameZeroBased": 307,
+    "videoMarkerSeconds": 10.243567,
+    "referenceToVideoOffsetSeconds": -1050.0664329427796,
+    "expectedEndMarkerVideoSeconds": 426.4835669994354,
+    "method": "Fixed offset from recording notes plus visible start marker; no signal-fitted alignment or drift correction"
+  },
+  "referenceIntervalAudit": {
+    "replayStart": 19.986633,
+    "replayEnd": 139.973167,
+    "providedIntervals": 107,
+    "providedIntervalDurationFraction": 0.7610228994530337,
+    "source": "Empatica IBI.csv; no gap filling"
+  },
+  "timingAudit": {
+    "frameCount": 12867,
+    "presentationTimestampDeltasSeconds": [
+      0.03336599999994405,
+      0.03336699999999837,
+      0.033367000000055214
+    ],
+    "startMarkerFrame": 307,
+    "firstEndMarkerRedDetectionFrame": 12792,
+    "markerDurationVideoSeconds": 416.582833,
+    "markerDurationReferenceSeconds": 416.24000000953674,
+    "endMarkerDiscrepancySeconds": 0.34283299046325055,
+    "interpretation": "Start marker visibly confirmed at frame 307. End marker red detection near frame 12792 implies approx 0.34 s discrepancy; uncertainty includes marker detection and clock rates. No correction applied."
+  }
+}

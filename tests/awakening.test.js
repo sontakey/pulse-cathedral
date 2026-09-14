@@ -309,27 +309,6 @@ describe('_render calls _updateAwakening', () => {
 
 // ─── app.js triggers awakening on first heartbeat ───────────────────────────
 
-describe('app.js triggers awakening on first heartbeat', () => {
-  it('calls scene.triggerAwakening() on first beat', () => {
-    assert.ok(appSrc.includes('scene.triggerAwakening()'),
-      'Should trigger awakening on first heartbeat');
-  });
-
-  it('awakening is inside the droneStarted guard', () => {
-    const guardIdx = appSrc.indexOf('if (!droneStarted)');
-    const awakeningIdx = appSrc.indexOf('scene.triggerAwakening()');
-    const guardEnd = appSrc.indexOf('}', awakeningIdx);
-    assert.ok(guardIdx < awakeningIdx, 'Awakening should be inside droneStarted guard');
-    assert.ok(guardEnd > awakeningIdx, 'Awakening should be before guard closing brace');
-  });
-
-  it('adds awake class to HUD element', () => {
-    assert.ok(appSrc.includes("classList.add('awake')"),
-      'Should add awake class to HUD');
-  });
-});
-
-// ─── CSS awakening styles ────────────────────────────────────────────────────
 
 describe('CSS awakening styles', () => {
   it('HUD starts with opacity 0 (dormant)', () => {

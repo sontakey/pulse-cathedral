@@ -309,13 +309,12 @@ describe('index.html includes Three.js CDN', () => {
   const html = readFileSync(resolve(root, 'index.html'), 'utf-8');
 
   it('loads Three.js from CDN', () => {
-    assert.ok(html.includes('three'), 'Should include Three.js script');
+    assert.ok(readFileSync(resolve(root, 'js/app.js'), 'utf-8').includes('three@'), 'Should include Three.js script');
     assert.ok(html.includes('cdn.jsdelivr.net'), 'Should use jsdelivr CDN');
   });
 
-  it('loads Three.js before app.js', () => {
-    const threeIdx = html.indexOf('three');
-    const appIdx = html.indexOf('js/app.js');
-    assert.ok(threeIdx < appIdx, 'Three.js should load before app.js');
+  it('keeps Three.js off the initial measurement page', () => {
+    assert.ok(!html.includes('three@'));
+    assert.ok(html.includes('js/app.js'));
   });
 });

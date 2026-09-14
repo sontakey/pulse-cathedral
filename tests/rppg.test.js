@@ -156,7 +156,7 @@ describe('RPPGProcessor', () => {
 
   it('addSample returns expected shape', () => {
     const proc = new RPPGProcessor();
-    const result = proc.addSample([128, 128, 128]);
+    const result = proc.addSample([128, 128, 128], 0);
     assert.ok('pulse' in result);
     assert.ok('hr' in result);
     assert.ok('hrv' in result);
@@ -166,7 +166,7 @@ describe('RPPGProcessor', () => {
   it('accumulates samples in buffer', () => {
     const proc = new RPPGProcessor();
     for (let i = 0; i < 10; i++) {
-      proc.addSample([128, 128, 128]);
+      proc.addSample([128, 128, 128], i / 30);
     }
     assert.strictEqual(proc.rgbBuffer.length, 10);
   });
@@ -174,14 +174,14 @@ describe('RPPGProcessor', () => {
   it('caps buffer length', () => {
     const proc = new RPPGProcessor();
     for (let i = 0; i < 200; i++) {
-      proc.addSample([128 + Math.sin(i * 0.1), 128, 128]);
+      proc.addSample([128 + Math.sin(i * 0.1), 128, 128], i / 30);
     }
     assert.ok(proc.rgbBuffer.length <= proc.windowLength * 4);
   });
 
   it('reset clears state', () => {
     const proc = new RPPGProcessor();
-    for (let i = 0; i < 50; i++) proc.addSample([128, 128, 128]);
+    for (let i = 0; i < 50; i++) proc.addSample([128, 128, 128], i / 30);
     proc.reset();
     assert.strictEqual(proc.rgbBuffer.length, 0);
     assert.strictEqual(proc.pulseSignal.length, 0);
@@ -196,7 +196,7 @@ describe('RPPGProcessor', () => {
       const r = 128 + 1 * Math.sin(phase);
       const g = 128 + 3 * Math.sin(phase + 0.2);
       const b = 128 + 0.5 * Math.sin(phase + 0.5);
-      const result = proc.addSample([r, g, b]);
+      const result = proc.addSample([r, g, b], i / 30);
       if (result.hr !== null) lastHr = result.hr;
     }
     // We should get some HR reading after enough data

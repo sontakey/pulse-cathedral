@@ -411,42 +411,7 @@ describe('breathing.js source structure', () => {
   });
 });
 
-describe('app.js integrates breathing guide', () => {
-  const appSrc = readFileSync(resolve(root, 'js/app.js'), 'utf-8');
 
-  it('imports createBreathingGuide from breathing.js', () => {
-    assert.ok(appSrc.includes("from './breathing.js'"));
-    assert.ok(appSrc.includes('createBreathingGuide'));
-  });
-
-  it('calls breathing.updateFromData', () => {
-    assert.ok(appSrc.includes('breathing.updateFromData'));
-  });
-
-  it('passes breathing data to scene', () => {
-    assert.ok(appSrc.includes('data.breathing'));
-  });
-});
-
-describe('index.html has breathing guide elements', () => {
-  const html = readFileSync(resolve(root, 'index.html'), 'utf-8');
-
-  it('has breathing-guide container', () => {
-    assert.ok(html.includes('id="breathing-guide"'));
-  });
-
-  it('has breathing-circle element', () => {
-    assert.ok(html.includes('id="breathing-circle"'));
-  });
-
-  it('has breathing-label element', () => {
-    assert.ok(html.includes('id="breathing-label"'));
-  });
-
-  it('has breathing-timer element', () => {
-    assert.ok(html.includes('id="breathing-timer"'));
-  });
-});
 
 describe('style.css has breathing guide styles', () => {
   const css = readFileSync(resolve(root, 'css/style.css'), 'utf-8');

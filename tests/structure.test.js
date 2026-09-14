@@ -34,8 +34,8 @@ describe('index.html', () => {
     assert.ok(html.startsWith('<!DOCTYPE html>'));
   });
 
-  it('links style.css', () => {
-    assert.ok(html.includes('css/style.css'));
+  it('links lab.css', () => {
+    assert.ok(html.includes('css/lab.css'));
   });
 
   it('loads app.js as ES module', () => {
@@ -50,28 +50,27 @@ describe('index.html', () => {
     assert.ok(html.includes('id="webcam"'));
   });
 
-  it('has HUD elements', () => {
-    assert.ok(html.includes('id="hud"'));
+  it('has waveform and readout elements', () => {
+    assert.ok(html.includes('id="ppg-trace"'));
     assert.ok(html.includes('id="hr-value"'));
-    assert.ok(html.includes('id="hrv-value"'));
-    assert.ok(html.includes('id="signal-fill"'));
-    assert.ok(html.includes('id="coherence-value"'));
-    assert.ok(html.includes('id="sparkline"'));
-    assert.ok(html.includes('id="pulse-dot"'));
-    assert.ok(html.includes('id="quality-text"'));
-    assert.ok(html.includes('id="coherence-fill"'));
-    assert.ok(html.includes('id="coherence-bar"'));
+    assert.ok(html.includes('id="rmssd-value"'));
+    assert.ok(html.includes('id="quality-value"'));
+    assert.ok(html.includes('id="ibi-value"'));
+    assert.ok(html.includes('id="sdnn-value"'));
+    assert.ok(html.includes('id="status-dot"'));
+    assert.ok(html.includes('id="coverage-value"'));
+    assert.ok(!html.includes('id="coherence-value"'));
   });
 
-  it('has breathing guide elements', () => {
-    assert.ok(html.includes('id="breathing-guide"'));
-    assert.ok(html.includes('id="breathing-circle"'));
-    assert.ok(html.includes('id="breathing-label"'));
-    assert.ok(html.includes('id="breathing-timer"'));
+  it('has recording controls', () => {
+    assert.ok(html.includes('id="record-button"'));
+    assert.ok(html.includes('id="record-state"'));
+    assert.ok(html.includes('id="mark-button"'));
+    assert.ok(html.includes('id="export-button"'));
   });
 
   it('has status overlay', () => {
-    assert.ok(html.includes('id="status-overlay"'));
+    assert.ok(html.includes('id="status-message"'));
     assert.ok(html.includes('id="status-message"'));
   });
 

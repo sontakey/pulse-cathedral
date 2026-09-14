@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "clips": 15,
+  "windowsPerMethod": 390,
+  "independentFFTAgreement": true,
+  "note": "Reference spectral/device HR consistency is exploratory, not a second accuracy ground truth. Identical RGB means do not prove identical full images.",
+  "diagnostics": [
+    {
+      "recording": "10",
+      "segment": "early",
+      "referenceSpectralVsDeviceHRMAE": 55.65123572716346,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0
+    },
+    {
+      "recording": "10",
+      "segment": "middle",
+      "referenceSpectralVsDeviceHRMAE": 39.50736177884615,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0
+    },
+    {
+      "recording": "10",
+      "segment": "late",
+      "referenceSpectralVsDeviceHRMAE": 46.09855769230769,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0
+    },
+    {
+      "recording": "5",
+      "segment": "early",
+      "referenceSpectralVsDeviceHRMAE": 0.8858924278846154,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0
+    },
+    {
+      "recording": "5",
+      "segment": "middle",
+      "referenceSpectralVsDeviceHRMAE": 3.104060246394231,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0022228396776882466
+    },
+    {
+      "recording": "5",
+      "segment": "late",
+      "referenceSpectralVsDeviceHRMAE": 15.899733323317308,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0002778549597110308
+    },
+    {
+      "recording": "8",
+      "segment": "early",
+      "referenceSpectralVsDeviceHRMAE": 11.329608623798077,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0
+    },
+    {
+      "recording": "8",
+      "segment": "middle",
+      "referenceSpectralVsDeviceHRMAE": 26.55327899639423,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0
+    },
+    {
+      "recording": "8",
+      "segment": "late",
+      "referenceSpectralVsDeviceHRMAE": 15.405498798076923,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0
+    },
+    {
+      "recording": "9",
+      "segment": "early",
+      "referenceSpectralVsDeviceHRMAE": 3.0152118389423075,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0013892747985551543
+    },
+    {
+      "recording": "9",
+      "segment": "middle",
+      "referenceSpectralVsDeviceHRMAE": 8.392202524038462,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0002778549597110308
+    },
+    {
+      "recording": "9",
+      "segment": "late",
+      "referenceSpectralVsDeviceHRMAE": 20.83995643028846,
+      "adjacentIdenticalCropMeanRGBFraction": 0.0
+    },
+    {
+      "recording": "root-hd",
+      "segment": "early",
+      "referenceSpectralVsDeviceHRMAE": 5.814415564903846,
+      "adjacentIdenticalCropMeanRGBFraction": 0.3367602111697694
+    },
+    {
+      "recording": "root-hd",
+      "segment": "middle",
+      "referenceSpectralVsDeviceHRMAE": 3.9854532877604165,
+      "adjacentIdenticalCropMeanRGBFraction": 0.34231731036399
+    },
+    {
+      "recording": "root-hd",
+      "segment": "late",
+      "referenceSpectralVsDeviceHRMAE": 4.403207632211538,
+      "adjacentIdenticalCropMeanRGBFraction": 0.3378716310086135
+    }
+  ]
+}

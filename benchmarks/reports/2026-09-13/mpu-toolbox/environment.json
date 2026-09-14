@@ -1,0 +1,14 @@
+{
+  "platform": "macOS-26.6-arm64-arm-64bit",
+  "python": "3.12.14",
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "torch": "2.14.0",
+    "torchvision": "0.29.0",
+    "opencv-python-headless": "4.11.0.86",
+    "yacs": "0.1.8",
+    "PyYAML": "6.0.3"
+  },
+  "runnerSHA256": "22e370efd729ed2db768a783b6dc261949c8ab6ebca92651e173e59f56e3be78"
+}

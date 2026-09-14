@@ -1,0 +1,9 @@
+node_modules/
+benchmarks/artifacts/
+.DS_Store
+dist/
+.vercel/
+.vercel
+.env*
+
+__pycache__/

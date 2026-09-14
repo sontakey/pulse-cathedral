@@ -1,0 +1,2587 @@
+{
+  "schema": "pulse-cathedral/hr-calibration/1",
+  "selectedPolicy": {
+    "concentration": 0.45,
+    "agreement": 0.4
+  },
+  "heldOutControlsPass": false,
+  "independentFailureValidationAvailable": false,
+  "adopted": false,
+  "results": {
+    "subject1": {
+      "baseline": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "candidate": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      }
+    },
+    "subject3": {
+      "baseline": {
+        "availability": 0.1969052882162897,
+        "availableSeconds": 10.421999999999997,
+        "eligibleSeconds": 52.929,
+        "acceptedReadouts": 39,
+        "maeVsContact": 1.1187650240384779,
+        "maeVsDevice": 16.166666666666753,
+        "acceptedDeviceErrorsOver10": 36
+      },
+      "candidate": {
+        "availability": 0.6582213909199115,
+        "availableSeconds": 34.839,
+        "eligibleSeconds": 52.929,
+        "acceptedReadouts": 131,
+        "maeVsContact": 1.208317181536254,
+        "maeVsDevice": 10.862595419847366,
+        "acceptedDeviceErrorsOver10": 69
+      }
+    },
+    "subject4": {
+      "baseline": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 38.234,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "candidate": {
+        "availability": 0.7216351938065596,
+        "availableSeconds": 27.591,
+        "eligibleSeconds": 38.234,
+        "acceptedReadouts": 104,
+        "maeVsContact": 1.4127291165864881,
+        "maeVsDevice": 9.42283653846157,
+        "acceptedDeviceErrorsOver10": 44
+      }
+    },
+    "mpu8-development": {
+      "baseline": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "candidate": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      }
+    }
+  },
+  "search": [
+    {
+      "policy": {
+        "concentration": 0.4,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.13337302768681153,
+        "availableSeconds": 14.933333333333332,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 56,
+        "maeVsContact": null,
+        "maeVsDevice": 20.428571428571413,
+        "acceptedDeviceErrorsOver10": 51
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.4,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.08335814230425719,
+        "availableSeconds": 9.33333333333333,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 35,
+        "maeVsContact": null,
+        "maeVsDevice": 20.79999999999998,
+        "acceptedDeviceErrorsOver10": 32
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.4,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.03572491813039595,
+        "availableSeconds": 4.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 15,
+        "maeVsContact": null,
+        "maeVsDevice": 23.199999999999978,
+        "acceptedDeviceErrorsOver10": 15
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.4,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.4,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.4,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.7747421180998412,
+        "availableSeconds": 34.624,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 130,
+        "maeVsContact": 1.1453049879808013,
+        "maeVsDevice": 2.8737076923077587,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.4,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.16920632789599704,
+        "availableSeconds": 7.562000000000005,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 28,
+        "maeVsContact": 0.7068917410715078,
+        "maeVsDevice": 4.598214285714426,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.4,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.4,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.45,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.10002977076510869,
+        "availableSeconds": 11.200000000000003,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 42,
+        "maeVsContact": null,
+        "maeVsDevice": 20.809523809523792,
+        "acceptedDeviceErrorsOver10": 39
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.45,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.06430485263471267,
+        "availableSeconds": 7.199999999999996,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 27,
+        "maeVsContact": null,
+        "maeVsDevice": 21.166666666666647,
+        "acceptedDeviceErrorsOver10": 25
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.45,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.03572491813039595,
+        "availableSeconds": 4.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 15,
+        "maeVsContact": null,
+        "maeVsDevice": 23.199999999999978,
+        "acceptedDeviceErrorsOver10": 15
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.45,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.45,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.8102973753104652,
+        "availableSeconds": 36.213,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 136,
+        "maeVsContact": 1.161222570082746,
+        "maeVsDevice": 2.857220588235352,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.45,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.7747421180998412,
+        "availableSeconds": 34.624,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 130,
+        "maeVsContact": 1.1453049879808013,
+        "maeVsDevice": 2.8737076923077587,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.45,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.16920632789599704,
+        "availableSeconds": 7.562000000000005,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 28,
+        "maeVsContact": 0.7068917410715078,
+        "maeVsDevice": 4.598214285714426,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.45,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.45,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.5,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.7803360855653264,
+        "availableSeconds": 34.874,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 131,
+        "maeVsContact": 1.143830510496215,
+        "maeVsDevice": 2.920473282442803,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.07859481988687117,
+        "availableSeconds": 8.80000000000001,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 33,
+        "maeVsContact": null,
+        "maeVsDevice": 21.106060606060584,
+        "acceptedDeviceErrorsOver10": 31
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.5,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.7803360855653264,
+        "availableSeconds": 34.874,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 131,
+        "maeVsContact": 1.143830510496215,
+        "maeVsDevice": 2.920473282442803,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.05715986900863349,
+        "availableSeconds": 6.399999999999997,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 24,
+        "maeVsContact": null,
+        "maeVsDevice": 22.020833333333304,
+        "acceptedDeviceErrorsOver10": 23
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.5,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.7803360855653264,
+        "availableSeconds": 34.874,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 131,
+        "maeVsContact": 1.143830510496215,
+        "maeVsDevice": 2.920473282442803,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.033343256921702896,
+        "availableSeconds": 3.7333333333333343,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 14,
+        "maeVsContact": null,
+        "maeVsDevice": 23.21428571428569,
+        "acceptedDeviceErrorsOver10": 14
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.5,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.7803360855653264,
+        "availableSeconds": 34.874,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 131,
+        "maeVsContact": 1.143830510496215,
+        "maeVsDevice": 2.920473282442803,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.5,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.7803360855653264,
+        "availableSeconds": 34.874,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 131,
+        "maeVsContact": 1.143830510496215,
+        "maeVsDevice": 2.920473282442803,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.5,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.7447808283547024,
+        "availableSeconds": 33.285000000000004,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 125,
+        "maeVsContact": 1.1264414062500392,
+        "maeVsDevice": 2.9406560000000623,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.5,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.16920632789599704,
+        "availableSeconds": 7.562000000000005,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 28,
+        "maeVsContact": 0.7068917410715078,
+        "maeVsDevice": 4.598214285714426,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.5,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.5,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.55,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.6780783602962566,
+        "availableSeconds": 30.304000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 114,
+        "maeVsContact": 1.1703973067434619,
+        "maeVsDevice": 2.8077368421053093,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.07144983626079202,
+        "availableSeconds": 8.000000000000012,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 30,
+        "maeVsContact": null,
+        "maeVsDevice": 21.56666666666665,
+        "acceptedDeviceErrorsOver10": 29
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.55,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.6780783602962566,
+        "availableSeconds": 30.304000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 114,
+        "maeVsContact": 1.1703973067434619,
+        "maeVsDevice": 2.8077368421053093,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.05239654659124738,
+        "availableSeconds": 5.866666666666665,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 22,
+        "maeVsContact": null,
+        "maeVsDevice": 21.99999999999998,
+        "acceptedDeviceErrorsOver10": 21
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.55,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.6780783602962566,
+        "availableSeconds": 30.304000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 114,
+        "maeVsContact": 1.1703973067434619,
+        "maeVsDevice": 2.8077368421053093,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.028579934504316788,
+        "availableSeconds": 3.200000000000003,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 12,
+        "maeVsContact": null,
+        "maeVsDevice": 23.37499999999997,
+        "acceptedDeviceErrorsOver10": 12
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.55,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.6780783602962566,
+        "availableSeconds": 30.304000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 114,
+        "maeVsContact": 1.1703973067434619,
+        "maeVsDevice": 2.8077368421053093,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.55,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.6780783602962566,
+        "availableSeconds": 30.304000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 114,
+        "maeVsContact": 1.1703973067434619,
+        "maeVsDevice": 2.8077368421053093,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.55,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.6489002259962856,
+        "availableSeconds": 29.000000000000004,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 109,
+        "maeVsContact": 1.153047054185828,
+        "maeVsDevice": 2.8126788990826226,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.55,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.1273410753843056,
+        "availableSeconds": 5.6910000000000025,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 21,
+        "maeVsContact": 0.7477678571429587,
+        "maeVsDevice": 3.8452380952382375,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.55,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.55,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.6,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.44827817681412374,
+        "availableSeconds": 20.034000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 76,
+        "maeVsContact": 1.2002659847862367,
+        "maeVsDevice": 2.224763157894816,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.05715986900863362,
+        "availableSeconds": 6.400000000000011,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 24,
+        "maeVsContact": null,
+        "maeVsDevice": 22.541666666666643,
+        "acceptedDeviceErrorsOver10": 23
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.6,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.44827817681412374,
+        "availableSeconds": 20.034000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 76,
+        "maeVsContact": 1.2002659847862367,
+        "maeVsDevice": 2.224763157894816,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.04286990175647516,
+        "availableSeconds": 4.8000000000000025,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 18,
+        "maeVsContact": null,
+        "maeVsDevice": 22.388888888888864,
+        "acceptedDeviceErrorsOver10": 17
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.6,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.44827817681412374,
+        "availableSeconds": 20.034000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 76,
+        "maeVsContact": 1.2002659847862367,
+        "maeVsDevice": 2.224763157894816,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.021434950878237623,
+        "availableSeconds": 2.4000000000000057,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 9,
+        "maeVsContact": null,
+        "maeVsDevice": 23.99999999999997,
+        "acceptedDeviceErrorsOver10": 9
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.6,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.44827817681412374,
+        "availableSeconds": 20.034000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 76,
+        "maeVsContact": 1.2002659847862367,
+        "maeVsDevice": 2.224763157894816,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.6,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.44827817681412374,
+        "availableSeconds": 20.034000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 76,
+        "maeVsContact": 1.2002659847862367,
+        "maeVsDevice": 2.224763157894816,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.6,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.44827817681412374,
+        "availableSeconds": 20.034000000000006,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 76,
+        "maeVsContact": 1.2002659847862367,
+        "maeVsDevice": 2.224763157894816,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.6,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.0968427647624802,
+        "availableSeconds": 4.328000000000003,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 16,
+        "maeVsContact": 0.8544616699219816,
+        "maeVsDevice": 3.359375000000142,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.6,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.6,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.65,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.27153118077465255,
+        "availableSeconds": 12.134999999999998,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 46,
+        "maeVsContact": 1.3625912873642083,
+        "maeVsDevice": 2.0144565217392123,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.04048824054778222,
+        "availableSeconds": 4.533333333333349,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 17,
+        "maeVsContact": null,
+        "maeVsDevice": 25.764705882352917,
+        "acceptedDeviceErrorsOver10": 17
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.65,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.27153118077465255,
+        "availableSeconds": 12.134999999999998,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 46,
+        "maeVsContact": 1.3625912873642083,
+        "maeVsDevice": 2.0144565217392123,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.033343256921702924,
+        "availableSeconds": 3.733333333333338,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 14,
+        "maeVsContact": null,
+        "maeVsDevice": 23.999999999999975,
+        "acceptedDeviceErrorsOver10": 14
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.65,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.27153118077465255,
+        "availableSeconds": 12.134999999999998,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 46,
+        "maeVsContact": 1.3625912873642083,
+        "maeVsDevice": 2.0144565217392123,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.019053289669544567,
+        "availableSeconds": 2.13333333333334,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 8,
+        "maeVsContact": null,
+        "maeVsDevice": 24.12499999999997,
+        "acceptedDeviceErrorsOver10": 8
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.65,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.27153118077465255,
+        "availableSeconds": 12.134999999999998,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 46,
+        "maeVsContact": 1.3625912873642083,
+        "maeVsDevice": 2.0144565217392123,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.65,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.27153118077465255,
+        "availableSeconds": 12.134999999999998,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 46,
+        "maeVsContact": 1.3625912873642083,
+        "maeVsDevice": 2.0144565217392123,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.65,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.27153118077465255,
+        "availableSeconds": 12.134999999999998,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 46,
+        "maeVsContact": 1.3625912873642083,
+        "maeVsDevice": 2.0144565217392123,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.65,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.07314671857868471,
+        "availableSeconds": 3.2689999999999984,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 12,
+        "maeVsContact": 1.035400390625142,
+        "maeVsDevice": 3.0416666666668086,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.65,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.65,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.7,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.01188158689669074,
+        "availableSeconds": 0.5310000000000059,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 2,
+        "maeVsContact": 1.95849609375,
+        "maeVsDevice": 2.250000000000142,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.021434950878237557,
+        "availableSeconds": 2.3999999999999986,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 9,
+        "maeVsContact": null,
+        "maeVsDevice": 26.388888888888864,
+        "acceptedDeviceErrorsOver10": 9
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.7,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.01188158689669074,
+        "availableSeconds": 0.5310000000000059,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 2,
+        "maeVsContact": 1.95849609375,
+        "maeVsDevice": 2.250000000000142,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.019053289669544504,
+        "availableSeconds": 2.133333333333333,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 8,
+        "maeVsContact": null,
+        "maeVsDevice": 25.43749999999997,
+        "acceptedDeviceErrorsOver10": 8
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.7,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.01188158689669074,
+        "availableSeconds": 0.5310000000000059,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 2,
+        "maeVsContact": 1.95849609375,
+        "maeVsDevice": 2.250000000000142,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.009526644834772283,
+        "availableSeconds": 1.06666666666667,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 4,
+        "maeVsContact": null,
+        "maeVsDevice": 24.87499999999997,
+        "acceptedDeviceErrorsOver10": 4
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.7,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.01188158689669074,
+        "availableSeconds": 0.5310000000000059,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 2,
+        "maeVsContact": 1.95849609375,
+        "maeVsDevice": 2.250000000000142,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.7,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.01188158689669074,
+        "availableSeconds": 0.5310000000000059,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 2,
+        "maeVsContact": 1.95849609375,
+        "maeVsDevice": 2.250000000000142,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.7,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.01188158689669074,
+        "availableSeconds": 0.5310000000000059,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 2,
+        "maeVsContact": 1.95849609375,
+        "maeVsDevice": 2.250000000000142,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.7,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.0062876194312055204,
+        "availableSeconds": 0.2810000000000059,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 1,
+        "maeVsContact": 0.9462890625001421,
+        "maeVsDevice": 2.500000000000142,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": true
+    },
+    {
+      "policy": {
+        "concentration": 0.7,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.7,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.75,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.009526644834772283,
+        "availableSeconds": 1.06666666666667,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 4,
+        "maeVsContact": null,
+        "maeVsDevice": 27.624999999999975,
+        "acceptedDeviceErrorsOver10": 4
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.75,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.009526644834772283,
+        "availableSeconds": 1.06666666666667,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 4,
+        "maeVsContact": null,
+        "maeVsDevice": 27.624999999999975,
+        "acceptedDeviceErrorsOver10": 4
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.75,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.004763322417386173,
+        "availableSeconds": 0.5333333333333385,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 2,
+        "maeVsContact": null,
+        "maeVsDevice": 25.24999999999997,
+        "acceptedDeviceErrorsOver10": 2
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.75,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.75,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.75,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.75,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.75,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.75,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.8,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.002381661208693055,
+        "availableSeconds": 0.2666666666666657,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 1,
+        "maeVsContact": null,
+        "maeVsDevice": 25.99999999999997,
+        "acceptedDeviceErrorsOver10": 1
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.8,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.002381661208693055,
+        "availableSeconds": 0.2666666666666657,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 1,
+        "maeVsContact": null,
+        "maeVsDevice": 25.99999999999997,
+        "acceptedDeviceErrorsOver10": 1
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.8,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.8,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.8,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.8,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.8,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.8,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.8,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.85,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.85,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.85,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.85,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.85,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.85,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.85,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.85,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.85,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.9,
+        "agreement": 0.0
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.9,
+        "agreement": 0.1
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.9,
+        "agreement": 0.2
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.9,
+        "agreement": 0.3
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.9,
+        "agreement": 0.4
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.9,
+        "agreement": 0.5
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.9,
+        "agreement": 0.6
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.9,
+        "agreement": 0.7
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    },
+    {
+      "policy": {
+        "concentration": 0.9,
+        "agreement": 0.8
+      },
+      "tuningControl": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 44.691,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "tuningFailure": {
+        "availability": 0.0,
+        "availableSeconds": 0.0,
+        "eligibleSeconds": 111.96666666666667,
+        "acceptedReadouts": 0,
+        "maeVsContact": null,
+        "maeVsDevice": null,
+        "acceptedDeviceErrorsOver10": 0
+      },
+      "feasible": false
+    }
+  ],
+  "limitation": "Retrospective controls; MPU8 is tuning only and its reference synchronization is unverified. No beat validation or production changes.",
+  "inputSha256": {
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/calibrate-hr-gate.py": "37db1bc1108b19ab1813d170b33ec74b01df23b99d2bc56202ab7125d9a431e0",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/HR-CALIBRATION.md": "07e88677409d2d54958fd2da393990c6ef529e965e21ceb3cac312b61f14b88d",
+    "/Users/anton/Projects/pulse-cathedral/js/measurement.js": "4498835e30e798c3538bf9fbdae5ccc0485ef22e9580d95f95819060cfaa0ea0",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/mpu-sample/calibration-stages.json": "add459939cf6808292b2a35241c753e582c69eef17a67f6728baaace63d4d035",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/mpu-sample/first120-wide.json": "d314456ed3565936032abf3a1973dbfa8664379bf086ec4ecbc50f1832c290e4",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/mpu-sample/reference.csv": "4ee6acc0614f3f47b09d43f5e6edfc6f671c18fef4590582a09793ad3092a5b1",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/control/subject1/session.json": "cc5c7d2fac83bbec30fd6544b1107e0c5ce044f39e1ed86bf216f2ceeff32882",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/control/subject1/stages.json": "194a5c2b0b575efef3d7f1b050a608c292e058ea60ef78a5794e1e8f423c06e0",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/control/subject1/stage-scores.json": "21eb8f15d875f7daf1c4b0026b9e8eb3d3f67352eb4558f1c29312ae99db5f59",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/control/subject3/session.json": "47b61e1f858ae5a3c458f4d7f9123d9caa2e3ad5b8b407b3fa55cad6237d2f29",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/control/subject3/stages.json": "32c4909ecb44887c5065b063284929ded5b35c1a78948219bb6b465dc9d7af76",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/control/subject3/stage-scores.json": "761d19aa1206c41a9d36283164098b780324a5c91a5372b62f65ba65ae1dfb7b",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/control/subject4/session.json": "d2c5c576cb711b5cf9166f10b9a0d2173cf597334a2ef22283434bdc24242864",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/control/subject4/stages.json": "dc4a2edc21930a16fd68074806c966d0a8a1d006cf40e545a14ae26bcc015031",
+    "/Users/anton/Projects/pulse-cathedral/benchmarks/artifacts/control/subject4/stage-scores.json": "b397980cad56abdb3779ba69fadf341a5b45687e126f12daf3f5cfdd0b40ea86"
+  }
+}

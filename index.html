@@ -1,64 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Pulse Cathedral — BioViz</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pulse Cathedral · Signal Lab</title><link rel="stylesheet" href="css/lab.css"></head>
 <body>
-  <canvas id="scene"></canvas>
-
-  <video id="webcam" autoplay playsinline></video>
-  <canvas id="face-canvas"></canvas>
-
-  <div id="hud">
-    <div id="hud-top">
-      <div id="signal-quality">
-        <span class="hud-label">Signal</span>
-        <div id="signal-bar"><div id="signal-fill"></div></div>
-        <span id="quality-text" class="hud-value-sm">0%</span>
-      </div>
-    </div>
-
-    <div id="hud-bottom">
-      <div id="hr-display">
-        <span id="pulse-dot"></span>
-        <span id="hr-value">--</span>
-        <span class="hud-unit">BPM</span>
-      </div>
-      <div id="hud-stats">
-        <div class="hud-stat">
-          <span class="hud-label">HRV</span>
-          <span id="hrv-value">--</span>
-          <span class="hud-unit">ms</span>
-        </div>
-        <div class="hud-stat">
-          <span class="hud-label">Coherence</span>
-          <span id="coherence-value">--</span>
-          <div id="coherence-bar"><div id="coherence-fill"></div></div>
-        </div>
-      </div>
-      <canvas id="sparkline" width="200" height="40"></canvas>
-    </div>
-  </div>
-
-  <div id="breathing-guide">
-    <div id="breathing-circle"></div>
-    <span id="breathing-label">Breathe In</span>
-    <span id="breathing-timer">4</span>
-  </div>
-
-  <div id="tap-overlay">
-    <p id="tap-message">Tap to Begin</p>
-  </div>
-
-  <div id="status-overlay" class="hidden">
-    <p id="status-message">Initializing camera…</p>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" crossorigin="anonymous"></script>
-  <script type="module" src="js/app.js"></script>
-</body>
-</html>
+<canvas id="scene" aria-hidden="true"></canvas>
+<main>
+<header><div class="brand"><span class="brand-mark">∿</span><div>Pulse Cathedral<small>SIGNAL LAB / CAMERA PPG</small></div></div><span id="source-badge" class="badge">CAMERA OFF</span></header>
+<section class="intro"><div><p class="eyebrow">OBSERVE EVERY BEAT</p><h1>Your pulse, in view.</h1><p>Inspect the waveform, check signal quality, and record a session for comparison.</p></div><div class="actions"><button id="demo-button" class="secondary">Try synthetic signal</button><button id="camera-button">Start camera <span>↗</span></button><button id="stop-button" class="secondary" disabled>Stop</button></div></section>
+<section class="panel capture-feedback" aria-label="Live capture checks"><div class="panel-head"><h2>Capture checks</h2><span class="fine">Camera measurements · not lux or accuracy scores</span></div><p id="capture-advice" role="status">Start the camera to check light, movement, and framing.</p><div id="capture-checks"></div></section>
+<div class="workspace">
+<section class="signal-panel panel"><div class="panel-head"><div><h2>Pulse waveform <span class="subtle">PPG</span></h2><p>Normalized amplitude · last 10 seconds · confirmed beats marked</p></div><label class="small-control"><input type="checkbox" id="freeze"> Freeze trace</label></div>
+<div class="trace-wrap"><canvas id="ppg-trace" aria-label="Live normalized camera PPG waveform with beat markers"></canvas><div id="trace-empty">Start the camera or try a synthetic signal.<small>No measurement is running.</small></div></div>
+<div class="legend"><span><i class="teal"></i><span id="trace-signal-label">Extracted pulse</span></span><span><i class="dot"></i>Accepted beat</span><span><i class="amber"></i>Rejected beat</span><span id="trace-delay">~2 s confirmation delay</span></div>
+<div class="status-line"><span id="status-dot"></span><span id="status-message" role="status">Ready when you are</span></div>
+</section>
+<aside class="panel camera-panel"><div class="panel-head"><h2>Capture</h2><span id="fps-label">— fps</span></div><div class="preview"><video id="webcam" autoplay playsinline muted></video><canvas id="roi-preview"></canvas><div id="camera-placeholder">Face the camera<small>Steady light · minimal movement</small></div></div><div class="capture-meta"><span>Processing stays on this device.</span><span id="camera-settings">No video is recorded or uploaded.</span></div></aside>
+</div>
+<section class="readouts" aria-label="Pulse measurements">
+<article class="metric"><span>HEART RATE</span><div><strong id="hr-value">—</strong><em>bpm</em></div><small>Spectral estimate</small></article>
+<article class="metric"><span>LATEST INTERVAL</span><div><strong id="ibi-value">—</strong><em>ms</em></div><small>Between accepted pulse beats</small></article>
+<article class="metric"><span>RMSSD · PRV</span><div><strong id="rmssd-value">—</strong><em>ms</em></div><small>60-second window</small></article>
+<article class="metric"><span>SDNN · PRV</span><div><strong id="sdnn-value">—</strong><em>ms</em></div><small>60-second window</small></article>
+<article class="metric"><span>SIGNAL QUALITY</span><div><strong id="quality-value">—</strong><em>/ 100</em></div><small>Heuristic score, not accuracy</small></article>
+<article class="metric"><span>VALID COVERAGE</span><div><strong id="coverage-value">—</strong><em>%</em></div><small>Accepted intervals / 60 seconds</small></article>
+</section>
+<div class="bottom-grid"><section class="panel session"><div class="panel-head"><h2>Record & compare</h2><span id="record-state">Not recording</span></div><p>Export timestamped RGB, pulse beats, quality, and readouts. Record a reference sensor at the same time to measure accuracy.</p><div class="actions"><button id="record-button" disabled>Record session</button><button id="export-button" class="secondary" disabled>Export JSON</button><button id="mark-button" class="secondary" disabled>Add sync marker</button><button id="diagnostics-button" class="secondary">Download diagnostics</button></div><p id="record-note" class="fine">Diagnostics retain the last 2 minutes of numeric signal data and errors. Download and attach the JSON in chat; no video is included.</p></section>
+<section class="panel options"><div class="panel-head"><h2>Inspection settings</h2></div><label><span>Animated cathedral<small>Off by default for steady screen illumination</small></span><input id="scene-toggle" type="checkbox"></label><label><span>Trace scale<small>Display scaling only; exported values stay unchanged</small></span><select id="trace-scale"><option value="auto">Auto</option><option value="0.005">±0.005</option><option value="0.02">±0.02</option><option value="0.05">±0.05</option></select></label><p class="fine" id="agreement-label">Region agreement: — · frame timing: —</p></section></div>
+<footer><span>RESEARCH BASELINE · POS + PEAK TIMING</span><p>Camera intervals measure pulse rate variability (PRV). ECG agreement has not been established. RMSSD and SDNN appear only with sufficient accepted data.</p><a href="benchmarks/latest.json" target="_blank">Synthetic benchmark results ↗</a></footer>
+</main><canvas id="face-canvas" hidden></canvas><script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/face_mesh.js" crossorigin="anonymous"></script><script type="module" src="js/app.js"></script></body></html>

@@ -98,25 +98,6 @@ describe('Mobile detection with mocked window', () => {
   });
 });
 
-describe('Mobile HTML requirements', () => {
-  const html = readFileSync(resolve(root, 'index.html'), 'utf-8');
-
-  it('has viewport meta with maximum-scale=1.0 and user-scalable=no', () => {
-    assert.ok(html.includes('maximum-scale=1.0'));
-    assert.ok(html.includes('user-scalable=no'));
-  });
-
-  it('has tap-to-begin overlay', () => {
-    assert.ok(html.includes('id="tap-overlay"'));
-    assert.ok(html.includes('id="tap-message"'));
-  });
-
-  it('tap overlay appears before status overlay in DOM order', () => {
-    const tapIdx = html.indexOf('id="tap-overlay"');
-    const statusIdx = html.indexOf('id="status-overlay"');
-    assert.ok(tapIdx < statusIdx, 'tap-overlay should appear before status-overlay');
-  });
-});
 
 describe('Mobile CSS requirements', () => {
   const css = readFileSync(resolve(root, 'css/style.css'), 'utf-8');
@@ -181,35 +162,6 @@ describe('Scene mobile integration', () => {
   });
 });
 
-describe('App mobile integration', () => {
-  const appSource = readFileSync(resolve(root, 'js/app.js'), 'utf-8');
-
-  it('app.js imports detectMobile', () => {
-    assert.ok(appSource.includes("from './mobile.js'"));
-    assert.ok(appSource.includes('detectMobile'));
-  });
-
-  it('app.js references tap-overlay element', () => {
-    assert.ok(appSource.includes('tap-overlay'));
-  });
-
-  it('app.js exports onTapToBegin', () => {
-    assert.ok(appSource.includes('onTapToBegin'));
-  });
-
-  it('app.js uses facingMode user for camera', () => {
-    assert.ok(appSource.includes("facingMode: 'user'"));
-  });
-
-  it('app.js initializes audio in tap handler', () => {
-    assert.ok(appSource.includes('audio.init()'));
-  });
-
-  it('status overlay starts hidden', () => {
-    const html = readFileSync(resolve(root, 'index.html'), 'utf-8');
-    assert.match(html, /id="status-overlay"[^>]*class="hidden"/);
-  });
-});
 
 describe('File structure includes mobile.js', () => {
   it('js/mobile.js exists', async () => {

@@ -1,0 +1,77 @@
+[
+  {
+    "file": "mpu-toolbox/report.html",
+    "bytes": 5505791,
+    "sha256": "4de18318b7db761610e38a0c67b97a60dd166cb44c1fe0b5ba14c56544beef7b"
+  },
+  {
+    "file": "mpu-toolbox/results.json",
+    "bytes": 430520,
+    "sha256": "68cf9d1d89bf29331d07d0dfaa827401d423d7d3339b51e4ce50e996bb158073"
+  },
+  {
+    "file": "mpu-toolbox/protocol.json",
+    "bytes": 6367,
+    "sha256": "c935a15b3d51e5de67a8361511b1fbfbdfc8c33caeb64083546aa19e254f47ae"
+  },
+  {
+    "file": "mpu-toolbox/verification.json",
+    "bytes": 3006,
+    "sha256": "3b0b7c1ab101f22eb71b563270fe685e60fae61399956bf430cab65e6e1a84cc"
+  },
+  {
+    "file": "mpu-toolbox/environment.json",
+    "bytes": 360,
+    "sha256": "4bf2130fb8ba350802bc0d56a68cd783dafbfdfd33c8517153094a7a891a7740"
+  },
+  {
+    "file": "hr-calibration/report.md",
+    "bytes": 1256,
+    "sha256": "98c68f3e259c2a445e4a6f09f92d18e7d2704fafa5742f4fd7f6ed694fd8982f"
+  },
+  {
+    "file": "hr-calibration/results.json",
+    "bytes": 73682,
+    "sha256": "68d0e5bb9186a1d8c99afb7eb6ca933edae97114c10e29c4ae7c248c57ce0ef9"
+  },
+  {
+    "file": "control/results.json",
+    "bytes": 44072,
+    "sha256": "0fe799b0c519a039b5fc100af5c5da42d91f9fbdc6a3d4364b723dd33bf4acee"
+  },
+  {
+    "file": "control/protocol.json",
+    "bytes": 5646,
+    "sha256": "5a8f7dc7382eb3c8b4df8b329a4480c433901a4ba633a81f854999e47f258e39"
+  },
+  {
+    "file": "control/stage-scores.json",
+    "bytes": 476163,
+    "sha256": "e12b482e4d5122771cd5a937ba0c175b5de78d7ce928af97d1c26e626c708644"
+  },
+  {
+    "file": "kaggle-subject1/report.html",
+    "bytes": 2948194,
+    "sha256": "d800dd6810ece73978188944b27f853d57d5b870e7a4db1d4b9146d305c99c6b"
+  },
+  {
+    "file": "kaggle-subject1/comparison.json",
+    "bytes": 24389,
+    "sha256": "270d437f773b00132cf70023de787c1e27f86e5c49ef488af8f642db2492461b"
+  },
+  {
+    "file": "kaggle-subject1/toolbox/results.json",
+    "bytes": 34455,
+    "sha256": "5efd8dc1ccec3e7e22184ec83e053b9fb9a7048f1f389dd152005bccb7971ca2"
+  },
+  {
+    "file": "mpu-sample/report.html",
+    "bytes": 2034123,
+    "sha256": "75286e4c2c90f0564c100543acd632a3a260e28ebb183d2721050f3fa2ab799a"
+  },
+  {
+    "file": "mpu-sample/comparison.json",
+    "bytes": 21755,
+    "sha256": "739acd8c029922793e2082cf8fa888911b26daceada18f7d095cb0f2e3573601"
+  }
+]

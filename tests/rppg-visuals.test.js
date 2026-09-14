@@ -191,54 +191,7 @@ describe('Grid HR-driven ripple intensity', () => {
 
 // ─── App.js: data flow integration ──────────────────────────────────────────
 
-describe('app.js data flow to scene', () => {
-  it('passes coherence in data to scene.update', () => {
-    assert.ok(appSrc.includes('data.coherence'), 'Should compute coherence on data');
-    assert.ok(appSrc.includes('scene.update(data)'), 'Should pass data to scene');
-  });
 
-  it('triggers beat on scene, audio, and HUD', () => {
-    assert.ok(appSrc.includes('scene.triggerBeat()'), 'Should trigger scene beat');
-    assert.ok(appSrc.includes('audio.playBeat'), 'Should play audio beat');
-    assert.ok(appSrc.includes('hud.triggerBeat()'), 'Should trigger HUD beat');
-  });
-
-  it('gates beat triggers on signal quality', () => {
-    assert.ok(
-      appSrc.includes('data.quality > 0.3'),
-      'Should require quality > 0.3 for beat triggers'
-    );
-  });
-
-  it('passes data to hud.update', () => {
-    assert.ok(appSrc.includes('hud.update(data)'), 'Should pass data to HUD');
-  });
-});
-
-// ─── App.js: audio drone integration ──────────────────────────────────────
-
-describe('app.js audio drone integration', () => {
-  it('starts ambient drone on first heartbeat', () => {
-    assert.ok(appSrc.includes('audio.startDrone()'), 'Should start drone');
-    assert.ok(appSrc.includes('droneStarted'), 'Should track drone started state');
-  });
-
-  it('updates drone pitch with HR', () => {
-    assert.ok(appSrc.includes('audio.updateDrone(data.hr)'), 'Should update drone with HR');
-  });
-
-  it('updates drone intensity with signal quality', () => {
-    assert.ok(appSrc.includes('audio.updateDroneIntensity(data.quality)'),
-      'Should update drone intensity with quality');
-  });
-
-  it('only starts drone once', () => {
-    assert.ok(appSrc.includes('if (!droneStarted)'),
-      'Should guard drone start with flag');
-  });
-});
-
-// ─── Beat event propagation ─────────────────────────────────────────────────
 
 describe('Beat event propagation', () => {
   it('onBeat sets beatIntensity to 1.0', async () => {

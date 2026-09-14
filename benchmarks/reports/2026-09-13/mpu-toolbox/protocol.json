@@ -1,0 +1,179 @@
+{
+  "protocol": {
+    "upstreamCommit": "b7500b848f84ad7f86e277b4612563b69f4f88f9",
+    "checkpoint": "final_model_release/PURE_TSCAN.pth",
+    "checkpointSHA256": "ba02d9c5866779d57923bfe0d6bf0b1652b4de5443193185ac0b74a492a1ae87",
+    "config": {
+      "BASE": [
+        ""
+      ],
+      "TOOLBOX_MODE": "only_test",
+      "TEST": {
+        "METRICS": [
+          "MAE",
+          "RMSE",
+          "MAPE",
+          "Pearson",
+          "SNR",
+          "BA"
+        ],
+        "USE_LAST_EPOCH": true,
+        "DATA": {
+          "FS": 30,
+          "DATASET": "UBFC-rPPG",
+          "DO_PREPROCESS": false,
+          "DATA_FORMAT": "NDCHW",
+          "DATA_PATH": "/gscratch/ubicomp/xliu0/data3/mnt/Datasets/UBFC-rPPG/RawData",
+          "CACHED_PATH": "/gscratch/ubicomp/xliu0/data3/mnt/Datasets/rppg_toolbox/PreprocessedData",
+          "EXP_DATA_NAME": "",
+          "BEGIN": 0.0,
+          "END": 1.0,
+          "PREPROCESS": {
+            "DATA_TYPE": [
+              "DiffNormalized",
+              "Standardized"
+            ],
+            "LABEL_TYPE": "DiffNormalized",
+            "DO_CHUNK": true,
+            "CHUNK_LENGTH": 180,
+            "CROP_FACE": {
+              "DO_CROP_FACE": true,
+              "BACKEND": "HC",
+              "USE_LARGE_FACE_BOX": true,
+              "LARGE_BOX_COEF": 1.5,
+              "DETECTION": {
+                "DO_DYNAMIC_DETECTION": false,
+                "DYNAMIC_DETECTION_FREQUENCY": 30,
+                "USE_MEDIAN_FACE_BOX": false
+              }
+            },
+            "RESIZE": {
+              "H": 72,
+              "W": 72
+            }
+          }
+        }
+      },
+      "DEVICE": "cuda:0",
+      "NUM_OF_GPU_TRAIN": 1,
+      "LOG": {
+        "PATH": "runs/exp"
+      },
+      "MODEL": {
+        "DROP_RATE": 0.2,
+        "NAME": "Tscan",
+        "TSCAN": {
+          "FRAME_DEPTH": 10
+        }
+      },
+      "INFERENCE": {
+        "BATCH_SIZE": 4,
+        "EVALUATION_METHOD": "FFT",
+        "EVALUATION_WINDOW": {
+          "USE_SMALLER_WINDOW": false,
+          "WINDOW_SIZE": 10
+        },
+        "MODEL_PATH": "./final_model_release/PURE_TSCAN.pth"
+      }
+    },
+    "fps": 30,
+    "clipSeconds": 120,
+    "device": "mps",
+    "selection": "20 seconds, floor((duration-120)/2), floor(duration-140); all selected before inference",
+    "alignment": "CSV Count equals encoded frame index; not verified physiological synchronization",
+    "sampling": "Nearest source PTS to a 30 Hz grid, no duplicated selected frame indices",
+    "scoring": "8-second windows every 4 seconds, excluding 8 seconds at either clip boundary; Hann FFT 0.7-3 Hz; median device HR",
+    "qualityGate": "None. Finite nonflat outputs scored; reference HR must be finite and 30-220 bpm throughout window.",
+    "limitations": [
+      "Offline segment-wide normalization and zero-phase filtering; not live browser latency.",
+      "No IBI/HRV accuracy: acquisition clocks and reference beats unverified.",
+      "Recording IDs are not verified participant IDs; no subject-held-out claim.",
+      "Recording 8 duplicates our earlier development sample.",
+      "Published static face detector may fall back or lose the face; failures remain in results.",
+      "Overlapping windows are correlated; no confidence interval based on independent-window assumption.",
+      "Pretrained PURE model only; no fine tuning or production change."
+    ]
+  },
+  "recordings": [
+    {
+      "recording": "10",
+      "video": "/Volumes/AcasisData/rPPG-datasets/29377835/10/Output.mp4",
+      "reference": "/Volumes/AcasisData/rPPG-datasets/29377835/10/Output.csv",
+      "starts": [
+        20,
+        227,
+        434
+      ],
+      "frameCount": 34496,
+      "duration": 574.933334,
+      "medianFrameInterval": 0.016666999999984,
+      "maxFrameInterval": 0.016667000000097687,
+      "videoSHA256": "9a835b931b3e012d372c8c62dd729823df2600fee49550ea67aa9b89fa343b8c",
+      "referenceSHA256": "6297d496c57d00ce85e9a6bcd27c629d3eb931d4b75df0b329d865cb2199b577"
+    },
+    {
+      "recording": "5",
+      "video": "/Volumes/AcasisData/rPPG-datasets/29377835/5/Output.mp4",
+      "reference": "/Volumes/AcasisData/rPPG-datasets/29377835/5/Output.csv",
+      "starts": [
+        20,
+        390,
+        760
+      ],
+      "frameCount": 54005,
+      "duration": 900.083334,
+      "medianFrameInterval": 0.016666999999984,
+      "maxFrameInterval": 0.016667000000097687,
+      "videoSHA256": "c40f0568b3c0d900fddfadcbbf2c37ebd883e7587a81cc0b6181ae14ef29553f",
+      "referenceSHA256": "06f0d600159ebb89303da3d772533ad3d267b418462707b4e1fe92b3c013b7a8"
+    },
+    {
+      "recording": "8",
+      "video": "/Volumes/AcasisData/rPPG-datasets/29377835/8/Output.mp4",
+      "reference": "/Volumes/AcasisData/rPPG-datasets/29377835/8/Output.csv",
+      "starts": [
+        20,
+        311,
+        602
+      ],
+      "frameCount": 44548,
+      "duration": 742.466667,
+      "medianFrameInterval": 0.016666999999984,
+      "maxFrameInterval": 0.016667000000097687,
+      "videoSHA256": "83a67ae5759815e9d8aa6d1475707e29a52ebf3e0505eb1d38056408d1df64d3",
+      "referenceSHA256": "4ee6acc0614f3f47b09d43f5e6edfc6f671c18fef4590582a09793ad3092a5b1"
+    },
+    {
+      "recording": "9",
+      "video": "/Volumes/AcasisData/rPPG-datasets/29377835/9/Output.mp4",
+      "reference": "/Volumes/AcasisData/rPPG-datasets/29377835/9/Output.csv",
+      "starts": [
+        20,
+        334,
+        648
+      ],
+      "frameCount": 47312,
+      "duration": 788.533334,
+      "medianFrameInterval": 0.016666999999984,
+      "maxFrameInterval": 0.016667000000097687,
+      "videoSHA256": "3ae156ff0ef41efe255d0a7046fdb035a0460e15530b197a38480003ed683b90",
+      "referenceSHA256": "b728e4b030151241f937cd2f759326355d4721a7adffce157f3e786a5c344a11"
+    },
+    {
+      "recording": "root-hd",
+      "video": "/Volumes/AcasisData/rPPG-datasets/29377835/Output.mkv",
+      "reference": "/Volumes/AcasisData/rPPG-datasets/29377835/Output.csv",
+      "starts": [
+        20,
+        396,
+        773
+      ],
+      "frameCount": 54824,
+      "duration": 913.7339999999999,
+      "medianFrameInterval": 0.016999999999995907,
+      "maxFrameInterval": 0.01700000000005275,
+      "videoSHA256": "75dbcf37224d2af095c6e2bc8a6db78f1fe9ceaf3ebb639675bf6d3611538df3",
+      "referenceSHA256": "e32f52a410c7d11dfd990f2bcec5a24fb9ac7cce31938f7838465e20ba5446ff"
+    }
+  ]
+}

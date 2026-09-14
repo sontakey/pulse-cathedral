@@ -20,27 +20,6 @@ const LEFT_CHEEK_INDICES = [36, 50, 116, 117, 118, 119, 123, 132, 147, 187, 205,
 const RIGHT_CHEEK_INDICES = [266, 280, 345, 346, 347, 348, 352, 361, 376, 411, 425, 426];
 
 /**
- * Simple second-order IIR bandpass (Butterworth-style).
- * Pre-computed for 0.7–4 Hz at 30 fps sample rate.
- */
-function createBandpassFilter() {
-  // State for two cascaded biquad sections
-  let x1 = 0, x2 = 0, y1 = 0, y2 = 0;
-  const a1 = -1.1430;
-  const a2 = 0.4128;
-  const b0 = 0.2936;
-  const b1 = 0;
-  const b2 = -0.2936;
-
-  return function filter(x) {
-    const y = b0 * x + b1 * x1 + b2 * x2 - a1 * y1 - a2 * y2;
-    x2 = x1; x1 = x;
-    y2 = y1; y1 = y;
-    return y;
-  };
-}
-
-/**
  * POS (Plane-Orthogonal-to-Skin) algorithm.
  * Wang et al., IEEE TBME 2016.
  *
@@ -94,7 +73,7 @@ export function posAlgorithm(rgbWindow) {
   const alpha = std1 / std2;
 
   // Final pulse signal: h = S1 + alpha * S2
-  return s1[n - 1] + alpha * s2[n - 1];
+  return (s1[n - 1] - m1) + alpha * (s2[n - 1] - m2);
 }
 
 /**
@@ -164,69 +143,12 @@ export function computeHRV(peakIndices, sampleRate) {
  * @param {number[]} signal — filtered pulse signal buffer
  * @returns {number}
  */
-export function signalQuality(signal) {
-  if (signal.length < 4) return 0;
-  let sumSq = 0;
-  let mean = 0;
-  for (let i = 0; i < signal.length; i++) mean += signal[i];
-  mean /= signal.length;
-  for (let i = 0; i < signal.length; i++) sumSq += (signal[i] - mean) ** 2;
-  const variance = sumSq / signal.length;
-  // Heuristic: map variance to 0–1 quality (higher variance → stronger signal)
-  const quality = Math.min(1, Math.max(0, Math.sqrt(variance) * 15));
-  return quality;
-}
+export { signalQuality } from './measurement.js';
 
 /**
  * RPPGProcessor — stateful class that manages the full rPPG pipeline.
  */
-export class RPPGProcessor {
-  constructor() {
-    this.rgbBuffer = [];
-    this.pulseSignal = [];
-    this.filter = createBandpassFilter();
-    this.sampleRate = 30;
-    this.windowLength = WINDOW_LENGTH;
-  }
-
-  /**
-   * Feed an RGB sample from the ROI.
-   *
-   * @param {number[]} rgb — [r, g, b] mean values from face ROI
-   * @returns {{ pulse: number, hr: number|null, hrv: number|null, quality: number }}
-   */
-  addSample(rgb) {
-    this.rgbBuffer.push(rgb);
-
-    // Keep a rolling window
-    if (this.rgbBuffer.length > this.windowLength * 4) {
-      this.rgbBuffer = this.rgbBuffer.slice(-this.windowLength * 4);
-    }
-
-    // Need at least a window of data
-    const window = this.rgbBuffer.slice(-this.windowLength);
-    const rawPulse = posAlgorithm(window);
-    const filtered = this.filter(rawPulse);
-    this.pulseSignal.push(filtered);
-
-    if (this.pulseSignal.length > this.sampleRate * 10) {
-      this.pulseSignal = this.pulseSignal.slice(-this.sampleRate * 10);
-    }
-
-    const peaks = detectPeaks(this.pulseSignal);
-    const hr = computeHR(peaks, this.sampleRate);
-    const hrv = computeHRV(peaks, this.sampleRate);
-    const quality = signalQuality(this.pulseSignal.slice(-this.sampleRate * 2));
-
-    return { pulse: filtered, hr, hrv, quality };
-  }
-
-  reset() {
-    this.rgbBuffer = [];
-    this.pulseSignal = [];
-    this.filter = createBandpassFilter();
-  }
-}
+export { RPPGProcessor } from './measurement.js';
 
 /**
  * Extract bounding box for an ROI defined by landmark indices.
@@ -251,10 +173,10 @@ export function extractROIBox(landmarks, indices, width, height) {
     if (py > maxY) maxY = py;
   }
   if (!isFinite(minX)) return { x: 0, y: 0, w: 0, h: 0 };
-  const x = Math.max(0, Math.floor(minX));
-  const y = Math.max(0, Math.floor(minY));
-  const w = Math.min(Math.ceil(maxX) - x, width - x);
-  const h = Math.min(Math.ceil(maxY) - y, height - y);
+  const x = Math.max(0, Math.min(width, Math.floor(minX)));
+  const y = Math.max(0, Math.min(height, Math.floor(minY)));
+  const w = Math.max(0, Math.min(Math.ceil(maxX) - x, width - x));
+  const h = Math.max(0, Math.min(Math.ceil(maxY) - y, height - y));
   return { x, y, w, h };
 }
 
@@ -382,13 +304,20 @@ export class FaceDetector {
    * Requires the MediaPipe CDN scripts to be loaded.
    */
   async init() {
+    if (this._ready) return;
+    if (this._initializing) return this._initializing;
+    this._initializing = this._initialize();
+    try { await this._initializing; } finally { this._initializing = null; }
+  }
+
+  async _initialize() {
     /* global FaceMesh */
     if (typeof FaceMesh === 'undefined') {
       throw new Error('MediaPipe FaceMesh not loaded. Include the CDN script.');
     }
     this.faceMesh = new FaceMesh({
       locateFile: (file) =>
-        `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
+        `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/${file}`,
     });
     this.faceMesh.setOptions({
       maxNumFaces: 1,
@@ -416,7 +345,7 @@ export class FaceDetector {
   async detect(video) {
     if (!this._ready || this._processing) return;
     this._processing = true;
-    await this.faceMesh.send({ image: video });
+    try { await this.faceMesh.send({ image: video }); } finally { this._processing = false; }
   }
 
   /**

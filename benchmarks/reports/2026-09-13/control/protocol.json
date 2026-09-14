@@ -1,0 +1,154 @@
+{
+  "subjects": [
+    1,
+    3,
+    4
+  ],
+  "selection": "Complete recordings, fixed before inference",
+  "upstreamCommit": "b7500b848f84ad7f86e277b4612563b69f4f88f9",
+  "checkpointSHA256": "ba02d9c5866779d57923bfe0d6bf0b1652b4de5443193185ac0b74a492a1ae87",
+  "config": {
+    "BASE": [
+      ""
+    ],
+    "TOOLBOX_MODE": "only_test",
+    "TEST": {
+      "METRICS": [
+        "MAE",
+        "RMSE",
+        "MAPE",
+        "Pearson",
+        "SNR",
+        "BA"
+      ],
+      "USE_LAST_EPOCH": true,
+      "DATA": {
+        "FS": 30,
+        "DATASET": "UBFC-rPPG",
+        "DO_PREPROCESS": false,
+        "DATA_FORMAT": "NDCHW",
+        "DATA_PATH": "/gscratch/ubicomp/xliu0/data3/mnt/Datasets/UBFC-rPPG/RawData",
+        "CACHED_PATH": "/gscratch/ubicomp/xliu0/data3/mnt/Datasets/rppg_toolbox/PreprocessedData",
+        "EXP_DATA_NAME": "",
+        "BEGIN": 0.0,
+        "END": 1.0,
+        "PREPROCESS": {
+          "DATA_TYPE": [
+            "DiffNormalized",
+            "Standardized"
+          ],
+          "LABEL_TYPE": "DiffNormalized",
+          "DO_CHUNK": true,
+          "CHUNK_LENGTH": 180,
+          "CROP_FACE": {
+            "DO_CROP_FACE": true,
+            "BACKEND": "HC",
+            "USE_LARGE_FACE_BOX": true,
+            "LARGE_BOX_COEF": 1.5,
+            "DETECTION": {
+              "DO_DYNAMIC_DETECTION": false,
+              "DYNAMIC_DETECTION_FREQUENCY": 30,
+              "USE_MEDIAN_FACE_BOX": false
+            }
+          },
+          "RESIZE": {
+            "H": 72,
+            "W": 72
+          }
+        }
+      }
+    },
+    "DEVICE": "cuda:0",
+    "NUM_OF_GPU_TRAIN": 1,
+    "LOG": {
+      "PATH": "runs/exp"
+    },
+    "MODEL": {
+      "DROP_RATE": 0.2,
+      "NAME": "Tscan",
+      "TSCAN": {
+        "FRAME_DEPTH": 10
+      }
+    },
+    "INFERENCE": {
+      "BATCH_SIZE": 4,
+      "EVALUATION_METHOD": "FFT",
+      "EVALUATION_WINDOW": {
+        "USE_SMALLER_WINDOW": false,
+        "WINDOW_SIZE": 10
+      },
+      "MODEL_PATH": "./final_model_release/PURE_TSCAN.pth"
+    }
+  },
+  "sourceProvenance": [
+    {
+      "subject": 1,
+      "mirror": "thachha901/UBFC",
+      "revision": "674723ab9ff04fb7c41507d7dda5bc92b5eeea13",
+      "files": [
+        {
+          "path": "/Volumes/AcasisData/rPPG-datasets/ubfc-control/subject1/ground_truth.txt",
+          "url": "https://huggingface.co/datasets/thachha901/UBFC/resolve/674723ab9ff04fb7c41507d7dda5bc92b5eeea13/UBFC/subject1/ground_truth.txt",
+          "bytes": 74262,
+          "sha256": "836852f57f9cc9e04ecab134ebe506f831ad3e7d95ee73771ab8ac32ce845b67"
+        },
+        {
+          "path": "/Volumes/AcasisData/rPPG-datasets/ubfc-control/subject1/vid.avi",
+          "url": "https://huggingface.co/datasets/thachha901/UBFC/resolve/674723ab9ff04fb7c41507d7dda5bc92b5eeea13/UBFC/subject1/vid.avi",
+          "bytes": 1425830568,
+          "sha256": "f6745be5e6b6fe2f00dd6f32dd234aa559bb30b45f38ec9d87cf9a1cc41f6954"
+        }
+      ],
+      "officialReferenceByteMatch": true
+    },
+    {
+      "subject": 3,
+      "mirror": "thachha901/UBFC",
+      "revision": "674723ab9ff04fb7c41507d7dda5bc92b5eeea13",
+      "files": [
+        {
+          "path": "/Volumes/AcasisData/rPPG-datasets/ubfc-control/subject3/ground_truth.txt",
+          "url": "https://huggingface.co/datasets/thachha901/UBFC/resolve/674723ab9ff04fb7c41507d7dda5bc92b5eeea13/UBFC/subject3/ground_truth.txt",
+          "bytes": 86454,
+          "sha256": "3379a3558fe94e66a8f2fa7133d975d4b474dc70f7337b1b1cfca58194bb9469"
+        },
+        {
+          "path": "/Volumes/AcasisData/rPPG-datasets/ubfc-control/subject3/vid.avi",
+          "url": "https://huggingface.co/datasets/thachha901/UBFC/resolve/674723ab9ff04fb7c41507d7dda5bc92b5eeea13/UBFC/subject3/vid.avi",
+          "bytes": 1659925096,
+          "sha256": "f94656f6b49710a03a9d3d79fb06f2d9389adb40720a331314e9818f90618787"
+        }
+      ],
+      "officialReferenceByteMatch": true
+    },
+    {
+      "subject": 4,
+      "mirror": "thachha901/UBFC",
+      "revision": "674723ab9ff04fb7c41507d7dda5bc92b5eeea13",
+      "files": [
+        {
+          "path": "/Volumes/AcasisData/rPPG-datasets/ubfc-control/subject4/ground_truth.txt",
+          "url": "https://huggingface.co/datasets/thachha901/UBFC/resolve/674723ab9ff04fb7c41507d7dda5bc92b5eeea13/UBFC/subject4/ground_truth.txt",
+          "bytes": 65670,
+          "sha256": "6ec2611db62dbfc3d8f5941e82a60c16cc4e88b46fb517ca27870bc64c917d70"
+        },
+        {
+          "path": "/Volumes/AcasisData/rPPG-datasets/ubfc-control/subject4/vid.avi",
+          "url": "https://huggingface.co/datasets/thachha901/UBFC/resolve/674723ab9ff04fb7c41507d7dda5bc92b5eeea13/UBFC/subject4/vid.avi",
+          "bytes": 1260858440,
+          "sha256": "cbe1743bed513aa31c5177f73101dbee223beafa08255e406a44634d95a08a14"
+        }
+      ],
+      "officialReferenceByteMatch": true
+    }
+  ],
+  "primary": "Unmodified upstream full-record evaluation against supplied waveform at nominal 30 Hz, after retaining complete 180-frame chunks.",
+  "diagnostic": "8/15/30 s windows, 4 s step, 8 s edge exclusion, waveform resampled on supplied reference timestamps. Compare with median device HR.",
+  "limitations": [
+    "Public mirror video; official reference byte match and mirror video SHA verified; no original-author video checksum.",
+    "Three controls do not establish population accuracy or independent performance on the full dataset.",
+    "Upstream nominal frame clock and supplied acquisition timestamp clock are reported separately.",
+    "Offline normalization and zero-phase filters; not browser streaming parity.",
+    "No IBI/HRV validity, training or deployment."
+  ]
+}

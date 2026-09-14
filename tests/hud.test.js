@@ -306,24 +306,3 @@ describe('hud.js source structure', () => {
     assert.ok(src.includes('_updateCoherence'));
   });
 });
-
-describe('app.js imports hud.js', () => {
-  const appSrc = readFileSync(resolve(root, 'js/app.js'), 'utf-8');
-
-  it('imports createHUD from hud.js', () => {
-    assert.ok(appSrc.includes("from './hud.js'"));
-    assert.ok(appSrc.includes('createHUD'));
-  });
-
-  it('uses hud.update for HUD updates', () => {
-    assert.ok(appSrc.includes('hud.update'));
-  });
-
-  it('uses hud.triggerBeat for beat visualization', () => {
-    assert.ok(appSrc.includes('hud.triggerBeat'));
-  });
-
-  it('uses hud.recordBPM for sparkline', () => {
-    assert.ok(appSrc.includes('hud.recordBPM'));
-  });
-});

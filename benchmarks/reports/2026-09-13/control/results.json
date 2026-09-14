@@ -1,0 +1,1935 @@
+[
+  {
+    "subject": "subject1",
+    "sourceMetadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "rawvideo",
+          "width": 640,
+          "height": 480,
+          "pix_fmt": "bgr24",
+          "r_frame_rate": "14632053/500000",
+          "nb_frames": "1547"
+        }
+      ],
+      "format": {
+        "duration": "52.863395"
+      }
+    },
+    "frames": 1547,
+    "retainedFrames": 1440,
+    "acquisitionDuration": 52.691,
+    "containerDuration": 52.829224,
+    "acquisitionMedianDt": 0.03799999999999848,
+    "acquisitionMaxDt": 0.22300000000000253,
+    "duplicateReferenceTimestamps": 1,
+    "longReferenceGaps": 1,
+    "acquisitionMeanFps": 29.34087415308117,
+    "faceBoxes": [
+      [
+        234,
+        264,
+        228,
+        228
+      ]
+    ],
+    "officialMetric": {
+      "referenceWaveformHR": 109.86328125,
+      "predictedHR": 109.86328125,
+      "absoluteErrorBpm": 0.0,
+      "snrDb": -2.158535698851824,
+      "macc": 0.6648613730910105,
+      "note": "MACC searches circular lags, not beat matching."
+    },
+    "device": "mps",
+    "scores": [
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 106.5673828125,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 106.01806640625,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 105.57861328125,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 105.79833984375,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 105.57861328125,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 108.3251953125,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 109.86328125,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 107.99560546875,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 107.11669921875,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 107.0068359375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 107.11669921875,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 106.23779296875,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 107.0068359375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 108.3251953125,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 108.7646484375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 108.43505859375,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 109.09423828125,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 109.97314453125,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 108.3251953125,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 107.11669921875,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 106.67724609375,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 106.45751953125,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 105.908203125,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 107.99560546875,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 106.23779296875,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 106.787109375,
+        "deviceHR": 112.25
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 107.0068359375,
+        "deviceHR": 112.25
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 106.787109375,
+        "deviceHR": 112.25
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 106.67724609375,
+        "deviceHR": 112.25
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 108.10546875,
+        "deviceHR": 112.25
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 105.57861328125,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 105.79833984375,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 105.13916015625,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 104.8095703125,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 105.6884765625,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 106.787109375,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 106.89697265625,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 106.787109375,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 107.0068359375,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 106.34765625,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 108.7646484375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 108.984375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 108.10546875,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 108.544921875,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 108.544921875,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 108.10546875,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 108.10546875,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 108.3251953125,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 107.99560546875,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 107.2265625,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 107.0068359375,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 107.2265625,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 107.2265625,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 107.8857421875,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 107.0068359375,
+        "deviceHR": 110.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 106.23779296875,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 106.45751953125,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 106.45751953125,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 106.787109375,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 107.8857421875,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 107.77587890625,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 107.8857421875,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 107.77587890625,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 107.99560546875,
+        "deviceHR": 109.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 107.55615234375,
+        "deviceHR": 109.0
+      }
+    ],
+    "meanErrors": {
+      "8": {
+        "Toolbox POS": 3.5068359375,
+        "Toolbox CHROM": 3.675013950892857,
+        "Toolbox GREEN": 3.565150669642857,
+        "Toolbox TS-CAN": 3.0975167410714284,
+        "Reference PPG": 3.2073800223214284
+      },
+      "15": {
+        "Toolbox POS": 2.44033203125,
+        "Toolbox CHROM": 2.418359375,
+        "Toolbox GREEN": 2.17666015625,
+        "Toolbox TS-CAN": 2.17666015625,
+        "Reference PPG": 2.1546875
+      },
+      "30": {
+        "Toolbox POS": 1.22412109375,
+        "Toolbox CHROM": 1.1142578125,
+        "Toolbox GREEN": 1.22412109375,
+        "Toolbox TS-CAN": 1.00439453125,
+        "Reference PPG": 1.44384765625
+      }
+    }
+  },
+  {
+    "subject": "subject3",
+    "sourceMetadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "rawvideo",
+          "width": 640,
+          "height": 480,
+          "pix_fmt": "bgr24",
+          "r_frame_rate": "29548271/1000000",
+          "nb_frames": "1801"
+        }
+      ],
+      "format": {
+        "duration": "60.951113"
+      }
+    },
+    "frames": 1801,
+    "retainedFrames": 1800,
+    "acquisitionDuration": 60.929,
+    "containerDuration": 60.91727,
+    "acquisitionMedianDt": 0.03399999999999892,
+    "acquisitionMaxDt": 0.23899999999999988,
+    "duplicateReferenceTimestamps": 0,
+    "longReferenceGaps": 4,
+    "acquisitionMeanFps": 29.5425823499483,
+    "faceBoxes": [
+      [
+        237,
+        72,
+        241,
+        241
+      ]
+    ],
+    "officialMetric": {
+      "referenceWaveformHR": 88.76953125,
+      "predictedHR": 92.28515625,
+      "absoluteErrorBpm": 3.515625,
+      "snrDb": -0.2975902154913073,
+      "macc": 0.8898939641843334,
+      "note": "MACC searches circular lags, not beat matching."
+    },
+    "device": "mps",
+    "scores": [
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 87.890625,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 88.1103515625,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 78.77197265625,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 88.76953125,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 87.2314453125,
+        "deviceHR": 100.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 103.60107421875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 103.60107421875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 57.12890625,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 103.271484375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 103.4912109375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 86.46240234375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 86.572265625,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 84.814453125,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 86.572265625,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 84.814453125,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 100.52490234375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 99.0966796875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 69.873046875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 101.18408203125,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 101.7333984375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 90.52734375,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 86.572265625,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 82.6171875,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 82.94677734375,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 103.271484375,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 85.25390625,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 85.58349609375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 83.60595703125,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 85.9130859375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 28.0,
+        "end": 36.0,
+        "hr": 84.375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 103.60107421875,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 103.82080078125,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 103.16162109375,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 102.6123046875,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 32.0,
+        "end": 40.0,
+        "hr": 102.83203125,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 36.0,
+        "end": 44.0,
+        "hr": 107.0068359375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 36.0,
+        "end": 44.0,
+        "hr": 106.5673828125,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 36.0,
+        "end": 44.0,
+        "hr": 104.3701171875,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 36.0,
+        "end": 44.0,
+        "hr": 107.666015625,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 36.0,
+        "end": 44.0,
+        "hr": 106.89697265625,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 40.0,
+        "end": 48.0,
+        "hr": 91.73583984375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 40.0,
+        "end": 48.0,
+        "hr": 92.17529296875,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 40.0,
+        "end": 48.0,
+        "hr": 90.85693359375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 40.0,
+        "end": 48.0,
+        "hr": 91.51611328125,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 40.0,
+        "end": 48.0,
+        "hr": 91.95556640625,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 44.0,
+        "end": 52.0,
+        "hr": 90.7470703125,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 44.0,
+        "end": 52.0,
+        "hr": 90.7470703125,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 44.0,
+        "end": 52.0,
+        "hr": 57.01904296875,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 44.0,
+        "end": 52.0,
+        "hr": 91.1865234375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 44.0,
+        "end": 52.0,
+        "hr": 90.85693359375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 88.5498046875,
+        "deviceHR": 101.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 105.46875,
+        "deviceHR": 101.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 55.810546875,
+        "deviceHR": 101.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 88.5498046875,
+        "deviceHR": 101.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 101.953125,
+        "deviceHR": 101.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 88.00048828125,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 87.78076171875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 84.92431640625,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 88.00048828125,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 86.90185546875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 90.966796875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 91.07666015625,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 85.0341796875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 90.41748046875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 102.72216796875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 88.330078125,
+        "deviceHR": 103.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 83.49609375,
+        "deviceHR": 103.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 82.28759765625,
+        "deviceHR": 103.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 82.6171875,
+        "deviceHR": 103.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 20.0,
+        "end": 35.0,
+        "hr": 103.271484375,
+        "deviceHR": 103.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 85.58349609375,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 85.0341796875,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 82.72705078125,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 84.814453125,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 24.0,
+        "end": 39.0,
+        "hr": 83.49609375,
+        "deviceHR": 105.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 28.0,
+        "end": 43.0,
+        "hr": 104.69970703125,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 28.0,
+        "end": 43.0,
+        "hr": 103.82080078125,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 28.0,
+        "end": 43.0,
+        "hr": 95.361328125,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 28.0,
+        "end": 43.0,
+        "hr": 103.271484375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 28.0,
+        "end": 43.0,
+        "hr": 102.6123046875,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 32.0,
+        "end": 47.0,
+        "hr": 105.2490234375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 32.0,
+        "end": 47.0,
+        "hr": 105.46875,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 32.0,
+        "end": 47.0,
+        "hr": 104.8095703125,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 32.0,
+        "end": 47.0,
+        "hr": 106.34765625,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 32.0,
+        "end": 47.0,
+        "hr": 105.79833984375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 36.0,
+        "end": 51.0,
+        "hr": 91.51611328125,
+        "deviceHR": 107.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 36.0,
+        "end": 51.0,
+        "hr": 92.17529296875,
+        "deviceHR": 107.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 36.0,
+        "end": 51.0,
+        "hr": 92.17529296875,
+        "deviceHR": 107.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 36.0,
+        "end": 51.0,
+        "hr": 91.40625,
+        "deviceHR": 107.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 36.0,
+        "end": 51.0,
+        "hr": 91.6259765625,
+        "deviceHR": 107.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 89.53857421875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 89.4287109375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 84.26513671875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 89.4287109375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 30,
+        "start": 8.0,
+        "end": 38.0,
+        "hr": 101.07421875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 30,
+        "start": 12.0,
+        "end": 42.0,
+        "hr": 84.375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 30,
+        "start": 12.0,
+        "end": 42.0,
+        "hr": 84.1552734375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 30,
+        "start": 12.0,
+        "end": 42.0,
+        "hr": 84.1552734375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 30,
+        "start": 12.0,
+        "end": 42.0,
+        "hr": 84.1552734375,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 30,
+        "start": 12.0,
+        "end": 42.0,
+        "hr": 83.935546875,
+        "deviceHR": 102.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 30,
+        "start": 16.0,
+        "end": 46.0,
+        "hr": 84.70458984375,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 30,
+        "start": 16.0,
+        "end": 46.0,
+        "hr": 84.26513671875,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 30,
+        "start": 16.0,
+        "end": 46.0,
+        "hr": 83.935546875,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 30,
+        "start": 16.0,
+        "end": 46.0,
+        "hr": 84.26513671875,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 30,
+        "start": 16.0,
+        "end": 46.0,
+        "hr": 83.82568359375,
+        "deviceHR": 104.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 30,
+        "start": 20.0,
+        "end": 50.0,
+        "hr": 85.9130859375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 30,
+        "start": 20.0,
+        "end": 50.0,
+        "hr": 86.02294921875,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 30,
+        "start": 20.0,
+        "end": 50.0,
+        "hr": 84.92431640625,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 30,
+        "start": 20.0,
+        "end": 50.0,
+        "hr": 85.693359375,
+        "deviceHR": 106.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 30,
+        "start": 20.0,
+        "end": 50.0,
+        "hr": 105.79833984375,
+        "deviceHR": 106.0
+      }
+    ],
+    "meanErrors": {
+      "8": {
+        "Toolbox POS": 10.086474609375,
+        "Toolbox CHROM": 10.4490234375,
+        "Toolbox GREEN": 23.078076171875,
+        "Toolbox TS-CAN": 10.723681640625,
+        "Reference PPG": 9.031787109375
+      },
+      "15": {
+        "Toolbox POS": 11.1380615234375,
+        "Toolbox CHROM": 10.8270263671875,
+        "Toolbox GREEN": 18.6087646484375,
+        "Toolbox TS-CAN": 12.1588134765625,
+        "Reference PPG": 7.18902587890625
+      },
+      "30": {
+        "Toolbox POS": 17.3671875,
+        "Toolbox CHROM": 17.531982421875,
+        "Toolbox GREEN": 19.179931640625,
+        "Toolbox TS-CAN": 17.6143798828125,
+        "Reference PPG": 9.841552734375
+      }
+    }
+  },
+  {
+    "subject": "subject4",
+    "sourceMetadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "rawvideo",
+          "width": 640,
+          "height": 480,
+          "pix_fmt": "bgr24",
+          "r_frame_rate": "14804681/500000",
+          "nb_frames": "1368"
+        }
+      ],
+      "format": {
+        "duration": "46.201603"
+      }
+    },
+    "frames": 1368,
+    "retainedFrames": 1260,
+    "acquisitionDuration": 46.234,
+    "containerDuration": 46.16783,
+    "acquisitionMedianDt": 0.03500000000000014,
+    "acquisitionMaxDt": 0.15700000000000003,
+    "duplicateReferenceTimestamps": 1,
+    "longReferenceGaps": 1,
+    "acquisitionMeanFps": 29.566985335467404,
+    "faceBoxes": [
+      [
+        237,
+        143,
+        235,
+        235
+      ]
+    ],
+    "officialMetric": {
+      "referenceWaveformHR": 112.5,
+      "predictedHR": 112.5,
+      "absoluteErrorBpm": 0.0,
+      "snrDb": -0.556834218313899,
+      "macc": 0.8752443464832058,
+      "note": "MACC searches circular lags, not beat matching."
+    },
+    "device": "mps",
+    "scores": [
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 91.40625,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 92.28515625,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 86.46240234375,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 93.3837890625,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 8.0,
+        "end": 16.0,
+        "hr": 92.0654296875,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 112.060546875,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 111.4013671875,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 112.939453125,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 112.60986328125,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 12.0,
+        "end": 20.0,
+        "hr": 111.95068359375,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 99.755859375,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 100.74462890625,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 100.96435546875,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 99.5361328125,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 16.0,
+        "end": 24.0,
+        "hr": 98.876953125,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 105.35888671875,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 105.35888671875,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 106.787109375,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 105.6884765625,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 20.0,
+        "end": 28.0,
+        "hr": 104.8095703125,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 113.92822265625,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 113.48876953125,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 111.07177734375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 113.04931640625,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 8,
+        "start": 24.0,
+        "end": 32.0,
+        "hr": 112.82958984375,
+        "deviceHR": 108.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 109.6435546875,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 108.3251953125,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 110.0830078125,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 110.302734375,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 8.0,
+        "end": 23.0,
+        "hr": 110.5224609375,
+        "deviceHR": 113.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 103.16162109375,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 104.91943359375,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 99.86572265625,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 99.9755859375,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 12.0,
+        "end": 27.0,
+        "hr": 104.47998046875,
+        "deviceHR": 112.0
+      },
+      {
+        "method": "Toolbox POS",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 104.04052734375,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox CHROM",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 105.46875,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox GREEN",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 104.91943359375,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Toolbox TS-CAN",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 105.35888671875,
+        "deviceHR": 111.0
+      },
+      {
+        "method": "Reference PPG",
+        "windowSeconds": 15,
+        "start": 16.0,
+        "end": 31.0,
+        "hr": 105.6884765625,
+        "deviceHR": 111.0
+      }
+    ],
+    "meanErrors": {
+      "8": {
+        "Toolbox POS": 9.4935546875,
+        "Toolbox CHROM": 9.13974609375,
+        "Toolbox GREEN": 9.55947265625,
+        "Toolbox TS-CAN": 9.01015625,
+        "Reference PPG": 9.425390625
+      },
+      "15": {
+        "Toolbox POS": 6.384765625,
+        "Toolbox CHROM": 5.76220703125,
+        "Toolbox GREEN": 7.0439453125,
+        "Toolbox TS-CAN": 6.78759765625,
+        "Reference PPG": 5.10302734375
+      },
+      "30": {
+        "Toolbox POS": null,
+        "Toolbox CHROM": null,
+        "Toolbox GREEN": null,
+        "Toolbox TS-CAN": null,
+        "Reference PPG": null
+      }
+    }
+  }
+]
