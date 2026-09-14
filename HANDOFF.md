@@ -31,3 +31,11 @@ This misses the90% availability target. Device-HR disagreement is substantial on
 - Dataset fetch/extraction/model runner scripts and pinned provenance are documented in the benchmark markdown files. A fresh clone includes reports but must reacquire datasets and regenerate local artifacts to rerun the full pipeline.
 
 The numeric diagnostic viewer can inspect exported camera logs without video uploads. Personal logs are deliberately not part of this Git checkpoint.
+
+## FacePhys replacement — 2026-09-14
+
+Local build now defaults to the pinned official FacePhys demo at /facephys/. Legacy app remains /legacy.html. See benchmarks/FACEPHYS.md. This is an application-level replacement, not yet a measurement.js adapter. Chrome initialization and five actual model Worker steps passed (finite output, final step about6.4ms); existing Node tests and static build passed. No physiological accuracy claim follows from that execution check. This change has not been deployed.
+
+## Main adoption
+
+FacePhys is now the default build experience. The unvalidated custom beat/HRV panel is disabled by default because live sessions repeatedly failed its gates. It remains explicitly opt-in at `/facephys/?experimentalMetrics=1` for development only. Default readouts are the released FacePhys waveform, FFT HR, SQI and latency. No claim of successful IBI/HRV validation. Benchmark reports remain saved under benchmarks/reports/.

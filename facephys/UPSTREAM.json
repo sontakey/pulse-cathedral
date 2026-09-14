@@ -1,0 +1,30 @@
+{
+  "repository": "https://github.com/KegangWangCCNU/FacePhys-Demo",
+  "commit": "0007a97565872f5845824802eccec0258305c98d",
+  "originalSha256": {
+    "index.html": "ea6d08cf2a96b7584e47b94144c058021bb35ee317b69d11123fb1beece9cf3e",
+    "LICENSE": "31107a4c829ceac255d91f7020ef40a3bab779cd137fa4617beadaa12cb4ce59",
+    "plot_worker.js": "edecd5c3326c6a06dcc637503e663def1998acefbbc1d63b879ee6ce98f2af02",
+    "README.md": "0a4c2ca7d010d18f85a1b860c84e675efb3630991fcf3c65160fb1ddb1f14c26",
+    "main.js": "37652a18efd6c1a6eafc995ec9e84b50caec13032b3d785624b9af9898cd6acb",
+    "manifest.json": "1ebaf5b4fb4c3fe821272bc6a90c38eeec6ecb469da9ba782bb62d79e2b6a877",
+    "psd_worker.js": "ae94a9e323873299900f5f0dfcb09e483fa5eb23eb7a0b8de518c0d06487315b",
+    "inference_worker.js": "fe88eea48c4f8ed7aa7f2bad4edd66dd81928e7814038181db8e31b5d3d40c8c",
+    "sw.js": "4b9e0aa2637b5ff6075a058843a2aa61c0afbce39592e29062e9dc6ba58e4996",
+    "models/psd_model.tflite": "b82ccccf44cea051e76efb700d059b970ad1ba232c3df991ecba58baf18479a9",
+    "models/blaze_face_short_range.tflite": "b4578f35940bf5a1a655214a1cce5cab13eba73c1297cd78e1a04c2380b0152f",
+    "models/state.gz": "62904254920eefc1a1ae26c9e7b3abe2f22e5ebcdf1036782cde770b5ea4d788",
+    "models/proj.tflite": "5ed4508ccbf0c90a603cf0daa04b5f4d97d766ddf799fbbd080bb2b81bb645fa",
+    "models/sqi_model.tflite": "ef9ac2cb3b003421d3581541ce194632cb1776647abe12454876bfefb5ec8eb9",
+    "models/model.tflite": "577d5b30cf80481bdadf7d0a49d19066a2e435f1e38fcf003309d0532dcd7d06",
+    "resource/litert_logo.png": "d5227c3379b45f146da9a3f3e18bfc36ae50a24fff4cc601a8f7a57ca4a7d586",
+    "resource/icon-192.png": "587e4d1bbc08413ca94358d521163eb0a6c2dcec6e32341e4b706dd2fc95e157",
+    "resource/t.svg": "067d53dfdc622e27c51598e15a8b56b5981e3820d7360784b478143c0b6e0c6e",
+    "resource/icon-512.png": "1b03f50f3847aae660f3730d2ec13732b6483b343dffba044af18a91442e9f31"
+  },
+  "changes": [
+    "Explicit local measurement consent before camera start",
+    "Disable service-worker registration to avoid stale model/runtime caches",
+    "Navigation back to legacy Signal Lab"
+  ]
+}
