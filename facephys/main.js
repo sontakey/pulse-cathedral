@@ -573,6 +573,7 @@ async function handleSaveData() {
     }
 
     const zip = new JSZip();
+    zip.file("diagnostics.json", JSON.stringify(diagnosticLog.snapshot()));
 
     let bvpCsv = "timestamp,value\n";
     bvpLog.forEach(row => {

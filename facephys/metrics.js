@@ -2,7 +2,8 @@
 const avg=a=>a.reduce((s,v)=>s+v,0)/a.length;
 export const emptyHRV=()=>({bpm:null,ibi:null,sdnn:null,rmssd:null,pnn50:null,'LF/HF':null,breathingrate:null});
 export function summarizeIntervals(rr) {
- const hrv=emptyHRV();if(rr.length<3)return hrv;
+ const hrv=emptyHRV();if(!rr.length)return hrv;
+ hrv.ibi=rr.at(-1).ms;if(rr.length<3)return hrv;
  const v=rr.map(x=>x.ms),m=avg(v);hrv.ibi=v.at(-1);hrv.bpm=60000/m;
  const duration=rr.at(-1).t-rr[0].start;
  if(duration<60)return hrv;

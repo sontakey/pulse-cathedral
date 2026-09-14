@@ -15,3 +15,5 @@ test('duplicate video timestamps do not erase accepted intervals',()=>{const p=n
 test('missing timestamps are reported distinctly from signal quality',()=>{const p=new BeatMetrics();p.add(1,undefined,true);assert.match(p.reason,/timestamp/);});
 
 test('provisional beats at SQI 0.39 do not release strict HRV',()=>{const preview=new BeatMetrics(),strict=new BeatMetrics();for(let i=0;i<2200;i++){const v=Math.sin(i/30*2*Math.PI);preview.add(v,i/30,.39>.38);strict.add(v,i/30,.39>.5)}assert.ok(Math.abs(preview.result.ibi-1000)<.001);assert.equal(strict.result.ibi,null);assert.equal(strict.result.rmssd,null);});
+
+test('one accepted interval is visible as IBI without releasing HRV',()=>{const m=summarizeIntervals([{start:1,t:2,ms:1000}]);assert.equal(m.ibi,1000);assert.equal(m.bpm,null);assert.equal(m.rmssd,null);assert.equal(m.sdnn,null);});
